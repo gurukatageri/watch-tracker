@@ -19,8 +19,8 @@
     "quiet_start_hour": 23,
     "quiet_end_hour": 7
   },
-  "research_min_score": 6,
-  "max_research_per_day": 8,
+  "research_min_score": 5,
+  "max_research_per_day": 15,
   "max_hype_checks_per_day": 15,
   "purchase_tax_pct": 5,
   "selling_cost_pct": 10,

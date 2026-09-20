@@ -1,10 +1,114 @@
 {
-  "generated": "2026-09-20T07:59:20.494858+00:00",
+  "generated": "2026-09-20T08:37:59.892107+00:00",
   "max_price_aed": 100000,
   "min_score": 5,
   "breakeven_pct": 16.7,
   "selling_cost_pct": 10,
+  "purchase_tax_pct": 5,
   "releases": [
+    {
+      "id": "c8e128eac0b5",
+      "brand": "Jaeger-LeCoultre",
+      "model": "Master Control Chronometre Time and Date",
+      "reference": null,
+      "is_limited": false,
+      "pieces": null,
+      "limited_type": "not_limited",
+      "price": null,
+      "currency": null,
+      "price_aed": null,
+      "status": "announced",
+      "launch_date": "2026-09-20",
+      "launch_date_text": "Watches and Wonders 2026",
+      "launch_time": null,
+      "launch_timezone": null,
+      "buy_url": null,
+      "book_url": null,
+      "dial": "Brushed blue (steel) or brushed brown (rose gold) with applied dauphine markers and date window at 3 o'clock",
+      "variant_count": 2,
+      "article_images": [
+        {
+          "url": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-7.jpg",
+          "alt": "jaeger lecoultre master control chronometre time and date 7"
+        },
+        {
+          "url": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-9.jpg",
+          "alt": "jaeger lecoultre master control chronometre time and date 9"
+        },
+        {
+          "url": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-5.jpg",
+          "alt": "jaeger lecoultre master control chronometre time and date 5"
+        },
+        {
+          "url": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-4.jpg",
+          "alt": "jaeger lecoultre master control chronometre time and date 4"
+        },
+        {
+          "url": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-8.jpg",
+          "alt": "jaeger lecoultre master control chronometre time and date 8"
+        },
+        {
+          "url": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-3.jpg",
+          "alt": "jaeger lecoultre master control chronometre time and date 3"
+        },
+        {
+          "url": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-2.jpg",
+          "alt": "jaeger lecoultre master control chronometre time and date 2"
+        },
+        {
+          "url": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-6.jpg",
+          "alt": "jaeger lecoultre master control chronometre time and date 6"
+        }
+      ],
+      "sale_method": "retailers",
+      "how_to_buy": "Contact Jaeger-LeCoultre boutiques or authorized retailers.",
+      "reservation_possible": null,
+      "availability_notes": null,
+      "specs": "38mm, steel or rose gold, automatic calibre 899, 70h power reserve, 50m water resistance, time and date",
+      "score": 6,
+      "score_reason": "Classic integrated bracelet sports watch from prestigious manufacture with excellent finishing and HPG certification, but no limited production numbers suggest uncertain value appreciation.",
+      "allocation_likely": false,
+      "image": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-1.jpg",
+      "sources": [
+        {
+          "name": "Time and Tide",
+          "url": "https://timeandtidewatches.com/jaeger-lecoultre-time-and-date-master-control-chronometre-hands-on/"
+        }
+      ],
+      "first_seen": "2026-09-20T08:30:39.633131+00:00",
+      "updated": "2026-09-20T08:30:39.633131+00:00",
+      "status_changed": null,
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://timeandtidewatches.com/wp-content/uploads/2026/09/jaeger-lecoultre-master-control-chronometre-time-and-date-1.jpg",
+      "photo_caption": null,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 0,
+        "youtube_views": 0,
+        "index": 10,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 10
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T08:30:43.849981+00:00"
+      }
+    },
     {
       "id": "28caa7f371bc",
       "brand": "The Citizen",
@@ -139,7 +243,18 @@
         "brand_retention_note": "Multiple resale/valuation sources agree that Citizen watches generally do not hold value well versus brands like Seiko or G-Shock, with typical used discounts of 30-40% off retail, though limited-edition 'The Citizen' washi-dial pieces tend to depreciate somewhat less due to scarcity.",
         "early_signal_note": "The AQ4100-65X (350 pieces) and AQ4106-00B (200 pieces) were only announced on September 17, 2026 and are due to ship in October 2026, so no waitlist, sell-out, or pre-delivery secondary-market data exists yet, though the very small production runs suggest high scarcity potential.",
         "verdict": "Leaning loss"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": true,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "bd2f21ab1dca",
@@ -188,7 +303,18 @@
           "media"
         ],
         "updated": "2026-09-20T07:28:58.766777+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/09/Luminox-Pacific-Diver-Official-Force-Blue-RHE-Featured.jpg",
+      "photo_caption": null
     },
     {
       "id": "1e949bcb1711",
@@ -222,7 +348,18 @@
       "first_seen": "2026-09-20T06:39:28.383886+00:00",
       "updated": "2026-09-20T06:39:28.383886+00:00",
       "status_changed": null,
-      "over_budget": true
+      "over_budget": true,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/09/Hublot-MP-14-Origin-By-Jeff-Koons-Watch.jpg",
+      "photo_caption": null
     },
     {
       "id": "605c8ebe2f57",
@@ -395,7 +532,46 @@
         "early_signal_note": "The watch was only unveiled on September 16, 2026 alongside the $488,000 MP-14 Origin, so no secondary-market flips, waitlist reports, or above-retail pre-delivery listings have surfaced yet, though it is generating strong press buzz.",
         "est_profit_aed": 20520,
         "verdict": "Too uncertain to call"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": true,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Hublot Dubai Mall Boutique",
+            "type": "boutique",
+            "mall": "The Dubai Mall, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.hublot.com/en-int/boutiques/hublot-dubai-mall-boutique",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Hublot+Dubai+Mall+Boutique+The+Dubai+Mall%2C+Dubai+UAE"
+          },
+          {
+            "name": "Ahmed Seddiqi & Sons - The Dubai Mall",
+            "type": "authorized_dealer",
+            "mall": "The Dubai Mall, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.hublot.com/en-ae/boutiques/ahmed-seddiqi-dubai-mall",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+-+The+Dubai+Mall+The+Dubai+Mall%2C+Dubai+UAE"
+          },
+          {
+            "name": "Ahmed Seddiqi & Sons - Mall of the Emirates",
+            "type": "authorized_dealer",
+            "mall": "Mall of the Emirates, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://originalpricing.com/original-hublot-price-in-uae/",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+-+Mall+of+the+Emirates+Mall+of+the+Emirates%2C+Dubai+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/09/Hublot-Classic-Fusion-Balloon-Dog-Jeff-Koons-Watches-1.jpg",
+      "photo_caption": null
     },
     {
       "id": "98151fff294d",
@@ -429,7 +605,18 @@
       "first_seen": "2026-09-20T06:39:18.796985+00:00",
       "updated": "2026-09-20T06:39:18.796985+00:00",
       "status_changed": null,
-      "over_budget": true
+      "over_budget": true,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/08/Gerald-Charles-Masterlink-Atelier-Edition.jpg",
+      "photo_caption": null
     },
     {
       "id": "4cf433bd179a",
@@ -463,7 +650,18 @@
       "first_seen": "2026-09-20T06:39:14.058059+00:00",
       "updated": "2026-09-20T06:39:14.058059+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://deployant.com/wp-content/uploads/2026/09/Digital-1-36-11-03-02-66_70s_DIAL_Tweed_Amp_RS_black_LE0826-149600-1200x1550.jpg",
+      "photo_caption": null
     },
     {
       "id": "b39df19c8a43",
@@ -621,7 +819,46 @@
         "brand_retention_note": "WatchCharts data shows the Clifton line's most popular references trading at a fraction of MSRP (e.g. an average $5,000 MSRP model with only ~$960 market value), and Baume & Mercier overall skews toward steep depreciation outside rare limited pieces.",
         "early_signal_note": "The M0A10872 is a hard 20-piece limited edition, and its listing on Baume & Mercier's own online store already shows it as unavailable ('no longer available... Coming soon'), consistent with rapid sell-through shortly after the August 2026 launch.",
         "verdict": "Too uncertain to call"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Ahmed Seddiqi & Sons",
+            "type": "authorized_dealer",
+            "mall": "Multiple locations, Dubai (incl. Dubai Mall) and Abu Dhabi",
+            "city": null,
+            "phone": null,
+            "url": "https://www.baume-et-mercier.com/en/stores/details.001503.1915-by-ahmed-seddiqi-son.html",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+Multiple+locations%2C+Dubai+%28incl.+Dubai+Mall%29+and+Abu+Dhabi+UAE"
+          },
+          {
+            "name": "Ahmed Seddiqi & Sons",
+            "type": "authorized_dealer",
+            "mall": "Abu Dhabi (Capital Plaza Tower, Corniche Road)",
+            "city": null,
+            "phone": null,
+            "url": "https://www.baume-et-mercier.com/en/stores/details.001305.ahmed-seddiqi-sons.html",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+Abu+Dhabi+%28Capital+Plaza+Tower%2C+Corniche+Road%29+UAE"
+          },
+          {
+            "name": "La Maison de Luxe",
+            "type": "authorized_dealer",
+            "mall": "Dubai Mall, Ground Floor, Financial Road, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.baume-et-mercier.com/en/stores/details.001939.la-maison-de-luxe.html",
+            "maps": "https://www.google.com/maps/search/?api=1&query=La+Maison+de+Luxe+Dubai+Mall%2C+Ground+Floor%2C+Financial+Road%2C+Dubai+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://framerusercontent.com/assets/C8SY2z4SNxH4gGutxragavtFI.webp",
+      "photo_caption": null
     },
     {
       "id": "9b5b867725d2",
@@ -673,7 +910,18 @@
           "youtube"
         ],
         "updated": "2026-09-20T07:59:18.887267+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://framerusercontent.com/assets/C8SY2z4SNxH4gGutxragavtFI.webp",
+      "photo_caption": null
     },
     {
       "id": "edd068934a64",
@@ -810,7 +1058,18 @@
         "early_signal_note": "No evidence of waitlists, sell-outs, or above-retail pre-delivery listings for the Timepod was found; the brand's standard model is a non-binding reservation list rather than a public launch drop, and no secondary-market chatter exists yet for this specific release.",
         "est_profit_aed": -4036,
         "verdict": "Leaning loss"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://wornandwound.com/library/uploads/2026/09/EC-Andersson-Timepod-6.jpg.jpg",
+      "photo_caption": null
     },
     {
       "id": "8365943abfa6",
@@ -844,7 +1103,18 @@
       "first_seen": "2026-09-20T06:38:58.119516+00:00",
       "updated": "2026-09-20T06:38:58.119658+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/08/Chopard-Happy-Diamonds-Heritage-Watch-11.jpg",
+      "photo_caption": null
     },
     {
       "id": "589bae6bcf76",
@@ -1006,7 +1276,28 @@
         "early_signal_note": "The watch launched only days before this research (Sept 17, 2026) and coverage so far is limited to press announcements, with no reported waitlists, sell-out status, or pre-delivery secondary listings yet visible.",
         "est_profit_aed": -12179,
         "verdict": "Too uncertain to call"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Ahmed Seddiqi & Sons",
+            "type": "authorized_dealer",
+            "mall": "Multiple boutiques across Dubai & Abu Dhabi, UAE",
+            "city": null,
+            "phone": null,
+            "url": "https://www.seddiqi.com",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+Multiple+boutiques+across+Dubai+%26+Abu+Dhabi%2C+UAE+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://monochrome-watches.com/app/uploads/2026/09/Ressence-Art-Watch-Type-9-x-Jules-Wittock-5.jpg",
+      "photo_caption": null
     },
     {
       "id": "3b166113463b",
@@ -1044,7 +1335,18 @@
       "first_seen": "2026-09-20T06:38:23.049070+00:00",
       "updated": "2026-09-20T06:38:26.516060+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.fratellowatches.com/cdn-cgi/image/anim=false/wp-content/uploads/2026/09/Christopher_Ward_C63-41-ACH4-S0KW0-B0_Picture_3.jpg",
+      "photo_caption": null
     },
     {
       "id": "7bb1658b0c32",
@@ -1078,7 +1380,18 @@
       "first_seen": "2026-09-20T06:38:18.712006+00:00",
       "updated": "2026-09-20T06:38:18.712006+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://hodinkee.imgix.net/uploads/images/29b31e73-4fe9-4fe0-b3f6-1aede28f7a7d/Ladybird_0064_3642_PR1_RGB.jpg?ixlib=rails-1.1.0&fm=jpg&q=55&auto=format&usm=12&w=1200&h=630&fit=crop",
+      "photo_caption": null
     },
     {
       "id": "82d97e37134a",
@@ -1259,7 +1572,73 @@
         "time": "20:11",
         "utc": "2026-09-15T16:11:00+00:00",
         "local": "12:11 EDT"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": true,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "G-SHOCK Store, Al Ghurair Centre",
+            "type": "boutique",
+            "mall": "Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://casiofanmag.com/stores/uae/",
+            "maps": "https://www.google.com/maps/search/?api=1&query=G-SHOCK+Store%2C+Al+Ghurair+Centre+Dubai+UAE"
+          },
+          {
+            "name": "G-SHOCK Store, Deira City Centre",
+            "type": "boutique",
+            "mall": "Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://casiofanmag.com/stores/uae/",
+            "maps": "https://www.google.com/maps/search/?api=1&query=G-SHOCK+Store%2C+Deira+City+Centre+Dubai+UAE"
+          },
+          {
+            "name": "G-SHOCK Store, Arabian Center",
+            "type": "boutique",
+            "mall": "Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://casiofanmag.com/stores/uae/",
+            "maps": "https://www.google.com/maps/search/?api=1&query=G-SHOCK+Store%2C+Arabian+Center+Dubai+UAE"
+          },
+          {
+            "name": "G-SHOCK Store, Al Wahda Mall",
+            "type": "boutique",
+            "mall": "Abu Dhabi",
+            "city": null,
+            "phone": null,
+            "url": "https://casiofanmag.com/stores/uae/abu-dhabi/",
+            "maps": "https://www.google.com/maps/search/?api=1&query=G-SHOCK+Store%2C+Al+Wahda+Mall+Abu+Dhabi+UAE"
+          },
+          {
+            "name": "EDIT by Ahmed Seddiqi (Casio/G-Shock authorized retailer)",
+            "type": "authorized_dealer",
+            "mall": "UAE (online + Ahmed Seddiqi retail network)",
+            "city": null,
+            "phone": null,
+            "url": "https://www.byedit.com/collections/casio",
+            "maps": "https://www.google.com/maps/search/?api=1&query=EDIT+by+Ahmed+Seddiqi+%28Casio%2FG-Shock+authorized+retailer%29+UAE+%28online+%2B+Ahmed+Seddiqi+retail+network%29+UAE"
+          },
+          {
+            "name": "Al-Wifaq (Official Authorized Distributor for Casio/G-SHOCK in UAE)",
+            "type": "authorized_dealer",
+            "mall": "Dubai, Sharjah, Abu Dhabi",
+            "city": null,
+            "phone": null,
+            "url": "https://alwifaqonline.com/",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Al-Wifaq+%28Official+Authorized+Distributor+for+Casio%2FG-SHOCK+in+UAE%29+Dubai%2C+Sharjah%2C+Abu+Dhabi+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "0cf5288cb242",
@@ -1293,7 +1672,18 @@
       "first_seen": "2026-09-20T06:38:07.364941+00:00",
       "updated": "2026-09-20T06:38:07.365069+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "69f4d159e60f",
@@ -1439,7 +1829,18 @@
         "time": "18:00",
         "utc": "2026-09-24T14:00:00+00:00",
         "local": "23:00 JST"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": true,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://monochrome-watches.com/app/uploads/2026/09/2026-Kurono-Tokyo-Calendrier-Small-Batch-Release-Saxe-Blue-Dial-1.jpg",
+      "photo_caption": null
     },
     {
       "id": "294a52a796c6",
@@ -1473,7 +1874,18 @@
       "first_seen": "2026-09-20T06:37:49.113188+00:00",
       "updated": "2026-09-20T06:37:49.113188+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "112f4fea1f11",
@@ -1635,7 +2047,28 @@
         "early_signal_note": "Nivada Grenchen states reservations for the 100-piece Ice Agate are opening soon ahead of the September 24 launch, consistent with the brand's track record of prior F77 limited runs selling out quickly.",
         "est_profit_aed": 1517,
         "verdict": "Likely profitable"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": true,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Perpétuel",
+            "type": "authorized_dealer",
+            "mall": "Dubai, UAE",
+            "city": null,
+            "phone": null,
+            "url": "https://perpetuelofficial.com",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Perp%C3%A9tuel+Dubai%2C+UAE+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://timeandtidewatches.com/wp-content/uploads/2026/09/featured-image-nivada-grenchen-f77-100-years.jpg",
+      "photo_caption": null
     },
     {
       "id": "c579e3e5aa47",
@@ -1684,7 +2117,18 @@
           "media"
         ],
         "updated": "2026-09-20T06:44:45.850708+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/09/Ikepod-Minipod-22-scaled.jpeg",
+      "photo_caption": null
     },
     {
       "id": "30569c57615b",
@@ -1736,7 +2180,18 @@
           "youtube"
         ],
         "updated": "2026-09-20T07:59:19.081477+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "cc72a41ef3d5",
@@ -1788,7 +2243,18 @@
           "youtube"
         ],
         "updated": "2026-09-20T07:59:19.265742+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "2d7d398c57d1",
@@ -1948,7 +2414,37 @@
         "early_signal_note": "Studio Underd0g's past limited drops have a strong track record of selling out within minutes to hours (e.g., the Watermelon sold out in 6 minutes) and this Chan3ad edition is capped at just 100 pieces exclusively through Ahmed Seddiqi, mirroring the scarcity pattern that has driven premiums on prior collaborations.",
         "est_profit_aed": 2228,
         "verdict": "Likely profitable"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": false,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Ahmed Seddiqi & Sons",
+            "type": "authorized_dealer",
+            "mall": "The Dubai Mall, Dubai (and other Ahmed Seddiqi UAE boutiques)",
+            "city": null,
+            "phone": null,
+            "url": "https://www.seddiqi.com/find-a-boutique-listing",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+The+Dubai+Mall%2C+Dubai+%28and+other+Ahmed+Seddiqi+UAE+boutiques%29+UAE"
+          },
+          {
+            "name": "Ahmed Seddiqi & Sons",
+            "type": "authorized_dealer",
+            "mall": "Mall of the Emirates, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.malloftheemirates.com/en/find-a-store/ahmed-seddiqi-sons",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+Mall+of+the+Emirates%2C+Dubai+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://hodinkee.imgix.net/uploads/images/f8864680-a5b8-48a4-930b-b547211b820b/StudioUnderd0gxAhmedSeddiqi-03SERIES-Kingfish-HeroStrapL.jpg?ixlib=rails-1.1.0&fm=jpg&q=55&auto=format&usm=12&w=1200&h=630&fit=crop",
+      "photo_caption": null
     },
     {
       "id": "9a8caa20d5ea",
@@ -2000,7 +2496,18 @@
           "youtube"
         ],
         "updated": "2026-09-20T07:59:19.534731+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "885d700b50f1",
@@ -2034,7 +2541,18 @@
       "first_seen": "2026-09-20T06:37:18.838953+00:00",
       "updated": "2026-09-20T06:37:18.838953+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "f0daad00e4bb",
@@ -2083,7 +2601,18 @@
           "media"
         ],
         "updated": "2026-09-20T06:44:45.850728+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.fratellowatches.com/cdn-cgi/image/anim=false/wp-content/uploads/2026/09/Anoma-catalog-models.jpg",
+      "photo_caption": null
     },
     {
       "id": "3a58fb3bf890",
@@ -2132,7 +2661,18 @@
           "media"
         ],
         "updated": "2026-09-20T06:44:45.850743+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.fratellowatches.com/cdn-cgi/image/anim=false/wp-content/uploads/2026/09/Anoma-catalog-models.jpg",
+      "photo_caption": null
     },
     {
       "id": "57701154de8c",
@@ -2170,7 +2710,18 @@
       "first_seen": "2026-09-20T06:37:10.408503+00:00",
       "updated": "2026-09-20T06:39:41.274185+00:00",
       "status_changed": null,
-      "over_budget": true
+      "over_budget": true,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://monochrome-watches.com/app/uploads/2026/09/Singer-Reimagined-1970-DualTrack-new-collection-review-1.jpg",
+      "photo_caption": null
     },
     {
       "id": "66bb6f0b3a6b",
@@ -2204,7 +2755,18 @@
       "first_seen": "2026-09-20T06:36:53.982493+00:00",
       "updated": "2026-09-20T06:36:53.982610+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "5fa4d6ec9ef5",
@@ -2256,7 +2818,18 @@
           "youtube"
         ],
         "updated": "2026-09-20T07:59:19.875384+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "c4465fafac95",
@@ -2308,7 +2881,18 @@
           "youtube"
         ],
         "updated": "2026-09-20T07:59:20.271132+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "3c340eb7b155",
@@ -2360,7 +2944,18 @@
           "youtube"
         ],
         "updated": "2026-09-20T07:59:20.494502+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "bae3ad78958e",
@@ -2402,7 +2997,18 @@
       "first_seen": "2026-09-20T06:36:38.671601+00:00",
       "updated": "2026-09-20T06:38:02.675752+00:00",
       "status_changed": "2026-09-20T06:37:57.680650+00:00",
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://timeandtidewatches.com/wp-content/uploads/2026/09/featured-image-hamilton-khaki-field-cod-2026-2.jpg",
+      "photo_caption": null
     },
     {
       "id": "43125ff208fd",
@@ -2436,7 +3042,18 @@
       "first_seen": "2026-09-20T06:36:36.560472+00:00",
       "updated": "2026-09-20T06:36:36.560472+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/09/Glashutte-Original-70s-LOR-Crop-1.jpg",
+      "photo_caption": null
     },
     {
       "id": "06cd0ed7b26e",
@@ -2474,7 +3091,18 @@
       "first_seen": "2026-09-20T06:36:36.560295+00:00",
       "updated": "2026-09-20T06:36:36.560295+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/09/Glashutte-Original-70s-LOR-Crop-1.jpg",
+      "photo_caption": null
     },
     {
       "id": "c14af51c22de",
@@ -2647,7 +3275,28 @@
         "early_signal_note": "The 70s Vinyl Record was only announced in September 2026 with availability starting the same month, and no waitlist, sell-out, or pre-delivery premium reports have surfaced yet.",
         "est_profit_aed": -7821,
         "verdict": "Unlikely profit"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": true,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Rivoli",
+            "type": "authorized_dealer",
+            "mall": "Dubai Mall, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://thedubaimall.com/en/shop/rivoli",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Rivoli+Dubai+Mall%2C+Dubai+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/09/Glashutte-Original-70s-LOR-Crop-1.jpg",
+      "photo_caption": null
     },
     {
       "id": "b34fed4adec7",
@@ -2681,7 +3330,18 @@
       "first_seen": "2026-09-20T06:36:29.155142+00:00",
       "updated": "2026-09-20T06:36:29.155142+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "2fcef9dfa46e",
@@ -2715,7 +3375,18 @@
       "first_seen": "2026-09-20T06:36:26.881013+00:00",
       "updated": "2026-09-20T06:36:26.881013+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://monochrome-watches.com/app/uploads/2026/09/Pennsylvania-Based-RGM-Revives-the-E.F.-Bowman-Name-with-the-Model-501-EFB-8.jpg",
+      "photo_caption": null
     },
     {
       "id": "07524b08546b",
@@ -2749,7 +3420,18 @@
       "first_seen": "2026-09-20T06:36:20.689454+00:00",
       "updated": "2026-09-20T06:36:22.480600+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "77691f56a65c",
@@ -2905,7 +3587,55 @@
         "brand_retention_note": "Audemars Piguet Royal Oaks generally trade at or above retail on the secondary market (e.g., core steel refs like 15500ST/16202 trade 25-48% above retail), though value retention is highly model-dependent and niche celebrity/athlete limited editions (Offshore, novelty dials) tend to trade closer to or below retail with lower liquidity than core references.",
         "early_signal_note": "The watch was unveiled only days ago (Sept 15, 2026) via an invite-only Vogue-partnered event in New York, and while media coverage has been extensive, no reports of sell-outs, waitlists, or pre-delivery secondary listings above retail have surfaced yet.",
         "verdict": "Leaning profit"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": false,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Audemars Piguet Boutique Dubai Mall",
+            "type": "boutique",
+            "mall": "The Dubai Mall, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.audemarspiguet.com/us/en/stores/dubai-mall",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Audemars+Piguet+Boutique+Dubai+Mall+The+Dubai+Mall%2C+Dubai+UAE"
+          },
+          {
+            "name": "Audemars Piguet Boutique Mall of the Emirates",
+            "type": "boutique",
+            "mall": "Mall of the Emirates, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.audemarspiguet.com/com/en/stores/dubai-mall-emirates.html",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Audemars+Piguet+Boutique+Mall+of+the+Emirates+Mall+of+the+Emirates%2C+Dubai+UAE"
+          },
+          {
+            "name": "Audemars Piguet Boutique Abu Dhabi",
+            "type": "boutique",
+            "mall": "Abu Dhabi",
+            "city": null,
+            "phone": null,
+            "url": "https://www.audemarspiguet.com/com/en/stores/abu-dhabi.html",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Audemars+Piguet+Boutique+Abu+Dhabi+Abu+Dhabi+UAE"
+          },
+          {
+            "name": "Ahmed Seddiqi & Sons",
+            "type": "authorized_dealer",
+            "mall": "Multiple boutiques across UAE (official AP retail partner)",
+            "city": null,
+            "phone": null,
+            "url": "https://www.seddiqi.com/brand/audemarspiguet",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+Multiple+boutiques+across+UAE+%28official+AP+retail+partner%29+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "ba19733f93a7",
@@ -2954,7 +3684,18 @@
           "media"
         ],
         "updated": "2026-09-20T06:44:45.850757+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.fratellowatches.com/cdn-cgi/image/anim=false/wp-content/uploads/2026/09/IFLW_x_Spinnaker-HEADER.jpg",
+      "photo_caption": null
     },
     {
       "id": "623f270c944d",
@@ -3099,7 +3840,28 @@
         "brand_retention_note": "Atelier Wen is a young independent microbrand with no established secondary-market tracking (no WatchCharts/Chrono24 index data found), so resale value is unproven and likely depends heavily on piece-specific demand rather than brand-wide retention.",
         "early_signal_note": "Coverage frames the 50-piece Inflection Shuò (10 reserved for existing clients, 40 public) as unlikely to remain available long given past Atelier Wen sell-outs and strong collector interest in its tantalum Inflection platform.",
         "verdict": "Leaning loss"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": true,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Ahmed Seddiqi & Sons",
+            "type": "authorized_dealer",
+            "mall": "Burj Khalifa, Financial Centre St, Dubai, UAE",
+            "city": null,
+            "phone": null,
+            "url": "https://www.seddiqi.com/",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+Burj+Khalifa%2C+Financial+Centre+St%2C+Dubai%2C+UAE+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/08/Atelier-Wen-Massena-LAB-Inflection-SP-13.jpg",
+      "photo_caption": null
     },
     {
       "id": "3e74a7bb20d1",
@@ -3133,7 +3895,18 @@
       "first_seen": "2026-09-20T06:36:05.560011+00:00",
       "updated": "2026-09-20T06:36:05.560011+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "1ed54389eb1f",
@@ -3182,7 +3955,18 @@
           "media"
         ],
         "updated": "2026-09-20T06:44:45.850772+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://monochrome-watches.com/app/uploads/2026/09/2026-Tudor-Northflag-GMT-M9140G1A0U-0001M9140G1A0U-0001-review-3.jpg",
+      "photo_caption": null
     },
     {
       "id": "5be38ae6dbf0",
@@ -3216,7 +4000,18 @@
       "first_seen": "2026-09-20T06:35:53.510861+00:00",
       "updated": "2026-09-20T06:35:53.510861+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://wornandwound.com/library/uploads/2026/09/2026_08_Apiar_Carbon-1-OG_004_WR.jpg",
+      "photo_caption": null
     },
     {
       "id": "fbbdf9c18434",
@@ -3265,7 +4060,18 @@
           "media"
         ],
         "updated": "2026-09-20T06:44:45.850786+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://hodinkee.imgix.net/uploads/images/5cb028f9-331c-46dc-bf77-0d894a53bab6/G1074521.jpg?ixlib=rails-1.1.0&fm=jpg&q=55&auto=format&usm=12&w=1200&h=630&fit=crop",
+      "photo_caption": null
     },
     {
       "id": "d33c9881eddf",
@@ -3299,7 +4105,18 @@
       "first_seen": "2026-09-20T06:35:46.479348+00:00",
       "updated": "2026-09-20T06:35:46.479348+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.fratellowatches.com/cdn-cgi/image/anim=false/wp-content/uploads/2026/09/Concordia-collage.jpg",
+      "photo_caption": null
     },
     {
       "id": "72e822a6d393",
@@ -3333,7 +4150,18 @@
       "first_seen": "2026-09-20T06:35:46.479240+00:00",
       "updated": "2026-09-20T06:35:46.479240+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.fratellowatches.com/cdn-cgi/image/anim=false/wp-content/uploads/2026/09/Concordia-collage.jpg",
+      "photo_caption": null
     },
     {
       "id": "6b504b3173cf",
@@ -3367,7 +4195,18 @@
       "first_seen": "2026-09-20T06:35:46.479122+00:00",
       "updated": "2026-09-20T06:35:46.479122+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.fratellowatches.com/cdn-cgi/image/anim=false/wp-content/uploads/2026/09/Concordia-collage.jpg",
+      "photo_caption": null
     },
     {
       "id": "071e4386552c",
@@ -3401,7 +4240,18 @@
       "first_seen": "2026-09-20T06:35:46.479034+00:00",
       "updated": "2026-09-20T06:35:46.479034+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.fratellowatches.com/cdn-cgi/image/anim=false/wp-content/uploads/2026/09/Concordia-collage.jpg",
+      "photo_caption": null
     },
     {
       "id": "a9d64cb6f818",
@@ -3435,7 +4285,18 @@
       "first_seen": "2026-09-20T06:35:46.478962+00:00",
       "updated": "2026-09-20T06:35:46.478962+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.fratellowatches.com/cdn-cgi/image/anim=false/wp-content/uploads/2026/09/Concordia-collage.jpg",
+      "photo_caption": null
     },
     {
       "id": "3f757820fb64",
@@ -3452,11 +4313,11 @@
       "launch_date": null,
       "launch_date_text": null,
       "sale_method": "unknown",
-      "how_to_buy": "Details not yet available; watch for Hublot boutique and authorized retailers announcement.",
+      "how_to_buy": "Contact Hublot boutiques or authorized retailers for availability and purchase details.",
       "reservation_possible": null,
       "availability_notes": "Indian retailer mentioned; regional exclusivity or availability unclear.",
       "specs": null,
-      "score": 5,
+      "score": 6,
       "score_reason": "Hublot art collaborations attract hype and collectors, but Hublot pieces often struggle to hold value; Jeff Koons adds prestige but secondary-market performance is mixed.",
       "allocation_likely": false,
       "image": null,
@@ -3464,12 +4325,28 @@
         {
           "name": "News: limited editions",
           "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQUEVVNjJWSWJnQTdjdFh6d3o4azdkUm5fZ0dKM0RsUGlYUTc5N2d3YU9IWjM2NkdyUkdCMkotYXowUEhUbk0zU28xM241a3BzdW1xWS1NclVCMEdSY1g1Y3Z4a0M0clJ4Y05KWnJxbDRMSF9GeTVVLXpKdUNQajFXYm1YbkZkSzgxR3BmejdBem50ZUtncmFjZWI0YWp5cmhqT1F4WERoQ2REdXhtUW9hbTVGbl9ZZDE2Mm85ZUZhRkFuNmRYaTRBNkt0SUdyUQ?oc=5"
+        },
+        {
+          "name": "News: limited editions",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPVXhhT2JILWZ3LTBNU1N0dTZvZHF2bUxRV2tQaVFpc1lLbi1hU0stS3ZfUmg1Y2dJdDVXUTFoUVZPeGNiWHdQT0Vsb0Z0NnBMZFVPVXIyUXFzVGxDTmRHd3Q2aDM0WWxJYndoYWhZejZfSHdWSmVCbkJ5dFJxNENoWDZibGxKSnBEUkRKOERXeUg1WUZpVVE0SFgyaUVpZEdLS19rSU01Vi1IU2E1S2hkRmNMeEozSGVkSDNoZXA0SmtETWFLdDNUOA?oc=5"
         }
       ],
       "first_seen": "2026-09-20T06:35:38.197250+00:00",
-      "updated": "2026-09-20T06:35:38.197250+00:00",
+      "updated": "2026-09-20T08:30:43.500694+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "article_images": [],
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "804d89511a41",
@@ -3503,7 +4380,18 @@
       "first_seen": "2026-09-20T06:35:35.155191+00:00",
       "updated": "2026-09-20T06:35:35.155191+00:00",
       "status_changed": null,
-      "over_budget": true
+      "over_budget": true,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://deployant.com/wp-content/uploads/2026/09/Untitled-1-Topaz-Gigapixel-2x-scale.jpg",
+      "photo_caption": null
     },
     {
       "id": "27f7d81c9399",
@@ -3552,7 +4440,18 @@
           "media"
         ],
         "updated": "2026-09-20T06:44:45.850799+00:00"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://www.ablogtowatch.com/wp-content/uploads/2026/09/Chronoswiss-Neo-Digiteur-Pastel-Code-SP-21.jpg",
+      "photo_caption": null
     },
     {
       "id": "4d6770f2b52e",
@@ -3693,7 +4592,28 @@
         "early_signal_note": "Coverage frames the 100-piece Chan3ad as a high-hype 'massive hype piece' collaboration that press describes as set to be hard to obtain, though no confirmed sold-out status or above-retail flips have surfaced yet since it only began retailing on September 17, 2026.",
         "est_profit_aed": 487,
         "verdict": "Too uncertain to call"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": false,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Ahmed Seddiqi & Sons",
+            "type": "authorized_dealer",
+            "mall": "Multiple boutiques across UAE (e.g., The Dubai Mall), exclusive launch partner for the Chan3ad",
+            "city": null,
+            "phone": null,
+            "url": "https://www.seddiqi.com/boutique-locator/",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Ahmed+Seddiqi+%26+Sons+Multiple+boutiques+across+UAE+%28e.g.%2C+The+Dubai+Mall%29%2C+exclusive+launch+partner+for+the+Chan3ad+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://timeandtidewatches.com/wp-content/uploads/2026/09/grand-seiko-web.jpg",
+      "photo_caption": null
     },
     {
       "id": "118bb0965927",
@@ -3727,7 +4647,18 @@
       "first_seen": "2026-09-20T06:35:24.194854+00:00",
       "updated": "2026-09-20T06:35:24.194854+00:00",
       "status_changed": null,
-      "over_budget": true
+      "over_budget": true,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://timeandtidewatches.com/wp-content/uploads/2026/09/grand-seiko-web.jpg",
+      "photo_caption": null
     },
     {
       "id": "d36d669b1e47",
@@ -3897,7 +4828,55 @@
         "early_signal_note": "The SBGW325 was only announced in mid-September 2026 for an October 2026 boutique release, with pre-orders opened on Grand Seiko's site, but no independent reports yet of sell-outs or above-retail grey-market listings.",
         "est_profit_aed": -5363,
         "verdict": "Leaning loss"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": false,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Grand Seiko Boutique (Al-Futtaim)",
+            "type": "boutique",
+            "mall": "Dubai Mall, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.grand-seiko.com/middleeast-en/storesinfo/list",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Grand+Seiko+Boutique+%28Al-Futtaim%29+Dubai+Mall%2C+Dubai+UAE"
+          },
+          {
+            "name": "Grand Seiko Boutique (Al-Futtaim)",
+            "type": "boutique",
+            "mall": "Mall of the Emirates, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.grand-seiko.com/middleeast-en/storesinfo/list",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Grand+Seiko+Boutique+%28Al-Futtaim%29+Mall+of+the+Emirates%2C+Dubai+UAE"
+          },
+          {
+            "name": "Grand Seiko Boutique (Al-Futtaim)",
+            "type": "boutique",
+            "mall": "Sahara Centre, Sharjah",
+            "city": null,
+            "phone": null,
+            "url": "https://www.grand-seiko.com/middleeast-en/storesinfo/list",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Grand+Seiko+Boutique+%28Al-Futtaim%29+Sahara+Centre%2C+Sharjah+UAE"
+          },
+          {
+            "name": "The Watch House",
+            "type": "authorized_dealer",
+            "mall": "Al Wahda Mall, Abu Dhabi",
+            "city": null,
+            "phone": null,
+            "url": "https://www.grand-seiko.com/middleeast-en/storesinfo/41814",
+            "maps": "https://www.google.com/maps/search/?api=1&query=The+Watch+House+Al+Wahda+Mall%2C+Abu+Dhabi+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://timeandtidewatches.com/wp-content/uploads/2026/09/grand-seiko-web.jpg",
+      "photo_caption": null
     },
     {
       "id": "7d565742b941",
@@ -3939,7 +4918,18 @@
       "first_seen": "2026-09-20T06:35:24.194790+00:00",
       "updated": "2026-09-20T06:37:03.257359+00:00",
       "status_changed": "2026-09-20T06:36:58.845437+00:00",
-      "over_budget": true
+      "over_budget": true,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://timeandtidewatches.com/wp-content/uploads/2026/09/grand-seiko-web.jpg",
+      "photo_caption": null
     },
     {
       "id": "cdf6e9eb7663",
@@ -4105,7 +5095,46 @@
         "early_signal_note": "The Lady B launched only days ago (Sept 17, 2026) as a permanent (non-limited) collection piece, so no secondary-market listings, waitlist reports, or flip premiums have surfaced yet.",
         "est_profit_aed": -12708,
         "verdict": "Expect a loss"
-      }
+      },
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": true,
+        "online_note": null,
+        "stores": [
+          {
+            "name": "Blancpain Boutique, Mall of the Emirates",
+            "type": "boutique",
+            "mall": "Mall of the Emirates, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.blancpain.com/en/points-sale/blancpain-boutique-1",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Blancpain+Boutique%2C+Mall+of+the+Emirates+Mall+of+the+Emirates%2C+Dubai+UAE"
+          },
+          {
+            "name": "Blancpain Boutique, Dubai Mall",
+            "type": "boutique",
+            "mall": "Dubai Mall, Dubai",
+            "city": null,
+            "phone": null,
+            "url": "https://www.blancpain.com/en/points-sale/blancpain-boutique-dubai-mall",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Blancpain+Boutique%2C+Dubai+Mall+Dubai+Mall%2C+Dubai+UAE"
+          },
+          {
+            "name": "Rivoli Prestige (Rivoli Group)",
+            "type": "authorized_dealer",
+            "mall": "Dubai, UAE",
+            "city": null,
+            "phone": null,
+            "url": "https://www.rivoligroup.com/brands/blancpain",
+            "maps": "https://www.google.com/maps/search/?api=1&query=Rivoli+Prestige+%28Rivoli+Group%29+Dubai%2C+UAE+UAE"
+          }
+        ]
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": "https://timeandtidewatches.com/wp-content/uploads/2026/09/grand-seiko-web.jpg",
+      "photo_caption": null
     },
     {
       "id": "2048eed540e0",
@@ -4139,7 +5168,18 @@
       "first_seen": "2026-09-20T06:35:09.494260+00:00",
       "updated": "2026-09-20T06:35:09.494260+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     },
     {
       "id": "21bc3c1fdd08",
@@ -4173,7 +5213,18 @@
       "first_seen": "2026-09-20T06:35:07.716035+00:00",
       "updated": "2026-09-20T06:35:07.716035+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "where_to_buy": {
+        "buy_url": null,
+        "book_url": null,
+        "ships_to_uae": null,
+        "online_note": null,
+        "stores": []
+      },
+      "variants": [],
+      "collection_url": null,
+      "photo": null,
+      "photo_caption": null
     }
   ]
 }

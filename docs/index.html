@@ -3,145 +3,311 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0C0B09">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Launches">
-<meta name="theme-color" content="#F3F4F6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0E1729" media="(prefers-color-scheme: dark)">
-<title>Watch launches</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌚</text></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2314213A'/><text x='50' y='70' font-size='60' text-anchor='middle'>⌚</text></svg>">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ledger">
+<title>The Launch Ledger</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%230C0B09' stroke='%23C9A45C' stroke-width='6'/><path d='M50 22v28l16 10' stroke='%23C9A45C' stroke-width='6' fill='none' stroke-linecap='round'/></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' fill='%230C0B09'/><circle cx='90' cy='90' r='58' fill='none' stroke='%23C9A45C' stroke-width='6'/><path d='M90 52v38l22 14' stroke='%23C9A45C' stroke-width='7' fill='none' stroke-linecap='round'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#14213A; --muted:#5F6B7A;
-  --rule:#D6DAE0; --gold:#9A7228; --gold-soft:#EFE5D2; --lume:#2F6B55;
-  --alert:#9B3B2E;
-  --display:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
-  --text:"Figtree", -apple-system, "Segoe UI", Roboto, sans-serif;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --paper:#0E1729; --surface:#15213A; --ink:#E6E9EE; --muted:#9AA5B4;
-    --rule:#26344F; --gold:#D4AA5C; --gold-soft:#2A2A2A; --lume:#7CC7A6; --alert:#E38B7C;
-  }
+  --bg:#0C0B09; --panel:#15130F; --panel-2:#1C1914; --line:#2B2720; --line-soft:#221F19;
+  --ivory:#EFE8D8; --muted:#A2998A; --faint:#6F685C;
+  --gold:#C9A45C; --gold-hi:#E3C584; --gold-lo:#7A6232; --gold-glow:rgba(201,164,92,.16);
+  --green:#86BFA0; --red:#DE8E7D;
+  --serif:"Cormorant Garamond","Didot","Bodoni 72",Georgia,serif;
+  --sans:"Manrope",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:14px;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--text);
-  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-.wrap{max-width:720px;margin:0 auto;padding:28px 18px 64px}
-h1{font:700 2.6rem/1.05 var(--display);margin:0;letter-spacing:-.01em}
-.sub{color:var(--muted);font-size:.9rem;margin:8px 0 22px}
-.tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:4px;margin-bottom:14px}
-.tabs button{flex:1;border:0;background:none;color:var(--muted);font:600 .92rem var(--text);padding:9px 6px;border-radius:9px;cursor:pointer}
-.tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
-.filters{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;margin-bottom:8px}
-.filters input[type=search]{grid-column:1/-1;width:100%;font:16px var(--text);padding:11px 13px;border-radius:10px;border:1px solid var(--rule);background:var(--surface);color:var(--ink)}
-.toggles{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem;color:var(--muted)}
-.toggles label{display:flex;gap:6px;align-items:center}
-select{font:15px var(--text);padding:6px 8px;border-radius:8px;border:1px solid var(--rule);background:var(--surface);color:var(--ink)}
-:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;color:var(--ivory);font:15px/1.55 var(--sans);background:
+  radial-gradient(1200px 500px at 85% -120px, rgba(201,164,92,.10), transparent 60%), var(--bg);
+  min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:22px 18px 90px}
 
-.group{font:500 1.35rem var(--display);margin:30px 0 6px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
-.row{display:grid;grid-template-columns:62px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--rule)}
-/* The date window: framed like a watch's date aperture */
-.window{width:62px;height:66px;border:2px solid var(--ink);border-radius:5px;background:var(--surface);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 0 var(--rule)}
-.window b{font:700 1.7rem/1 var(--display)}
-.window span{font-size:.72rem;color:var(--muted);margin-top:3px}
-.window.tbd b{font-size:1.1rem;color:var(--muted)}
-.window.soon{border-color:var(--gold)}
-.window.soon b{color:var(--gold)}
-.brand{font-size:.85rem;color:var(--muted);font-weight:600}
-.model{font:600 1.22rem/1.25 var(--display);margin:1px 0 6px}
-.facts{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.9rem}
-.facts .price{font-weight:600}
-.status{font-size:.8rem;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--gold-soft);color:var(--gold)}
-.status.preorder_open,.status.available_now{background:transparent;color:var(--lume);border:1px solid var(--lume)}
-.status.sold_out{background:transparent;color:var(--muted);border:1px solid var(--rule)}
-.track{display:flex;align-items:center;gap:8px;margin-top:9px;font-size:.82rem;color:var(--muted)}
-.ticks{display:flex;gap:3px}
-.ticks i{width:3px;height:12px;background:var(--rule);border-radius:1px}
-.ticks i.on{background:var(--gold)}
-.ticks i:nth-child(5n){height:16px}
-details{margin-top:8px}
-summary{cursor:pointer;font-size:.88rem;color:var(--muted);list-style:none}
+/* Masthead */
+.mast{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.mast h1{font:600 clamp(2.3rem,7vw,3.6rem)/.95 var(--serif);margin:0;letter-spacing:-.01em}
+.mast h1 em{color:var(--gold);font-weight:500}
+.mast p{margin:6px 0 0;color:var(--muted);font-size:.82rem}
+.crest{flex:none;width:46px;height:46px}
+
+/* Tabs */
+.tabs{display:flex;gap:22px;margin:14px 0 4px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{background:none;border:0;padding:8px 0;color:var(--muted);font-weight:600;font-size:.92rem;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ivory);border-color:var(--gold)}
+
+/* Summary strip */
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:10px;overflow-x:auto;margin:18px -18px 0;padding:0 18px 4px;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.stat{display:flex;flex-direction:column;justify-content:flex-start;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;text-align:left;cursor:pointer;transition:border-color .2s}
+.stat:hover,.stat.on{border-color:var(--gold-lo)}
+.stat b{display:block;font:600 1.9rem/1 var(--serif);color:var(--gold-hi)}
+.stat span{font-size:.8rem;color:var(--muted)}
+.stat.pick b{font-size:1.15rem;line-height:1.2;color:var(--ivory);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Hero */
+.hero{position:relative;margin-top:22px;border-radius:20px;overflow:hidden;border:1px solid var(--line);min-height:340px;display:flex;align-items:flex-end;background:var(--panel)}
+.hero .media{position:absolute;inset:0}
+.hero .media img,.hero .media svg{width:100%;height:100%;object-fit:cover;display:block}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,.05) 20%,rgba(12,11,9,.72) 62%,rgba(12,11,9,.96))}
+.hero .copy{position:relative;z-index:1;padding:22px;max-width:640px}
+.kicker{font-size:.8rem;font-weight:700;color:var(--gold)}
+.hero h2{font:600 clamp(1.9rem,6vw,3rem)/1.02 var(--serif);margin:4px 0 8px}
+.hero .brand{font:italic 500 1.25rem var(--serif);color:var(--gold-hi);margin-top:6px}
+.hero .why{color:var(--muted);font-size:.9rem;margin:8px 0 0}
+
+/* Toolbar */
+.toolbar{position:sticky;top:0;z-index:5;margin:22px -18px 0;padding:calc(10px + env(safe-area-inset-top,0px)) 18px 10px;background:rgba(12,11,9,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);display:grid;grid-template-columns:1fr auto auto;gap:8px}
+.search{width:100%;min-width:0;font:16px var(--sans);color:var(--ivory);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px 10px 36px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A2998A' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center}
+.search::placeholder{color:var(--faint)}
+.tbtn{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 12px;font-weight:600;font-size:.88rem;cursor:pointer;white-space:nowrap}
+.tbtn .count{background:var(--gold);color:#1A1509;border-radius:10px;font-size:.72rem;padding:1px 7px}
+.sortwrap{position:relative;display:block}
+.sortwrap select{appearance:none;-webkit-appearance:none;height:100%;max-width:150px;background:var(--panel);border:1px solid var(--line);border-radius:12px;color:var(--ivory);font:600 .88rem var(--sans);padding:0 30px 0 12px;cursor:pointer}
+.sortwrap::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chips:empty{display:none}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--gold-lo);background:var(--gold-glow);color:var(--gold-hi);border-radius:20px;padding:4px 10px;font-size:.8rem;font-weight:600;cursor:pointer}
+.chip.clear{background:none;border-color:var(--line);color:var(--muted)}
+.resultline{color:var(--muted);font-size:.84rem;margin:14px 0 0}
+
+/* Month heading */
+.month{display:flex;align-items:baseline;gap:12px;margin:34px 0 14px}
+.month h3{font:600 2rem/1 var(--serif);margin:0}
+.month span{color:var(--faint);font-size:.85rem;white-space:nowrap}
+.month::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* Cards */
+.grid{display:grid;gap:18px;margin-top:16px}
+@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1060px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.card{background:linear-gradient(180deg,var(--panel),#12100D);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease,border-color .25s}
+@media (hover:hover){.card:hover{transform:translateY(-3px);border-color:var(--gold-lo)}}
+.photo{position:relative;aspect-ratio:16/11;background:#100E0B;overflow:hidden}
+.photo img,.photo svg{width:100%;height:100%;object-fit:cover;display:block}
+.photo::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(transparent,rgba(12,11,9,.8));pointer-events:none}
+.datebox{position:absolute;left:12px;top:12px;z-index:1;min-width:58px;padding:6px 8px 5px;text-align:center;border:1.5px solid var(--gold);border-radius:8px;background:rgba(12,11,9,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.datebox b{display:block;font:600 1.6rem/1 var(--serif);color:var(--gold-hi)}
+.datebox span{font-size:.68rem;color:var(--ivory);font-weight:600}
+.datebox.tba{border-color:var(--line)} .datebox.tba b{font-size:1rem;color:var(--muted);padding:3px 0}
+.datebox.soon{box-shadow:0 0 0 4px var(--gold-glow)}
+.scorebadge{position:absolute;right:12px;top:12px;z-index:1;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(12,11,9,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font:700 1.05rem var(--sans)}
+.scorebadge svg{position:absolute;inset:0}
+.status{position:absolute;left:12px;bottom:12px;z-index:1;font-size:.74rem;font-weight:700;padding:3px 10px;border-radius:20px;background:rgba(12,11,9,.75);border:1px solid var(--line);color:var(--ivory)}
+.status.preorder_open,.status.available_now{border-color:var(--green);color:var(--green)}
+.status.sold_out{color:var(--muted)}
+.body{padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
+.brandline{font:italic 500 1.12rem/1 var(--serif);color:var(--gold)}
+.model{font:600 1.55rem/1.08 var(--serif);margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.86rem;color:var(--muted)}
+.facts .price{color:var(--ivory);font-weight:700}
+.meter{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:10px;font-size:.82rem}
+.meter .k{color:var(--muted)}
+.meter .v{font-weight:700;min-width:3.2em;text-align:right}
+.bar{position:relative;height:6px;border-radius:6px;background:var(--line)}
+.bar i{position:absolute;top:0;bottom:0;border-radius:6px;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi))}
+.bar .be{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ivory);opacity:.6}
+.bar.resale i.loss{background:linear-gradient(90deg,#6E3B32,var(--red))}
+.bar.resale i.gain{background:linear-gradient(90deg,#3D6B55,var(--green))}
+.verdict{display:inline-block;font-size:.74rem;font-weight:700;padding:2px 9px;border-radius:20px;border:1px solid currentColor}
+.verdict.profit{color:var(--green)} .verdict.maybe,.verdict.uncertain{color:var(--gold)} .verdict.loss{color:var(--red)}
+.flag{font-size:.82rem;color:var(--red)}
+details{border-top:1px solid var(--line-soft);padding-top:10px;margin-top:auto}
+summary{cursor:pointer;list-style:none;font-size:.85rem;font-weight:600;color:var(--gold);display:flex;justify-content:space-between}
 summary::-webkit-details-marker{display:none}
-summary::before{content:"+ ";font-weight:600}
-details[open] summary::before{content:"− "}
-.more{font-size:.92rem;margin-top:8px;display:grid;gap:6px}
+summary::after{content:"+";font-size:1.1rem;line-height:1}
+details[open] summary::after{content:"−"}
+.more{display:grid;gap:8px;margin-top:10px;font-size:.88rem}
 .more p{margin:0}
 .more .k{color:var(--muted)}
-.note{color:var(--alert);font-size:.88rem;margin-top:6px}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.actions a{font:600 .85rem var(--text);color:var(--ink);text-decoration:none;border:1px solid var(--rule);background:var(--surface);padding:7px 11px;border-radius:8px}
-.thumb{width:100%;max-height:220px;object-fit:cover;border-radius:8px;margin-top:8px;background:var(--rule)}
-.empty{padding:40px 0;color:var(--muted)}
-.metrics{display:grid;gap:4px;margin-top:10px;font-size:.88rem}
-.metric{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
-.metric b{font-weight:600}
-.metric .k{color:var(--muted);min-width:4.2em}
-.verdict{font-size:.78rem;font-weight:600;padding:1px 7px;border-radius:20px;border:1px solid currentColor}
-.verdict.good{color:var(--lume)} .verdict.maybe{color:var(--gold)} .verdict.bad{color:var(--alert)}
-.buy{margin:0;padding-left:1.1em}
-.buy li{margin:2px 0}
-.buy a{color:var(--ink)}
-.unlock{display:grid;gap:10px;max-width:420px;margin-top:22px}
-.unlock input[type=password]{font:16px var(--text);padding:11px 13px;border-radius:10px;border:1px solid var(--rule);background:var(--surface);color:var(--ink)}
-.btn{font:600 .95rem var(--text);padding:11px 14px;border-radius:10px;border:0;background:var(--ink);color:var(--paper);cursor:pointer}
-.btn.quiet{background:none;color:var(--muted);border:1px solid var(--rule);padding:7px 11px;font-size:.85rem}
-.totals{display:flex;flex-wrap:wrap;gap:6px 26px;margin:22px 0 4px}
-.totals div{display:grid}
-.totals b{font:600 1.5rem var(--display)}
-.totals span{font-size:.82rem;color:var(--muted)}
-.gain{color:var(--lume)} .loss{color:var(--alert)}
-.facts a{color:var(--ink)}
-.hint{color:var(--muted);font-size:.9rem}
-@media (prefers-reduced-motion:no-preference){ .window.today{animation:pulse 2s ease-in-out 3} }
-@keyframes pulse{50%{box-shadow:0 0 0 5px var(--gold-soft)}}
+.more ul{margin:2px 0 0;padding-left:1.1em}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.actions a{font-size:.8rem;font-weight:700;text-decoration:none;padding:7px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel-2)}
+.actions a.primary{border-color:var(--gold-lo);color:var(--gold-hi)}
+.empty{padding:50px 10px;text-align:center;color:var(--muted)}
+.empty b{display:block;font:600 1.6rem var(--serif);color:var(--ivory);margin-bottom:6px}
+
+/* Refine sheet */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:20;opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;z-index:21;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;background:var(--panel);border-top:1px solid var(--line);border-radius:22px 22px 0 0;padding:8px 18px 0;transform:translateY(105%);transition:transform .3s cubic-bezier(.2,.8,.2,1);visibility:hidden}
+.sheet.open{transform:none;visibility:visible}
+@media(min-width:760px){.sheet{left:auto;top:0;bottom:0;width:420px;max-height:none;border-radius:0;border-top:0;border-left:1px solid var(--line);transform:translateX(105%);padding-top:calc(18px + env(safe-area-inset-top))}}
+.grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:4px auto 12px}
+@media(min-width:760px){.grab{display:none}}
+.sheet h2{font:600 1.9rem var(--serif);margin:0 0 4px}
+.fgroup{padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.fgroup h4{margin:0 0 10px;font-size:.84rem;color:var(--muted);font-weight:600}
+.opts{display:flex;flex-wrap:wrap;gap:7px}
+.opt{border:1px solid var(--line);background:var(--panel-2);border-radius:20px;padding:6px 12px;font-size:.84rem;font-weight:600;cursor:pointer;color:var(--ivory)}
+.opt[aria-pressed="true"]{border-color:var(--gold);background:var(--gold-glow);color:var(--gold-hi)}
+.range{display:grid;grid-template-columns:96px 1fr auto;align-items:center;gap:10px;font-size:.84rem;margin:8px 0}
+.range output{font-weight:700;min-width:4.5em;text-align:right}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);border:3px solid var(--bg);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);border:3px solid var(--bg)}
+.switch{display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:.9rem;cursor:pointer}
+.switch input{appearance:none;-webkit-appearance:none;width:44px;height:26px;border-radius:26px;background:var(--line);position:relative;cursor:pointer;transition:background .2s;flex:none;margin:0}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--ivory);transition:transform .2s}
+.switch input:checked{background:var(--gold)}
+.switch input:checked::after{transform:translateX(18px)}
+.sheetfoot{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 2fr;gap:10px;padding:14px 0 calc(14px + env(safe-area-inset-bottom));background:linear-gradient(rgba(21,19,15,0),var(--panel) 25%)}
+.btn{border:0;border-radius:12px;padding:13px 14px;font-weight:700;cursor:pointer;background:var(--gold);color:#1A1509}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--ivory)}
+
+/* Collection */
+.unlock{max-width:420px;margin:40px auto;text-align:center;display:grid;gap:12px}
+.unlock h2{font:600 2.2rem var(--serif);margin:0}
+.unlock p{color:var(--muted);margin:0}
+.unlock input[type=password]{font:16px var(--sans);padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ivory)}
+.unlock label{display:flex;gap:8px;justify-content:center;align-items:center;color:var(--muted);font-size:.88rem}
+.err{color:var(--red);font-size:.88rem;min-height:1.2em}
+.totals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.totals div{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px;min-width:0}
+.totals b{display:block;font:600 1.45rem/1.1 var(--serif);overflow-wrap:anywhere}
+.totals span{font-size:.78rem;color:var(--muted)}
+.gain{color:var(--green)} .loss{color:var(--red)}
+.hold{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:16px 0;border-bottom:1px solid var(--line-soft)}
+.hold .datebox{position:static}
+.hold h4{margin:4px 0 6px;font:600 1.35rem/1.1 var(--serif)}
+.hold p{margin:4px 0 0;font-size:.86rem;color:var(--muted)}
+.lockbtn{margin-top:26px}
+@media(max-width:560px){.toolbar{grid-template-columns:1fr auto}.search{grid-column:1/-1}.sortwrap select{max-width:none;width:100%;min-height:42px}.tbtn{min-height:42px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 <main class="wrap">
-  <h1>Launch calendar</h1>
-  <p class="sub" id="sub">Loading releases…</p>
-
-  <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="true" data-tab="upcoming">Upcoming</button>
-    <button role="tab" aria-selected="false" data-tab="recent">New</button>
-    <button role="tab" aria-selected="false" data-tab="all">All</button>
-    <button role="tab" aria-selected="false" data-tab="collection">Collection</button>
-  </div>
-
-  <div class="filters" id="filters">
-    <input type="search" id="q" placeholder="Search brand, model or reference" autocomplete="off">
-    <div class="toggles">
-      <label><input type="checkbox" id="limited"> Limited only</label>
-      <label><input type="checkbox" id="over"> Show over budget</label>
+  <header class="mast">
+    <div>
+      <h1>The Launch <em>Ledger</em></h1>
+      <p id="sub">Loading releases…</p>
     </div>
-    <label class="toggles">Min score
-      <select id="minscore"></select>
-    </label>
-  </div>
+    <svg class="crest" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="#C9A45C" stroke-width="1.5"/><circle cx="24" cy="24" r="17" fill="none" stroke="#7A6232" stroke-width=".8" stroke-dasharray="1 2.55"/><path d="M24 11v13l8 5" stroke="#E3C584" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="24" cy="24" r="1.8" fill="#E3C584"/></svg>
+  </header>
 
-  <div id="list"></div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="upcoming">Upcoming</button>
+    <button role="tab" aria-selected="false" data-tab="recent">Newly found</button>
+    <button role="tab" aria-selected="false" data-tab="all">All releases</button>
+    <button role="tab" aria-selected="false" data-tab="collection">My collection</button>
+  </nav>
+
+  <section id="browse">
+    <div class="strip" id="strip"></div>
+    <div id="hero"></div>
+    <div class="toolbar">
+      <input class="search" type="search" id="q" placeholder="Search brand, model, reference" autocomplete="off" aria-label="Search">
+      <label class="sortwrap">
+        <select id="sort" aria-label="Sort by">
+          <option value="launch">Launch date</option>
+          <option value="score">Collectability</option>
+          <option value="hype">Hype</option>
+          <option value="resale">Resale upside</option>
+          <option value="price_asc">Price: low to high</option>
+          <option value="price_desc">Price: high to low</option>
+          <option value="newest">Newest found</option>
+        </select>
+      </label>
+      <button class="tbtn" id="refineBtn" aria-haspopup="dialog">Refine <span class="count" id="fcount" hidden></span></button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <p class="resultline" id="resultline"></p>
+    <div id="list"></div>
+  </section>
+
+  <section id="collection" hidden></section>
 </main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="grab"></div>
+  <h2 id="sheetTitle">Refine</h2>
+  <div id="filters"></div>
+  <div class="sheetfoot">
+    <button class="btn ghost" id="resetBtn">Reset</button>
+    <button class="btn" id="applyBtn">Show results</button>
+  </div>
+</aside>
 
 <script>
 const STATUS = {rumor:"Rumored", announced:"Announced", preorder_open:"Pre-order open", available_now:"Available now", sold_out:"Sold out"};
-const state = {tab:"upcoming", data:[], minDefault:5};
+const SALE = {online_drop:"Online drop", boutique:"Boutique", preorder:"Pre-order", raffle:"Raffle", allocation:"Allocation", retailers:"Retailers"};
+const VERDICT = {profit:"Likely profitable", maybe:"Possible profit", uncertain:"Too uncertain", loss:"Loss likely", none:"No estimate yet"};
+const WINDOW = {week:"Next 7 days", month:"Next 30 days", tba:"Date not announced"};
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const todayStr = () => new Date().toLocaleDateString("en-CA", {timeZone:"Asia/Dubai"});
 const parseDay = s => s ? new Date(s + "T12:00:00") : null;
 const lday = r => r.launch_uae?.date || r.launch_date;
+const daysTo = r => lday(r) ? Math.round((parseDay(lday(r)) - parseDay(todayStr())) / 86400000) : null;
+const pct = n => (n > 0 ? "+" : "") + Math.round(n) + "%";
+const aed = n => "AED " + Math.round(n).toLocaleString("en-US");
+const num = v => { const n = Number(String(v ?? "").replace(/[^\d.]/g, "")); return isFinite(n) && n > 0 ? n : null; };
+const local = {
+  get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+  set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
 
-function price(r){
-  if (r.price_aed) return "AED " + r.price_aed.toLocaleString("en-US");
-  return "Price TBA";
+const DEFAULTS = () => ({brands:[], statuses:[], sale:[], verdicts:[], window:"", minScore:null, minHype:0, priceMax:null,
+                         limited:false, uae:false, over:false, hideAlloc:false});
+const state = {tab:"upcoming", data:[], meta:{}, f:DEFAULTS(), draft:null, sort:"launch"};
+const saved = local.get("ledger-view");
+if (saved){ Object.assign(state.f, saved.f || {}); state.sort = saved.sort || "launch"; }
+
+/* ---------- derived helpers ---------- */
+function vcat(r){
+  const v = r.resale?.verdict; if (!v) return "none";
+  if (v.startsWith("Likely")) return "profit";
+  if (/^(Possible|Leaning profit)/.test(v)) return "maybe";
+  if (v.startsWith("Too")) return "uncertain";
+  return "loss";
+}
+const inUAE = r => (r.research?.data?.uae_buy?.length > 0) || /uae|dubai|abu dhabi|emirates/i.test(r.availability_notes || "");
+const pickScore = r => (r.score || 0) * 10 + Math.max(-30, Math.min(60, r.resale?.mid_pct ?? -10)) / 2 + (r.hype?.index || 0) / 5;
+
+function dial(r, big){
+  const initials = (r.brand || "?").split(/\s+/).map(w => w[0]).join("").slice(0,3).toUpperCase();
+  const ticks = Array.from({length:60}, (_,i) => {
+    const a = i * 6 * Math.PI / 180, long = i % 5 === 0, r1 = long ? 118 : 124, r2 = 130;
+    return `<line x1="${(200 + r1*Math.sin(a)).toFixed(1)}" y1="${(160 - r1*Math.cos(a)).toFixed(1)}" x2="${(200 + r2*Math.sin(a)).toFixed(1)}" y2="${(160 - r2*Math.cos(a)).toFixed(1)}" stroke="${long ? "#C9A45C" : "#5A4A2A"}" stroke-width="${long ? 3 : 1.2}"/>`;
+  }).join("");
+  const gid = "g" + String(r.id).replace(/\W/g,"") + (big ? "h" : "");
+  return `<svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${esc(r.brand)}">
+    <defs><radialGradient id="${gid}" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="#2A241A"/><stop offset="1" stop-color="#0E0C09"/></radialGradient></defs>
+    <rect width="400" height="320" fill="url(#${gid})"/>
+    <circle cx="200" cy="160" r="140" fill="none" stroke="#2F2A21" stroke-width="10"/>${ticks}
+    <text x="200" y="146" text-anchor="middle" fill="#E3C584" font-family="Cormorant Garamond,Georgia,serif" font-size="46" font-style="italic">${esc(initials)}</text>
+    <text x="200" y="196" text-anchor="middle" fill="#8E826C" font-family="Manrope,sans-serif" font-size="12" letter-spacing="3">${esc((r.brand||"").toUpperCase().slice(0,22))}</text>
+    <line x1="200" y1="160" x2="200" y2="74" stroke="#E3C584" stroke-width="3" stroke-linecap="round" transform="rotate(${(r.score||5)*30} 200 160)"/>
+    <line x1="200" y1="160" x2="200" y2="102" stroke="#C9A45C" stroke-width="5" stroke-linecap="round" transform="rotate(${((r.hype?.index||25)/100)*360} 200 160)"/>
+    <circle cx="200" cy="160" r="6" fill="#E3C584"/></svg>`;
+}
+function photo(r, big){
+  return r.image
+    ? `<img src="${esc(r.image)}" alt="${esc(r.brand + " " + r.model)}" loading="lazy" referrerpolicy="no-referrer" data-id="${esc(r.id)}" data-big="${big ? 1 : ""}" onerror="fallback(this)">`
+    : dial(r, big);
+}
+window.fallback = img => { const r = state.data.find(x => x.id === img.dataset.id); if (r) img.outerHTML = dial(r, !!img.dataset.big); };
+
+function datebox(r){
+  const d = parseDay(lday(r));
+  if (!d) return `<div class="datebox tba"><b>TBA</b><span>date</span></div>`;
+  const diff = daysTo(r);
+  const label = diff === 0 ? "Today" : diff === 1 ? "Tomorrow" : d.toLocaleDateString("en-GB",{month:"short"});
+  return `<div class="datebox ${diff >= 0 && diff <= 7 ? "soon" : ""}"><b>${d.getDate()}</b><span>${label}</span></div>`;
 }
 
 function icsLink(r){
@@ -160,115 +326,295 @@ function icsLink(r){
     alarms = ["BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Watch launch tomorrow","END:VALARM"];
   }
   const src = r.sources?.[0]?.url || "";
-  const body = [
-    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//watch-tracker//EN","BEGIN:VEVENT",
-    "UID:" + r.id + "@watch-tracker","DTSTAMP:" + new Date().toISOString().replace(/[-:]/g,"").slice(0,15) + "Z",
-    start, end,
+  const body = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//launch-ledger//EN","BEGIN:VEVENT",
+    "UID:" + r.id + "@launch-ledger","DTSTAMP:" + stamp(Date.now()), start, end,
     "SUMMARY:Launch: " + r.brand + " " + r.model,
-    "DESCRIPTION:" + [price(r), r.launch_date_text, r.how_to_buy, src].filter(Boolean).join(" | ").replace(/[,;]/g, m => "\\" + m),
-    ...alarms,
-    "END:VEVENT","END:VCALENDAR"
-  ].join("\r\n");
-  return `<a href="data:text/calendar;charset=utf-8,${encodeURIComponent(body)}" download="${esc(r.brand + "-" + r.model).replace(/\s+/g,"-")}.ics">Add to calendar</a>`;
+    "DESCRIPTION:" + [r.price_aed ? aed(r.price_aed) : "", r.how_to_buy, src].filter(Boolean).join(" | ").replace(/[,;]/g, m => "\\" + m),
+    ...alarms, "END:VEVENT","END:VCALENDAR"].join("\r\n");
+  return `<a class="primary" href="data:text/calendar;charset=utf-8,${encodeURIComponent(body)}" download="${esc((r.brand + "-" + r.model).replace(/[^\w-]+/g,"-"))}.ics">Add to calendar</a>`;
 }
 
-function windowBox(r){
-  const d = parseDay(lday(r));
-  if (!d) return `<div class="window tbd" aria-label="Launch date not announced"><b>—</b><span>date TBA</span></div>`;
-  const t = todayStr(), diff = Math.round((d - parseDay(t)) / 86400000);
-  const cls = diff === 0 ? "soon today" : (diff > 0 && diff <= 7 ? "soon" : "");
-  const label = diff === 0 ? "today" : diff === 1 ? "tomorrow" : d.toLocaleDateString("en-GB",{weekday:"short", month: state.tab==="upcoming" ? undefined : "short"});
-  return `<div class="window ${cls}" aria-label="Launch ${d.toDateString()}"><b>${d.getDate()}</b><span>${label}</span></div>`;
+/* ---------- card ---------- */
+function meters(r){
+  let out = "";
+  if (r.hype) out += `<div class="meter"><span class="k">Hype</span><span class="bar"><i style="left:0;width:${Math.max(3, r.hype.index)}%"></i></span><span class="v">${r.hype.index}</span></div>`;
+  if (r.resale){
+    const lo = -50, hi = 150, pos = v => Math.max(0, Math.min(100, (v - lo) / (hi - lo) * 100));
+    const a = pos(r.resale.low_pct), b = pos(r.resale.high_pct), be = pos(r.resale.breakeven_pct);
+    const tone = r.resale.low_pct > r.resale.breakeven_pct ? "gain" : r.resale.high_pct < r.resale.breakeven_pct ? "loss" : "";
+    out += `<div class="meter"><span class="k">Resale</span><span class="bar resale" title="Expected range vs retail. White tick: break-even after VAT and selling costs."><i class="${tone}" style="left:${a}%;width:${Math.max(2, b - a)}%"></i><span class="be" style="left:${be}%"></span></span><span class="v">${pct(r.resale.mid_pct)}</span></div>`;
+  }
+  return out;
 }
-
-function row(r){
-  const facts = [`<span class="price">${price(r)}</span>`];
-  if (r.pieces) facts.push(`<span>${r.pieces.toLocaleString("en-US")} pieces</span>`);
+function details(r){
+  const d = r.research?.data || {}, x = r.resale, h = r.hype, rows = [];
+  if (r.launch_uae) rows.push(`<p><span class="k">Drop time:</span> ${esc(r.launch_uae.time)} UAE time (${esc(r.launch_uae.local)})</p>`);
+  else if (r.launch_date_text) rows.push(`<p><span class="k">Timing:</span> ${esc(r.launch_date_text)}</p>`);
+  if (r.how_to_buy) rows.push(`<p><span class="k">How to buy:</span> ${esc(r.how_to_buy)}</p>`);
+  if (d.uae_buy?.length) rows.push(`<div><span class="k">In the UAE:</span><ul>${d.uae_buy.map(s => `<li>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}${s.where ? `, ${esc(s.where)}` : ""}</li>`).join("")}</ul>${d.online_ships_to_uae === true ? "<p>The brand's online store ships to the UAE.</p>" : ""}</div>`);
+  if (x){
+    rows.push(`<p><span class="k">Resale estimate:</span> ${pct(x.low_pct)} to ${pct(x.high_pct)} vs retail (${esc(x.confidence)} confidence), based on ${esc(x.basis)}${x.adjustments?.length ? "; " + esc(x.adjustments.join(", ")) : ""}. Break-even after VAT and selling costs is ${pct(x.breakeven_pct)}${x.est_profit_aed != null ? `; the midpoint implies a net ${x.est_profit_aed >= 0 ? "gain" : "loss"} of ${aed(Math.abs(x.est_profit_aed))}` : ""}.</p>`);
+    if (x.comparables?.length) rows.push(`<p><span class="k">Comparables:</span> ${x.comparables.map(c => `${esc(c.name || c.reference)} ${pct(c.premium_pct)}`).join("; ")}</p>`);
+    if (x.early_signal_note) rows.push(`<p><span class="k">Early signals:</span> ${esc(x.early_signal_note)}</p>`);
+  }
+  if (h){
+    const bits = [`${h.media_outlets} outlet${h.media_outlets === 1 ? "" : "s"}`];
+    if (h.youtube_views != null) bits.push(`${h.youtube_videos} YouTube videos, ${h.youtube_views.toLocaleString("en-US")} views`);
+    if (h.search_vs_brand_pct != null) bits.push(`searches at ${h.search_vs_brand_pct}% of the brand's (${h.search_momentum})`);
+    if (h.reddit_engagement != null) bits.push(`Reddit ${h.reddit_engagement.toLocaleString("en-US")}`);
+    rows.push(`<p><span class="k">Hype signals:</span> ${esc(bits.join("; "))}${h.trend && h.trend !== "new" ? `, ${esc(h.trend)}` : ""}.</p>`);
+  }
+  if (r.specs) rows.push(`<p><span class="k">Specs:</span> ${esc(r.specs)}</p>`);
+  if (r.reference) rows.push(`<p><span class="k">Reference:</span> ${esc(r.reference)}</p>`);
+  if (num(r.price) && r.currency && r.currency !== "AED") rows.push(`<p><span class="k">Retail:</span> ${esc(r.currency)} ${num(r.price).toLocaleString("en-US")}</p>`);
+  if (r.score_reason) rows.push(`<p><span class="k">Why ${r.score}/10:</span> ${esc(r.score_reason)}</p>`);
+  return rows.join("");
+}
+function card(r){
+  const facts = [`<span class="price">${r.price_aed ? aed(r.price_aed) : "Price TBA"}</span>`];
+  if (num(r.pieces)) facts.push(`<span>${num(r.pieces).toLocaleString("en-US")} pieces</span>`);
   else if (r.limited_type && !["unknown","not_limited"].includes(r.limited_type)) facts.push(`<span>${esc(r.limited_type.replace(/_/g," "))}</span>`);
-  if (r.launch_uae) facts.push(`<span>${esc(r.launch_uae.time)} UAE time</span>`);
-  facts.push(`<span class="status ${esc(r.status)}">${STATUS[r.status] || esc(r.status)}</span>`);
-  const ticks = Array.from({length:10}, (_,i) => `<i class="${i < (r.score||0) ? "on" : ""}"></i>`).join("");
-  const sources = (r.sources||[]).slice(0,3).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join("");
-  const detail = [
-    r.launch_uae && `<p><span class="k">Drop time:</span> ${esc(r.launch_uae.time)} UAE time (${esc(r.launch_uae.local)})</p>`,
-    !r.launch_uae && r.launch_date_text && `<p><span class="k">Timing:</span> ${esc(r.launch_date_text)}</p>`,
-    r.how_to_buy && `<p><span class="k">How to buy:</span> ${esc(r.how_to_buy)}</p>`,
-    r.availability_notes && `<p><span class="k">Availability:</span> ${esc(r.availability_notes)}</p>`,
-    r.specs && `<p><span class="k">Specs:</span> ${esc(r.specs)}</p>`,
-    r.reference && `<p><span class="k">Reference:</span> ${esc(r.reference)}</p>`,
-    r.price && r.currency && r.currency !== "AED" && `<p><span class="k">Retail:</span> ${esc(r.currency)} ${Number(r.price).toLocaleString("en-US")}</p>`,
-    r.score_reason && `<p><span class="k">Why ${r.score}/10:</span> ${esc(r.score_reason)}</p>`,
-    buyList(r),
-    resaleDetail(r),
-    hypeDetail(r),
-    r.image && `<img class="thumb" src="${esc(r.image)}" alt="" loading="lazy" onerror="this.remove()">`,
-  ].filter(Boolean).join("");
-  return `<article class="row">
-    ${windowBox(r)}
-    <div>
-      <div class="brand">${esc(r.brand)}</div>
-      <div class="model">${esc(r.model)}</div>
+  if (r.launch_uae) facts.push(`<span>${esc(r.launch_uae.time)} UAE</span>`);
+  if (SALE[r.sale_method]) facts.push(`<span>${SALE[r.sale_method]}</span>`);
+  const ring = 2 * Math.PI * 20, sc = r.score || 0, v = vcat(r);
+  const sources = (r.sources||[]).slice(0,2).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join("");
+  return `<article class="card">
+    <div class="photo">${photo(r)}${datebox(r)}
+      <div class="scorebadge" title="Collectability ${sc}/10" aria-label="Collectability ${sc} out of 10"><svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="20" fill="none" stroke="#2B2720" stroke-width="3"/><circle cx="23" cy="23" r="20" fill="none" stroke="#C9A45C" stroke-width="3" stroke-linecap="round" stroke-dasharray="${(ring * sc / 10).toFixed(1)} ${ring.toFixed(1)}" transform="rotate(-90 23 23)"/></svg>${sc}</div>
+      <span class="status ${esc(r.status)}">${STATUS[r.status] || esc(r.status)}</span>
+    </div>
+    <div class="body">
+      <div class="brandline">${esc(r.brand)}</div>
+      <h3 class="model">${esc(r.model)}</h3>
       <div class="facts">${facts.join("")}</div>
-      <div class="track"><span class="ticks" aria-hidden="true">${ticks}</span>Collectability ${r.score}/10</div>
-      ${metrics(r)}
-      ${r.allocation_likely ? `<p class="note">Likely allocated to existing clients: contact your boutique early.</p>` : ""}
-      ${r.over_budget ? `<p class="note">Over your budget.</p>` : ""}
-      <details><summary>Details</summary><div class="more">${detail}</div></details>
+      ${meters(r)}
+      ${v !== "none" ? `<div><span class="verdict ${v}">${esc(r.resale.verdict)}</span></div>` : ""}
+      ${r.allocation_likely ? `<div class="flag">Likely allocated to existing clients: speak to your boutique early.</div>` : ""}
+      ${r.over_budget ? `<div class="flag">Above your budget.</div>` : ""}
+      <details><summary>Details</summary><div class="more">${details(r)}</div></details>
       <div class="actions">${icsLink(r)}${sources}</div>
     </div>
   </article>`;
 }
 
+/* ---------- filtering and sorting ---------- */
+function applyFilters(items, f = state.f){
+  const q = $("#q").value.trim().toLowerCase();
+  return items.filter(r => {
+    if (!f.over && r.over_budget) return false;
+    if (q && ![r.brand, r.model, r.reference, r.specs].join(" ").toLowerCase().includes(q)) return false;
+    if (f.brands.length && !f.brands.includes(r.brand)) return false;
+    if (f.statuses.length && !f.statuses.includes(r.status)) return false;
+    if (f.sale.length && !f.sale.includes(r.sale_method)) return false;
+    if (f.verdicts.length && !f.verdicts.includes(vcat(r))) return false;
+    if (f.minScore != null && (r.score || 0) < f.minScore) return false;
+    if (f.minHype && (r.hype?.index ?? 0) < f.minHype) return false;
+    if (f.priceMax != null && r.price_aed && r.price_aed > f.priceMax) return false;
+    if (f.limited && !r.is_limited) return false;
+    if (f.uae && !inUAE(r)) return false;
+    if (f.hideAlloc && r.allocation_likely) return false;
+    if (f.window === "tba" && lday(r)) return false;
+    if (f.window === "week" || f.window === "month"){
+      const d = daysTo(r); if (d == null || d < 0 || d > (f.window === "week" ? 7 : 30)) return false;
+    }
+    return true;
+  });
+}
+function sortItems(items){
+  const key = r => (lday(r) || "9999-12-31") + " " + (r.launch_uae?.time || "99:99");
+  const by = {
+    launch: (a,b) => key(a).localeCompare(key(b)),
+    score: (a,b) => (b.score||0) - (a.score||0),
+    hype: (a,b) => (b.hype?.index ?? -1) - (a.hype?.index ?? -1),
+    resale: (a,b) => (b.resale?.mid_pct ?? -999) - (a.resale?.mid_pct ?? -999),
+    price_asc: (a,b) => (a.price_aed ?? 1e12) - (b.price_aed ?? 1e12),
+    price_desc: (a,b) => (b.price_aed ?? -1) - (a.price_aed ?? -1),
+    newest: (a,b) => (b.first_seen || "").localeCompare(a.first_seen || ""),
+  }[state.sort] || (() => 0);
+  return items.slice().sort((a,b) => by(a,b) || (b.score||0) - (a.score||0));
+}
+function tabItems(){
+  const t = todayStr();
+  if (state.tab === "upcoming") return state.data.filter(r => r.status !== "sold_out" && (!lday(r) || lday(r) >= t));
+  if (state.tab === "recent") return state.data.filter(r => Date.parse(r.first_seen) > Date.now() - 14 * 86400000);
+  return state.data;
+}
+const defScore = () => state.meta.min_score ?? 5;
+function activeCount(f = state.f){
+  return f.brands.length + f.statuses.length + f.sale.length + f.verdicts.length + (f.window ? 1 : 0) +
+    (f.minScore != null && f.minScore !== defScore() ? 1 : 0) + (f.minHype ? 1 : 0) +
+    (f.priceMax != null ? 1 : 0) + ["limited","uae","over","hideAlloc"].filter(k => f[k]).length;
+}
 
-const pct = n => (n > 0 ? "+" : "") + Math.round(n) + "%";
-const aed = n => "AED " + Math.round(n).toLocaleString("en-US");
-
-function metrics(r){
-  const out = [];
-  if (r.hype){
-    const trend = r.hype.trend && r.hype.trend !== "new" ? `, ${r.hype.trend}` : "";
-    out.push(`<div class="metric"><span class="k">Hype</span><b>${r.hype.index}/100</b><span>${trend.slice(2)}</span></div>`);
+/* ---------- render ---------- */
+function topPick(){
+  const t = todayStr();
+  return state.data.filter(r => !r.over_budget && r.status !== "sold_out" && (!lday(r) || lday(r) >= t))
+                   .sort((a,b) => pickScore(b) - pickScore(a))[0];
+}
+function renderStrip(){
+  const base = state.data.filter(r => !r.over_budget), f = state.f;
+  const week = base.filter(r => { const d = daysTo(r); return d != null && d >= 0 && d <= 7 && r.status !== "sold_out"; });
+  const open = base.filter(r => ["preorder_open","available_now"].includes(r.status));
+  const prof = base.filter(r => vcat(r) === "profit");
+  const pick = topPick();
+  $("#strip").innerHTML = `
+    <button class="stat ${f.window === "week" ? "on" : ""}" data-quick="week"><b>${week.length}</b><span>Launching this week</span></button>
+    <button class="stat ${f.statuses.length === 2 ? "on" : ""}" data-quick="open"><b>${open.length}</b><span>Open to buy or reserve</span></button>
+    <button class="stat ${f.verdicts.join() === "profit" ? "on" : ""}" data-quick="profit"><b>${prof.length}</b><span>Likely profitable</span></button>
+    ${pick ? `<button class="stat pick" data-quick="pick"><b>${esc(pick.brand)} ${esc(pick.model)}</b><span>Top pick right now</span></button>` : ""}`;
+}
+function renderHero(){
+  const r = topPick();
+  if (!r || state.tab !== "upcoming" || activeCount() || $("#q").value){ $("#hero").innerHTML = ""; return; }
+  const bits = [];
+  if (r.resale) bits.push(`resale ${pct(r.resale.low_pct)} to ${pct(r.resale.high_pct)}`);
+  if (r.hype) bits.push(`hype ${r.hype.index}/100`);
+  bits.push(`collectability ${r.score}/10`);
+  const d = parseDay(lday(r));
+  $("#hero").innerHTML = `<article class="hero"><div class="media">${photo(r, true)}</div><div class="copy">
+    <div class="kicker">Top pick${d ? ", " + d.toLocaleDateString("en-GB",{weekday:"long", day:"numeric", month:"long"}) : ""}</div>
+    <div class="brand">${esc(r.brand)}</div><h2>${esc(r.model)}</h2>
+    <div class="facts"><span class="price">${r.price_aed ? aed(r.price_aed) : "Price TBA"}</span>${num(r.pieces) ? `<span>${num(r.pieces).toLocaleString("en-US")} pieces</span>` : ""}<span>${STATUS[r.status] || ""}</span>${r.launch_uae ? `<span>${esc(r.launch_uae.time)} UAE time</span>` : ""}</div>
+    <p class="why">Ranked first on combined collectability, resale outlook and hype: ${esc(bits.join(", "))}.</p>
+    <div class="actions" style="margin-top:12px">${icsLink(r)}${r.sources?.[0] ? `<a href="${esc(r.sources[0].url)}" target="_blank" rel="noopener">Read more</a>` : ""}</div>
+  </div></article>`;
+}
+function renderChips(){
+  const f = state.f, c = [];
+  const add = (label, fn) => c.push({label, fn});
+  f.brands.forEach(b => add(b, () => f.brands = f.brands.filter(x => x !== b)));
+  f.statuses.forEach(s => add(STATUS[s], () => f.statuses = f.statuses.filter(x => x !== s)));
+  f.sale.forEach(s => add(SALE[s], () => f.sale = f.sale.filter(x => x !== s)));
+  f.verdicts.forEach(v => add(VERDICT[v], () => f.verdicts = f.verdicts.filter(x => x !== v)));
+  if (f.window) add(WINDOW[f.window], () => f.window = "");
+  if (f.minScore != null && f.minScore !== defScore()) add(`Collectability ${f.minScore}+`, () => f.minScore = defScore());
+  if (f.minHype) add(`Hype ${f.minHype}+`, () => f.minHype = 0);
+  if (f.priceMax != null) add(`Up to ${aed(f.priceMax)}`, () => f.priceMax = null);
+  if (f.limited) add("Limited only", () => f.limited = false);
+  if (f.uae) add("Available in UAE", () => f.uae = false);
+  if (f.over) add("Incl. over budget", () => f.over = false);
+  if (f.hideAlloc) add("No allocation-only", () => f.hideAlloc = false);
+  $("#chips").innerHTML = c.map((x,i) => `<button class="chip" data-i="${i}" aria-label="Remove filter ${esc(x.label)}">${esc(x.label)} <span aria-hidden="true">✕</span></button>`).join("") +
+    (c.length > 1 ? `<button class="chip clear" data-i="all">Clear all</button>` : "");
+  $("#chips").onclick = e => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    if (b.dataset.i === "all") { state.f = DEFAULTS(); state.f.minScore = defScore(); } else c[+b.dataset.i].fn();
+    render();
+  };
+  const n = activeCount();
+  $("#fcount").hidden = !n; $("#fcount").textContent = n;
+}
+function render(){
+  local.set("ledger-view", {f: state.f, sort: state.sort});
+  const col = state.tab === "collection";
+  $("#browse").hidden = col; $("#collection").hidden = !col;
+  if (col) return renderCollection();
+  renderStrip(); renderHero(); renderChips();
+  const items = sortItems(applyFilters(tabItems()));
+  $("#resultline").textContent = `${items.length} release${items.length === 1 ? "" : "s"}` +
+    (state.tab === "upcoming" ? " upcoming or not yet dated" : state.tab === "recent" ? " found in the last 14 days" : " in total");
+  if (!items.length){
+    $("#list").innerHTML = `<div class="empty"><b>Nothing matches</b>Try removing a filter, or lower the minimum collectability in Refine.</div>`;
+    return;
   }
-  if (r.resale){
-    const v = r.resale.verdict || "";
-    const cls = v.startsWith("Likely") ? "good" : /^(Possible|Too|Leaning profit)/.test(v) ? "maybe" : "bad";
-    out.push(`<div class="metric"><span class="k">Resale</span><b>${pct(r.resale.low_pct)} to ${pct(r.resale.high_pct)}</b><span>vs retail</span><span class="verdict ${cls}">${esc(v)}</span></div>`);
+  if (state.sort === "launch" && state.tab !== "recent"){
+    const groups = new Map();
+    for (const r of items){
+      const d = parseDay(lday(r));
+      const k = d ? d.toLocaleDateString("en-GB",{month:"long", year:"numeric"}) : "Not yet dated";
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push(r);
+    }
+    $("#list").innerHTML = [...groups].map(([k, rs]) => {
+      const m = k.match(/^(\S+) (\d{4})$/);
+      return `<div class="month"><h3>${esc(m ? m[1] : k)}</h3><span>${m ? m[2] + ", " : ""}${rs.length} release${rs.length === 1 ? "" : "s"}</span></div><div class="grid">${rs.map(card).join("")}</div>`;
+    }).join("");
+  } else {
+    $("#list").innerHTML = `<div class="grid">${items.map(card).join("")}</div>`;
   }
-  return out.length ? `<div class="metrics">${out.join("")}</div>` : "";
 }
 
-function hypeDetail(r){
-  const h = r.hype; if (!h) return "";
-  const bits = [`${h.media_outlets} news outlet${h.media_outlets === 1 ? "" : "s"}`];
-  if (h.youtube_views != null) bits.push(`${h.youtube_videos} YouTube videos with ${h.youtube_views.toLocaleString("en-US")} views`);
-  if (h.search_vs_brand_pct != null) bits.push(`Google searches at ${h.search_vs_brand_pct}% of the brand's own (${h.search_momentum})`);
-  if (h.reddit_engagement != null) bits.push(`${h.reddit_engagement.toLocaleString("en-US")} Reddit upvotes and comments`);
-  return `<p><span class="k">Hype signals:</span> ${esc(bits.join("; "))}.</p>`;
+/* ---------- refine sheet ---------- */
+function openSheet(){
+  state.draft = JSON.parse(JSON.stringify(state.f));
+  drawFilters();
+  $("#sheet").classList.add("open"); $("#scrim").classList.add("open");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => $("#sheet").querySelector(".opt")?.focus(), 50);
 }
-
-function resaleDetail(r){
-  const x = r.resale; if (!x) return "";
-  let t = `<p><span class="k">Resale estimate:</span> ${pct(x.low_pct)} to ${pct(x.high_pct)} vs retail, ${esc(x.confidence)} confidence, based on ${esc(x.basis)}`;
-  if (x.adjustments?.length) t += `; ${esc(x.adjustments.join(", "))}`;
-  t += `. You need about ${pct(x.breakeven_pct)} to break even after VAT and selling costs`;
-  if (x.est_profit_aed != null) t += `; the midpoint implies ${x.est_profit_aed >= 0 ? "a net gain" : "a net loss"} of ${aed(Math.abs(x.est_profit_aed))}`;
-  t += ".</p>";
-  if (x.comparables?.length) t += `<p><span class="k">Comparables:</span> ${x.comparables.map(c => `${esc(c.name || c.reference)} ${pct(c.premium_pct)} (${esc(c.source || "web")})`).join("; ")}</p>`;
-  if (x.early_signal_note) t += `<p><span class="k">Early signals:</span> ${esc(x.early_signal_note)}</p>`;
-  return t;
+function closeSheet(){
+  $("#sheet").classList.remove("open"); $("#scrim").classList.remove("open");
+  document.body.style.overflow = ""; $("#refineBtn").focus();
 }
-
-function buyList(r){
-  const d = r.research?.data; if (!d?.uae_buy?.length) return "";
-  const items = d.uae_buy.map(s => {
-    const label = esc(s.name) + (s.where ? `, ${esc(s.where)}` : "");
-    return `<li>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${label}</a>` : label}</li>`;
-  }).join("");
-  const online = d.online_ships_to_uae === true ? "<p>The brand's online store ships to the UAE.</p>" : "";
-  return `<div><span class="k">Where to buy in the UAE:</span><ul class="buy">${items}</ul>${online}</div>`;
+function drawFilters(){
+  const f = state.draft;
+  const brands = [...new Set(state.data.map(r => r.brand))].sort((a,b) => a.localeCompare(b));
+  const prices = state.data.filter(r => f.over || !r.over_budget).map(r => r.price_aed || 0);
+  const step = 1000, top = Math.ceil(Math.max(10000, ...prices) / step) * step;
+  const opts = (key, map) => Object.entries(map).map(([k, label]) =>
+    `<button class="opt" data-key="${key}" data-val="${esc(k)}" aria-pressed="${f[key].includes(k)}">${esc(label)}</button>`).join("");
+  const toggle = (key, label) => `<label class="switch">${label}<input type="checkbox" data-sw="${key}" ${f[key] ? "checked" : ""}></label>`;
+  $("#filters").innerHTML = `
+    <div class="fgroup"><h4>Launch window</h4><div class="opts">${Object.entries(WINDOW).map(([k,l]) => `<button class="opt" data-win="${k}" aria-pressed="${f.window === k}">${l}</button>`).join("")}</div></div>
+    <div class="fgroup"><h4>Price and scores</h4>
+      <div class="range"><label for="price">Max price</label><input type="range" id="price" min="${step}" max="${top}" step="${step}" value="${f.priceMax ?? top}"><output id="priceOut"></output></div>
+      <div class="range"><label for="minScore">Collectability</label><input type="range" id="minScore" min="1" max="10" step="1" value="${f.minScore ?? defScore()}"><output id="scoreOut"></output></div>
+      <div class="range"><label for="minHype">Hype</label><input type="range" id="minHype" min="0" max="90" step="5" value="${f.minHype}"><output id="hypeOut"></output></div></div>
+    <div class="fgroup"><h4>Resale outlook</h4><div class="opts">${opts("verdicts", VERDICT)}</div></div>
+    <div class="fgroup"><h4>Status</h4><div class="opts">${opts("statuses", STATUS)}</div></div>
+    <div class="fgroup"><h4>How it's sold</h4><div class="opts">${opts("sale", SALE)}</div></div>
+    <div class="fgroup"><h4>Brands</h4><div class="opts">${brands.map(b => `<button class="opt" data-key="brands" data-val="${esc(b)}" aria-pressed="${f.brands.includes(b)}">${esc(b)}</button>`).join("") || "<span class='resultline'>No brands yet</span>"}</div></div>
+    <div class="fgroup">${toggle("limited","Limited editions only")}${toggle("uae","Available in the UAE")}${toggle("hideAlloc","Hide allocation-only pieces")}${toggle("over","Include watches over budget")}</div>`;
+  const sync = () => {
+    const p = +$("#price").value;
+    f.priceMax = p >= top ? null : p;
+    $("#priceOut").textContent = f.priceMax == null ? "Any" : (p / 1000) + "k";
+    f.minScore = +$("#minScore").value; $("#scoreOut").textContent = f.minScore + "+";
+    f.minHype = +$("#minHype").value; $("#hypeOut").textContent = f.minHype ? f.minHype + "+" : "Any";
+    const n = applyFilters(tabItems(), f).length;
+    $("#applyBtn").textContent = `Show ${n} result${n === 1 ? "" : "s"}`;
+  };
+  $("#filters").oninput = sync;
+  $("#filters").onclick = e => {
+    const b = e.target.closest(".opt");
+    if (b?.dataset.win){
+      f.window = f.window === b.dataset.win ? "" : b.dataset.win;
+      $("#filters").querySelectorAll("[data-win]").forEach(x => x.setAttribute("aria-pressed", x.dataset.win === f.window));
+    } else if (b){
+      const arr = f[b.dataset.key], v = b.dataset.val, i = arr.indexOf(v);
+      if (i >= 0) arr.splice(i,1); else arr.push(v);
+      b.setAttribute("aria-pressed", i < 0);
+    }
+    const sw = e.target.closest("[data-sw]");
+    if (sw){ f[sw.dataset.sw] = sw.checked; if (sw.dataset.sw === "over") { drawFilters(); return; } }
+    sync();
+  };
+  sync();
 }
+$("#refineBtn").onclick = openSheet;
+$("#scrim").onclick = closeSheet;
+$("#applyBtn").onclick = () => { state.f = state.draft; closeSheet(); render(); };
+$("#resetBtn").onclick = () => { state.draft = DEFAULTS(); state.draft.minScore = defScore(); drawFilters(); };
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("#sheet").classList.contains("open")) closeSheet(); });
 
-/* ---------- Collection: decrypted in the browser with your passphrase ---------- */
+$("#strip").onclick = e => {
+  const b = e.target.closest("[data-quick]"); if (!b) return;
+  const q = b.dataset.quick, f = state.f;
+  if (q === "week") { f.window = f.window === "week" ? "" : "week"; state.sort = "launch"; }
+  if (q === "open") { const s = ["preorder_open","available_now"]; f.statuses = f.statuses.length === 2 ? [] : s; }
+  if (q === "profit") { f.verdicts = f.verdicts.join() === "profit" ? [] : ["profit"]; if (f.verdicts.length) state.sort = "resale"; }
+  if (q === "pick") { const p = topPick(); if (p) $("#q").value = p.model; }
+  $("#sort").value = state.sort; render();
+};
+$("#q").addEventListener("input", render);
+$("#sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
+  state.tab = b.dataset.tab; render();
+}));
+
+/* ---------- collection (decrypted in the browser) ---------- */
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function decryptPrivate(pass){
   const res = await fetch("private.enc.json?t=" + Date.now(), {cache:"no-store"});
@@ -278,140 +624,79 @@ async function decryptPrivate(pass){
   const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
   const key = await crypto.subtle.deriveKey({name:"PBKDF2", hash:"SHA-256", salt:b64(blob.salt), iterations:blob.iterations},
     base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
-  try {
-    const plain = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(blob.iv)}, key, b64(blob.data));
-    return JSON.parse(new TextDecoder().decode(plain));
-  } catch { throw new Error("That passphrase doesn't match. Use the PORTFOLIO_PASSPHRASE you saved on GitHub."); }
+  try { return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(blob.iv)}, key, b64(blob.data)))); }
+  catch { throw new Error("That passphrase doesn't match. Use the PORTFOLIO_PASSPHRASE saved on GitHub."); }
 }
-
-function getSavedPass(){ try { return localStorage.getItem("wt-pass"); } catch { return null; } }
-
+const savedPass = () => { try { return localStorage.getItem("wt-pass"); } catch { return null; } };
 async function renderCollection(){
-  const box = $("#list");
-  const pass = state.pass || getSavedPass();
+  const box = $("#collection"), pass = state.pass || savedPass();
   if (!pass){
-    box.innerHTML = `<form class="unlock" id="unlock">
-      <p class="hint">Your collection and contacts are encrypted. Enter your passphrase to view them on this device.</p>
-      <input type="password" id="pass" placeholder="Passphrase" autocomplete="current-password" required>
-      <label class="toggles"><input type="checkbox" id="remember" checked> Remember on this device</label>
-      <button class="btn" type="submit">Unlock collection</button>
-      <p class="note" id="err" role="alert"></p></form>`;
-    $("#unlock").addEventListener("submit", async e => {
-      e.preventDefault();
-      const p = $("#pass").value;
+    box.innerHTML = `<form class="unlock" id="unlock"><h2>Private collection</h2>
+      <p>Your collection and boutique contacts are encrypted. Enter your passphrase to view them on this device.</p>
+      <input type="password" id="pass" placeholder="Passphrase" autocomplete="current-password" required aria-label="Passphrase">
+      <label><input type="checkbox" id="remember" checked> Remember on this device</label>
+      <button class="btn" type="submit">Unlock</button><div class="err" id="err" role="alert"></div></form>`;
+    $("#unlock").onsubmit = async e => {
+      e.preventDefault(); const p = $("#pass").value;
       try { state.priv = await decryptPrivate(p); state.pass = p;
         if ($("#remember").checked) { try { localStorage.setItem("wt-pass", p); } catch {} }
-        renderCollection();
-      } catch (err) { $("#err").textContent = err.message; }
-    });
+        renderCollection(); } catch (err) { $("#err").textContent = err.message; }
+    };
     return;
   }
   if (!state.priv){
     box.innerHTML = `<p class="empty">Unlocking…</p>`;
     try { state.priv = await decryptPrivate(pass); state.pass = pass; }
-    catch (err) { try { localStorage.removeItem("wt-pass"); } catch {} state.pass = null; box.innerHTML = `<p class="note">${esc(err.message)}</p>`; setTimeout(renderCollection, 1500); return; }
+    catch (err) { try { localStorage.removeItem("wt-pass"); } catch {} state.pass = null;
+      box.innerHTML = `<p class="empty">${esc(err.message)}</p>`; setTimeout(renderCollection, 1600); return; }
   }
-  const sell = (state.sellPct ?? 10) / 100;
-  const held = state.priv.holdings.filter(h => !h.sold_price_aed);
-  const sold = state.priv.holdings.filter(h => h.sold_price_aed);
-  const paid = held.reduce((a,h) => a + (h.price_aed || 0), 0);
-  const value = held.reduce((a,h) => a + (h.value_aed || h.price_aed || 0), 0);
+  const sell = (state.meta.selling_cost_pct ?? 10) / 100;
+  const held = state.priv.holdings.filter(h => !h.sold_price_aed), sold = state.priv.holdings.filter(h => h.sold_price_aed);
+  const paid = held.reduce((a,h) => a + (h.price_aed || 0), 0), value = held.reduce((a,h) => a + (h.value_aed || h.price_aed || 0), 0);
+  const dateBox = s => { const d = s ? new Date(s + "T12:00:00") : null;
+    return `<div class="datebox ${d ? "" : "tba"}"><b>${d ? d.getDate() : "—"}</b><span>${d ? d.toLocaleDateString("en-GB",{month:"short", year:"2-digit"}) : ""}</span></div>`; };
   let html = "";
   if (!state.priv.holdings.length){
-    html += `<p class="empty">Your collection is empty. In Telegram, send your bot a message like <b>/bought Tudor BB58 79030N for 17,900 AED</b>.</p>`;
+    html += `<div class="empty"><b>Your collection is empty</b>Send your Telegram bot a message like<br><i>/bought Tudor BB58 79030N for 17,900 AED</i></div>`;
   } else {
     html += `<div class="totals"><div><b>${aed(paid)}</b><span>Paid</span></div><div><b>${aed(value)}</b><span>Estimated value</span></div>
-      <div><b class="${value >= paid ? "gain" : "loss"}">${paid ? pct((value / paid - 1) * 100) : "0%"}</b><span>Change</span></div></div>`;
-    html += `<h2 class="group">Holding</h2>` + held.map(h => {
-      const v = h.value_aed, change = v && h.price_aed ? (v / h.price_aed - 1) * 100 : null;
-      const net = v ? v * (1 - sell) - (h.price_aed || 0) : null;
-      return `<article class="row"><div class="window tbd"><b>${h.purchase_date ? new Date(h.purchase_date + "T12:00:00").getDate() : "—"}</b><span>${h.purchase_date ? new Date(h.purchase_date + "T12:00:00").toLocaleDateString("en-GB",{month:"short", year:"2-digit"}) : ""}</span></div><div>
-        <div class="brand">${esc(h.brand)}</div><div class="model">${esc(h.model)}</div>
-        <div class="facts"><span class="price">Paid ${aed(h.price_aed || 0)}</span>${v ? `<span>Worth ~${aed(v)}</span><span class="${change >= 0 ? "gain" : "loss"}">${pct(change)}</span>` : "<span>Value not yet available</span>"}</div>
-        ${net != null ? `<p class="hint">If sold now, net after selling costs: <span class="${net >= 0 ? "gain" : "loss"}">${net >= 0 ? "+" : "−"}${aed(Math.abs(net))}</span>. Source: ${esc(h.value_source || "")}</p>` : ""}
-        ${h.reference ? `<p class="hint">Reference ${esc(h.reference)}</p>` : ""}</div></article>`;
-    }).join("");
-    if (sold.length) html += `<h2 class="group">Sold</h2>` + sold.map(h =>
-      `<article class="row"><div class="window tbd"><b>✓</b><span>sold</span></div><div><div class="brand">${esc(h.brand)}</div><div class="model">${esc(h.model)}</div>
-      <div class="facts"><span>Paid ${aed(h.price_aed || 0)}</span><span>Sold ${aed(h.sold_price_aed)}</span>
-      <span class="${h.sold_price_aed >= (h.price_aed||0) ? "gain" : "loss"}">${pct((h.sold_price_aed / (h.price_aed || h.sold_price_aed) - 1) * 100)}</span></div></div></article>`).join("");
+      <div><b class="${value >= paid ? "gain" : "loss"}">${paid ? pct((value/paid - 1) * 100) : "0%"}</b><span>Change</span></div></div>`;
+    html += `<div class="month"><h3>Holding</h3><span>${held.length} watch${held.length === 1 ? "" : "es"}</span></div>` + held.map(h => {
+      const v = h.value_aed, ch = v && h.price_aed ? (v / h.price_aed - 1) * 100 : null, net = v ? v * (1 - sell) - (h.price_aed || 0) : null;
+      return `<div class="hold">${dateBox(h.purchase_date)}<div><div class="brandline">${esc(h.brand)}</div><h4>${esc(h.model)}</h4>
+        <div class="facts"><span class="price">Paid ${aed(h.price_aed || 0)}</span>${v ? `<span>Worth ~${aed(v)}</span><span class="${ch >= 0 ? "gain" : "loss"}">${pct(ch)}</span>` : "<span>Value pending</span>"}</div>
+        ${net != null ? `<p>If sold now, net after selling costs: <span class="${net >= 0 ? "gain" : "loss"}">${net >= 0 ? "+" : "−"}${aed(Math.abs(net))}</span> (${esc(h.value_source || "")})</p>` : ""}
+        ${h.reference ? `<p>Reference ${esc(h.reference)}</p>` : ""}</div></div>`; }).join("");
+    if (sold.length) html += `<div class="month"><h3>Sold</h3><span>${sold.length}</span></div>` + sold.map(h =>
+      `<div class="hold">${dateBox(h.sold_date)}<div><div class="brandline">${esc(h.brand)}</div><h4>${esc(h.model)}</h4>
+       <div class="facts"><span>Paid ${aed(h.price_aed || 0)}</span><span>Sold ${aed(h.sold_price_aed)}</span><span class="${h.sold_price_aed >= (h.price_aed||0) ? "gain" : "loss"}">${pct((h.sold_price_aed / (h.price_aed || h.sold_price_aed) - 1) * 100)}</span></div></div></div>`).join("");
   }
   const contacts = state.priv.contacts || [];
-  html += `<h2 class="group">Boutique contacts</h2>` + (contacts.length ? contacts.map(c =>
-    `<article class="row"><div class="window tbd"><b>☎</b><span>${esc((c.brand||"").slice(0,9))}</span></div><div><div class="brand">${esc(c.brand)}</div>
-     <div class="model">${esc(c.name || "Contact")}</div><div class="facts">${c.store ? `<span>${esc(c.store)}</span>` : ""}
-     ${c.phone ? `<a href="tel:${esc(c.phone.replace(/\s+/g,""))}">${esc(c.phone)}</a>` : ""}</div>${c.notes ? `<p class="hint">${esc(c.notes)}</p>` : ""}</div></article>`).join("")
-    : `<p class="hint">No contacts yet. Send your bot <b>/contact Tudor: Ahmed, Seddiqi Dubai Mall, +971 50 123 4567</b>.</p>`);
-  html += `<p style="margin-top:24px"><button class="btn quiet" id="lock">Lock collection on this device</button></p>`;
+  html += `<div class="month"><h3>Boutique contacts</h3><span>${contacts.length}</span></div>` + (contacts.length ? contacts.map(c =>
+    `<div class="hold"><div class="datebox tba"><b>☎</b><span>${esc((c.brand || "").slice(0,8))}</span></div><div><div class="brandline">${esc(c.brand)}</div><h4>${esc(c.name || "Contact")}</h4>
+     <div class="facts">${c.store ? `<span>${esc(c.store)}</span>` : ""}${c.phone ? `<a href="tel:${esc(c.phone.replace(/\s+/g,""))}">${esc(c.phone)}</a>` : ""}</div>${c.notes ? `<p>${esc(c.notes)}</p>` : ""}</div></div>`).join("")
+    : `<p class="resultline">No contacts yet. Send your bot <i>/contact Tudor: Ahmed, Seddiqi Dubai Mall, +971 50 123 4567</i></p>`);
+  html += `<button class="btn ghost lockbtn" id="lock">Lock collection on this device</button>`;
   box.innerHTML = html;
-  $("#lock").addEventListener("click", () => { try { localStorage.removeItem("wt-pass"); } catch {} state.pass = null; state.priv = null; renderCollection(); });
+  $("#lock").onclick = () => { try { localStorage.removeItem("wt-pass"); } catch {} state.pass = null; state.priv = null; renderCollection(); };
 }
 
-function filtered(){
-  const q = $("#q").value.trim().toLowerCase();
-  const min = Number($("#minscore").value);
-  return state.data.filter(r =>
-    (r.score||0) >= min &&
-    ($("#over").checked || !r.over_budget) &&
-    (!$("#limited").checked || r.is_limited) &&
-    (!q || [r.brand, r.model, r.reference, r.specs].join(" ").toLowerCase().includes(q))
-  );
-}
-
-function render(){
-  $("#filters").hidden = state.tab === "collection";
-  if (state.tab === "collection") return renderCollection();
-  let items = filtered(), html = "";
-  const t = todayStr();
-  if (state.tab === "upcoming"){
-    const key = r => lday(r) + " " + (r.launch_uae?.time || "99:99");
-    const dated = items.filter(r => lday(r) && lday(r) >= t && r.status !== "sold_out")
-                       .sort((a,b) => key(a).localeCompare(key(b)));
-    const tba = items.filter(r => !lday(r) && r.status !== "sold_out")
-                     .sort((a,b) => (b.score||0) - (a.score||0));
-    let month = "";
-    for (const r of dated){
-      const m = parseDay(lday(r)).toLocaleDateString("en-GB",{month:"long", year:"numeric"});
-      if (m !== month){ html += `<h2 class="group">${m}</h2>`; month = m; }
-      html += row(r);
-    }
-    if (tba.length){ html += `<h2 class="group">Date not announced yet</h2>` + tba.map(row).join(""); }
-  } else if (state.tab === "recent"){
-    const cutoff = Date.now() - 14 * 86400000;
-    html = items.filter(r => Date.parse(r.first_seen) > cutoff)
-                .sort((a,b) => b.first_seen.localeCompare(a.first_seen)).map(row).join("");
-  } else {
-    html = items.sort((a,b) => (b.score||0) - (a.score||0) || b.first_seen.localeCompare(a.first_seen)).map(row).join("");
-  }
-  $("#list").innerHTML = html || `<p class="empty">No releases match these filters. Lower the minimum score or turn on "Show over budget" to see more.</p>`;
-}
-
+/* ---------- load ---------- */
 async function load(){
   try {
     const res = await fetch("releases.json?t=" + Date.now(), {cache:"no-store"});
     if (!res.ok) throw new Error("HTTP " + res.status);
     const json = await res.json();
-    state.data = json.releases || [];
-    state.minDefault = json.min_score ?? 5;
-    state.sellPct = json.selling_cost_pct;
-    const when = json.generated ? new Date(json.generated).toLocaleString("en-GB",{timeZone:"Asia/Dubai", day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"}) : null;
-    $("#sub").textContent = when
-      ? `${state.data.length} releases tracked. Last checked ${when} UAE time.`
-      : "No releases collected yet. The first check runs within six hours of setup.";
+    state.data = json.releases || []; state.meta = json;
+    if (state.f.minScore == null) state.f.minScore = json.min_score ?? 5;
+    const when = json.generated ? new Date(json.generated).toLocaleString("en-GB",{timeZone:"Asia/Dubai", weekday:"short", day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"}) : null;
+    $("#sub").textContent = when ? `${state.data.length} releases tracked. Updated ${when}, UAE time.` : "No releases yet. The first check runs within the hour.";
   } catch (e) {
-    $("#sub").textContent = "Couldn't load releases.json (" + e.message + "). Pull to refresh, or check the GitHub Actions log.";
+    $("#sub").textContent = "Couldn't load releases (" + e.message + "). Pull down to refresh.";
   }
-  const sel = $("#minscore");
-  sel.innerHTML = Array.from({length:10}, (_,i) => `<option value="${i+1}">${i+1}+</option>`).join("");
-  sel.value = String(state.minDefault);
+  $("#sort").value = state.sort;
   render();
 }
-
-document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
-  document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
-  state.tab = b.dataset.tab; render();
-}));
-["#q","#limited","#over","#minscore"].forEach(s => $(s).addEventListener("input", render));
 load();
 </script>
 </body>

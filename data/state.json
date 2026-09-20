@@ -1,12 +1,9 @@
 {
   "tg_offset": 52018512,
-  "last_collect": "2026-09-20T13:29:02.892540+00:00",
+  "last_collect": "2026-09-20T14:29:05.741184+00:00",
   "feed_errors": [
     "WatchTime (404 Client Error: Not Found for url: https://www.watchtime.com/feed)",
-    "Time and Tide (feed returned no articles)",
-    "WatchPro (403 Client Error: HTTP Forbidden for url: https://www.watchpro.com/feed/)",
-    "Deployant (feed returned no articles)",
-    "Revolution (feed returned no articles)"
+    "WatchPro (403 Client Error: HTTP Forbidden for url: https://www.watchpro.com/feed/)"
   ],
   "ai_errors": 0,
   "urgent_sent": [

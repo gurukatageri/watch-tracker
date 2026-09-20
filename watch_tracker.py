@@ -81,6 +81,8 @@ Return ONLY JSON in this shape (max 5 releases; an empty list if the article has
   "status": "rumor" | "announced" | "preorder_open" | "available_now" | "sold_out",
   "launch_date": "YYYY-MM-DD or null (the date it can be bought or reserved)",
   "launch_date_text": "launch timing as stated, incl. time and time zone if given, or null",
+  "launch_time": "HH:MM 24-hour clock time of the drop in its own time zone, or null",
+  "launch_timezone": "IANA time zone of launch_time, e.g. Asia/Tokyo, Europe/Zurich, America/New_York, or null",
   "sale_method": "online_drop" | "boutique" | "preorder" | "raffle" | "allocation" | "retailers" | "unknown",
   "how_to_buy": "one short practical sentence on where/how to buy or reserve",
   "reservation_possible": true/false/null,
@@ -188,16 +190,130 @@ def extract(cfg, article):
 
 # ---------------------------------------------------------- release store
 
+def same_release(a, b):
+    """True when two records describe the same release."""
+    if norm(a["brand"]) != norm(b["brand"]):
+        return False
+    ref_a, ref_b = norm(a.get("reference")), norm(b.get("reference"))
+    if ref_a and ref_a == ref_b:
+        return True
+    model_a, model_b = norm(a["model"]), norm(b["model"])
+    if difflib.SequenceMatcher(None, model_a, model_b).ratio() >= 0.85:
+        return True
+    # One name contains the other (e.g. "Type 9 Jules Wittock" vs "Type 9 Jules Wittock Emerald Green")
+    # and the price matches: treat as the same release announced at collection level.
+    ta, tb = set(model_a.split()), set(model_b.split())
+    small, big = (ta, tb) if len(ta) <= len(tb) else (tb, ta)
+    pa, pb = a.get("price_aed"), b.get("price_aed")
+    same_price = pa and pb and abs(pa - pb) <= 0.03 * max(pa, pb)
+    return len(small) >= 3 and small <= big and bool(same_price)
+
+
 def find_match(rel, releases):
-    brand, ref, model = norm(rel["brand"]), norm(rel.get("reference")), norm(rel["model"])
-    for existing in releases:
-        if norm(existing["brand"]) != brand:
+    probe = dict(rel, price_aed=rel.get("price_aed") or to_aed(rel.get("price"), rel.get("currency")))
+    return next((r for r in releases if same_release(probe, r)), None)
+
+
+def consolidate(releases):
+    """Merge duplicate records that slipped through (keeps the earliest record)."""
+    releases.sort(key=lambda r: r["first_seen"])
+    kept = []
+    for r in releases:
+        twin = next((k for k in kept if same_release(r, k)), None)
+        if not twin:
+            kept.append(r)
             continue
-        if ref and ref == norm(existing.get("reference")):
-            return existing
-        if difflib.SequenceMatcher(None, model, norm(existing["model"])).ratio() >= 0.85:
-            return existing
-    return None
+        for s in r["sources"]:
+            if all(s["url"] != x["url"] for x in twin["sources"]):
+                twin["sources"].append(s)
+        for field, value in r.items():
+            if twin.get(field) in (None, "", []) and value not in (None, "", []):
+                twin[field] = value
+        if STATUS_RANK.get(r.get("status"), -1) > STATUS_RANK.get(twin.get("status"), -1):
+            twin["status"], twin["status_changed"] = r["status"], r.get("status_changed")
+        twin["score"] = max(twin.get("score", 0), r.get("score", 0))
+        if len(r["model"]) < len(twin["model"]):
+            twin["model"] = r["model"]  # prefer the collection-level name
+    return kept
+
+
+TZ_ABBR = {
+    "JST": "Asia/Tokyo", "KST": "Asia/Seoul", "HKT": "Asia/Hong_Kong", "SGT": "Asia/Singapore",
+    "CST": "America/Chicago", "CDT": "America/Chicago", "IST": "Asia/Kolkata", "GST": "Asia/Dubai",
+    "CET": "Europe/Zurich", "CEST": "Europe/Zurich", "BST": "Europe/London", "GMT": "Europe/London",
+    "UTC": "UTC", "EST": "America/New_York", "EDT": "America/New_York", "ET": "America/New_York",
+    "PST": "America/Los_Angeles", "PDT": "America/Los_Angeles", "PT": "America/Los_Angeles",
+    "AEST": "Australia/Sydney", "AEDT": "Australia/Sydney",
+}
+
+
+CITY_TZ = {
+    "geneva": "Europe/Zurich", "swiss": "Europe/Zurich", "zurich": "Europe/Zurich", "paris": "Europe/Paris",
+    "london": "Europe/London", "uk": "Europe/London", "new york": "America/New_York", "eastern": "America/New_York",
+    "pacific": "America/Los_Angeles", "los angeles": "America/Los_Angeles", "tokyo": "Asia/Tokyo",
+    "japan": "Asia/Tokyo", "hong kong": "Asia/Hong_Kong", "singapore": "Asia/Singapore",
+    "dubai": "Asia/Dubai", "uae": "Asia/Dubai", "gulf": "Asia/Dubai", "glashütte": "Europe/Berlin",
+}
+
+
+def normalise_time(cfg, rel):
+    """Work out the drop time in UAE time when the local time and zone are known."""
+    rel.pop("launch_uae", None)
+    day = parse_day(rel.get("launch_date"))
+    if not day:
+        return
+    hhmm, zone = rel.get("launch_time"), rel.get("launch_timezone")
+    text = rel.get("launch_date_text") or ""
+    if not hhmm:
+        pattern = r"\b(\d{1,2})(?:[:.](\d{2}))?\s*(a\.?\s?m\b\.?|p\.?\s?m\b\.?)?"
+        m = next((x for x in re.finditer(pattern, text, re.I) if x.group(2) or x.group(3)), None)
+        if m:
+            h, mins = int(m.group(1)), int(m.group(2) or 0)
+            ampm = (m.group(3) or "").lower().replace(".", "").replace(" ", "")
+            if re.search(r"\bnoon\b", text, re.I) and h == 12:
+                ampm = ""
+            if ampm == "pm" and h < 12:
+                h += 12
+            elif ampm == "am" and h == 12:
+                h = 0
+            if h < 24 and mins < 60:
+                hhmm = f"{h:02d}:{mins:02d}"
+    if not zone:
+        m = re.search(r"\b(" + "|".join(TZ_ABBR) + r")\b", text)
+        zone = TZ_ABBR.get(m.group(1)) if m else None
+    if not zone:
+        m = re.search(r"\b(" + "|".join(CITY_TZ) + r")\b", text, re.I)
+        zone = CITY_TZ.get(m.group(1).lower()) if m else None
+    if not hhmm or not zone:
+        return
+    try:
+        h, mins = (int(x) for x in hhmm.split(":")[:2])
+        local = datetime(day.year, day.month, day.day, h, mins, tzinfo=ZoneInfo(zone))
+    except Exception:
+        return
+    uae = local.astimezone(ZoneInfo(cfg["timezone"]))
+    abbr = local.tzname() or zone
+    rel["launch_uae"] = {"date": uae.date().isoformat(), "time": uae.strftime("%H:%M"),
+                         "utc": local.astimezone(timezone.utc).isoformat(),
+                         "local": f"{local.strftime('%H:%M')} {abbr}"}
+
+
+def launch_day(rel):
+    """The launch date as seen in the UAE (falls back to the announced date)."""
+    return parse_day((rel.get("launch_uae") or {}).get("date")) or parse_day(rel.get("launch_date"))
+
+
+def fmt_launch(rel, today):
+    day = launch_day(rel)
+    if not day:
+        return rel.get("launch_date_text")
+    text = fmt_day(day, today)
+    uae = rel.get("launch_uae")
+    if uae:
+        text += f", {uae['time']} UAE time"
+        if not uae["local"].startswith(uae["time"]):
+            text += f" ({uae['local']})"
+    return text
 
 
 def upsert(cfg, releases, rel, article):
@@ -210,10 +326,11 @@ def upsert(cfg, releases, rel, article):
         if all(s["url"] != source["url"] for s in existing["sources"]):
             existing["sources"].append(source)
         for field in ("reference", "pieces", "price", "currency", "launch_date",
-                      "launch_date_text", "how_to_buy", "availability_notes",
+                      "launch_date_text", "launch_time", "launch_timezone", "how_to_buy", "availability_notes",
                       "specs", "image", "reservation_possible"):
             if rel.get(field) not in (None, "", "null"):
-                if field in ("launch_date", "launch_date_text", "how_to_buy") or not existing.get(field):
+                if field in ("launch_date", "launch_date_text", "launch_time", "launch_timezone", "how_to_buy") \
+                        or not existing.get(field):
                     existing[field] = rel[field]
         if price_aed:
             existing["price_aed"] = price_aed
@@ -239,6 +356,8 @@ def upsert(cfg, releases, rel, article):
             "status": rel.get("status") or "announced",
             "launch_date": rel.get("launch_date"),
             "launch_date_text": rel.get("launch_date_text"),
+            "launch_time": rel.get("launch_time"),
+            "launch_timezone": rel.get("launch_timezone"),
             "sale_method": rel.get("sale_method") or "unknown",
             "how_to_buy": rel.get("how_to_buy"),
             "reservation_possible": rel.get("reservation_possible"),
@@ -298,6 +417,9 @@ def collect(cfg, state):
     seen = dict(sorted(seen.items(), key=lambda kv: kv[1], reverse=True)[:8000])
     keep_after = now_utc() - timedelta(days=550)
     releases = [r for r in releases if (parse_iso(r["first_seen"]) or now_utc()) > keep_after]
+    releases = consolidate(releases)
+    for r in releases:
+        normalise_time(cfg, r)
     releases.sort(key=lambda r: r["first_seen"], reverse=True)
 
     changed = {r["id"] for r in releases
@@ -398,11 +520,11 @@ def release_block(rel, today, store, index=None):
         facts.append(f"{rel['pieces']:,} pcs")
     elif rel.get("limited_type") not in (None, "unknown", "not_limited"):
         facts.append(rel["limited_type"].replace("_", " "))
-    day = parse_day(rel.get("launch_date"))
-    if day:
-        facts.append(f"📅 {fmt_day(day, today)}" + (f" {rel['launch_date_text']}" if rel.get("launch_date_text") else ""))
-    elif rel.get("launch_date_text"):
-        facts.append(f"📅 {rel['launch_date_text']}")
+    when = fmt_launch(rel, today)
+    if when:
+        if launch_day(rel) and launch_day(rel) < today and rel.get("status") in ("available_now", "preorder_open"):
+            when = "since " + when
+        facts.append(f"📅 {when}")
     lines.append("💰 " + esc(" | ".join(facts)))
     status = STATUS_LABEL.get(rel.get("status"), "")
     if rel.get("how_to_buy"):
@@ -449,12 +571,13 @@ def urgent_alerts(cfg, releases, changed_ids, state, store, wc):
     def reason(r):
         if not eligible(cfg, r) or r.get("status") == "sold_out":
             return None
-        d = parse_day(r.get("launch_date"))
+        d = launch_day(r)
         soon = d and 0 <= (d - today).days <= u.get("within_hours", 48) // 24
+        stale = d and (today - d).days > 2  # launched days ago: leave it to the digest
         is_new = (parse_iso(r["first_seen"]) or last_digest) > last_digest
         opened = (r["id"] in changed_ids and r.get("status") in ("preorder_open", "available_now"))
-        if opened:
-            return f"{STATUS_LABEL[r['status']]} now"
+        if opened and not stale:
+            return STATUS_LABEL[r["status"]]
         if is_new and soon:
             return "Launching " + fmt_day(d, today).lower()
         return None
@@ -472,7 +595,7 @@ def urgent_alerts(cfg, releases, changed_ids, state, store, wc):
         hype = (r.get("hype") or {}).get("index", 0)
         if r.get("score", 0) < u.get("min_score", 7) and hype < u.get("min_hype", 70):
             continue
-        if quiet and parse_day(r.get("launch_date")) != today:
+        if quiet and launch_day(r) != today:
             continue  # hold until morning unless the drop is today
         telegram_send([f"🚨 <b>Urgent: {esc(why)}</b>", release_block(r, today, store)])
         sent.add(f"{r['id']}:{r.get('status')}:{r.get('launch_date')}")
@@ -492,8 +615,8 @@ def build_digest(cfg, releases, state, store):
     new_ids = {r["id"] for r in new}
     horizon = today + timedelta(days=cfg.get("digest_upcoming_days", 7))
     upcoming = sorted([r for r in releases if eligible(cfg, r) and r.get("status") != "sold_out"
-                       and (d := parse_day(r.get("launch_date"))) and today <= d <= horizon],
-                      key=lambda r: r["launch_date"])
+                       and (d := launch_day(r)) and today <= d <= horizon],
+                      key=lambda r: (launch_day(r), (r.get("launch_uae") or {}).get("time", "")))
     changed = [r for r in releases if eligible(cfg, r) and r["id"] not in new_ids
                and (parse_iso(r.get("status_changed")) or since) > since]
     below = sum(1 for r in releases if (parse_iso(r["first_seen"]) or since) > since and r["id"] not in new_ids)
@@ -511,11 +634,9 @@ def build_digest(cfg, releases, state, store):
     if upcoming:
         lines = [f"📅 <b>Coming up in the next {cfg.get('digest_upcoming_days', 7)} days</b>"]
         for r in upcoming:
-            d = parse_day(r["launch_date"])
-            timing = f" {esc(r['launch_date_text'])}" if r.get("launch_date_text") else ""
             hype = f", hype {r['hype']['index']}" if r.get("hype") else ""
             resale = f", resale {r['resale']['mid_pct']:+d}%" if r.get("resale") else ""
-            lines.append(f"• <b>{fmt_day(d, today)}</b>{timing}: {esc(r['brand'])} {esc(r['model'])}, "
+            lines.append(f"• <b>{esc(fmt_launch(r, today))}</b>: {esc(r['brand'])} {esc(r['model'])}, "
                          f"{esc(fmt_price(r))}{hype}{resale}")
         parts.append("\n".join(lines))
 
@@ -540,6 +661,7 @@ def build_digest(cfg, releases, state, store):
 
 def run_collect(cfg, digest=False):
     state = load_json(STATE_PATH, {})
+    first_run = not state.get("last_collect")
     wc = signals.WatchCharts()
     try:
         private.process_commands(cfg, state, wc)
@@ -564,7 +686,10 @@ def run_collect(cfg, digest=False):
         state["ai_errors"] = 0
         print("Digest sent.")
     else:
-        urgent_alerts(cfg, releases, changed_ids, state, store, wc)
+        if first_run:
+            print("First run: urgent alerts skipped (everything is new); the digest covers it.")
+        else:
+            urgent_alerts(cfg, releases, changed_ids, state, store, wc)
         save_releases(cfg, releases)
     wc.save()
     save_json(STATE_PATH, state)

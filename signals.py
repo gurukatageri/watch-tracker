@@ -318,12 +318,17 @@ def compute_resale(cfg, rel, research, wc):
 
     # 3. Base estimate.
     retention = (research or {}).get("brand_retention", "average")
-    if comps:
+    baseline = {"strong": 10, "average": -15, "weak": -35}.get(retention, -15)
+    if len(comps) >= 2:
         base = statistics.median(c["premium_pct"] for c in comps)
-        basis = f"median of {len(comps)} comparable(s)"
+        basis = f"median of {len(comps)} comparable watches"
+    elif comps:
+        # One data point is too thin to trust alone: blend it with the brand's general record.
+        base = (comps[0]["premium_pct"] + baseline) / 2
+        basis = f"1 comparable watch blended with the brand's general value retention ({retention})"
     else:
-        base = {"strong": 10, "average": -15, "weak": -35}.get(retention, -15)
-        basis = f"brand value retention ({retention}) only"
+        base = baseline
+        basis = f"the brand's general value retention ({retention}) only"
 
     # 4. Adjustments: scarcity vs demand, and early market signals.
     adj, reasons = 0, []
@@ -368,7 +373,10 @@ def compute_resale(cfg, rel, research, wc):
     price = rel.get("price_aed")
     if price:
         out["est_profit_aed"] = int(round(price * (1 + mid / 100) * (1 - sell) - price * (1 + tax)))
-    if low > breakeven:
+    if confidence == "low":
+        out["verdict"] = ("Leaning profit" if low > breakeven else
+                          "Leaning loss" if high < breakeven else "Too uncertain to call")
+    elif low > breakeven:
         out["verdict"] = "Likely profitable"
     elif mid > breakeven:
         out["verdict"] = "Possible profit"

@@ -28,6 +28,7 @@
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
+input[type=checkbox]{accent-color:var(--gold);width:18px;height:18px}
 html{-webkit-text-size-adjust:100%;background:var(--bg)}
 body{margin:0;color:var(--ivory);font:15px/1.55 var(--sans);background:
   radial-gradient(1200px 500px at 85% -120px, rgba(201,164,92,.10), transparent 60%), var(--bg);
@@ -281,18 +282,40 @@ details.allv summary::after{margin-left:auto;color:var(--gold)}
 .seeall{display:block;text-align:center;font-size:.82rem;font-weight:700;color:var(--gold-hi);text-decoration:none;padding:0 12px 12px}
 .pictured{font-size:.78rem;color:var(--muted)}
 .pictured b{color:var(--ivory)}
+.gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:24px;background:
+  radial-gradient(900px 500px at 50% -10%, rgba(201,164,92,.16), transparent 60%), var(--bg)}
+.gate form{width:100%;max-width:380px;display:grid;gap:14px;text-align:center}
+.gate img{width:96px;height:96px;border-radius:22px;margin:0 auto;box-shadow:0 10px 40px rgba(201,164,92,.18)}
+.gate h1{font:600 2.4rem/1 var(--serif);margin:6px 0 0}
+.gate h1 em{color:var(--gold);font-weight:500}
+.gate p{margin:0;color:var(--muted);font-size:.9rem}
+.gate input[type=password]{font:16px var(--sans);padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ivory);text-align:center}
+.gate label{display:flex;gap:8px;justify-content:center;align-items:center;color:var(--muted);font-size:.86rem}
+.gate .btn{padding:14px}
+.lockicon{background:none;border:1px solid var(--line);border-radius:10px;color:var(--muted);font:600 .78rem var(--sans);padding:6px 10px;cursor:pointer;margin-top:8px}
 .disclaimer{margin-top:40px;font-size:.76rem;color:var(--faint);text-align:center}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
-<main class="wrap">
+<div class="gate" id="gate" hidden>
+  <form id="gateForm">
+    <img src="apple-touch-icon.png" alt="">
+    <h1>The Launch <em>Ledger</em></h1>
+    <p>Private dashboard. Enter your passphrase to continue.</p>
+    <input type="password" id="gatePass" placeholder="Passphrase" autocomplete="current-password" aria-label="Passphrase" required>
+    <label><input type="checkbox" id="gateRemember" checked> Keep me unlocked on this device</label>
+    <button class="btn" type="submit" id="gateBtn">Unlock</button>
+    <div class="err" id="gateErr" role="alert"></div>
+  </form>
+</div>
+<main class="wrap" id="app" hidden>
   <header class="mast">
     <div>
       <h1>The Launch <em>Ledger</em></h1>
       <p id="sub">Loading releases…</p>
     </div>
-    <svg class="crest" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="#C9A45C" stroke-width="1.5"/><circle cx="24" cy="24" r="17" fill="none" stroke="#7A6232" stroke-width=".8" stroke-dasharray="1 2.55"/><path d="M24 11v13l8 5" stroke="#E3C584" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="24" cy="24" r="1.8" fill="#E3C584"/></svg>
+    <div style="display:grid;justify-items:end"><svg class="crest" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="#C9A45C" stroke-width="1.5"/><circle cx="24" cy="24" r="17" fill="none" stroke="#7A6232" stroke-width=".8" stroke-dasharray="1 2.55"/><path d="M24 11v13l8 5" stroke="#E3C584" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="24" cy="24" r="1.8" fill="#E3C584"/></svg><button class="lockicon" id="lockAll" hidden>Lock</button></div>
   </header>
 
   <nav class="tabs" role="tablist">
@@ -938,16 +961,18 @@ document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click
 
 /* ---------- collection (decrypted in the browser) ---------- */
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-async function decryptPrivate(pass){
-  const res = await fetch("private.enc.json?t=" + Date.now(), {cache:"no-store"});
-  if (res.status === 404) return {holdings:[], contacts:[]};
-  if (!res.ok) throw new Error("Couldn't load your collection file (HTTP " + res.status + ").");
-  const blob = await res.json();
+async function decryptBlob(blob, pass){
   const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
   const key = await crypto.subtle.deriveKey({name:"PBKDF2", hash:"SHA-256", salt:b64(blob.salt), iterations:blob.iterations},
     base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
   try { return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(blob.iv)}, key, b64(blob.data)))); }
   catch { throw new Error("That passphrase doesn't match. Use the PORTFOLIO_PASSPHRASE saved on GitHub."); }
+}
+async function decryptPrivate(pass){
+  const res = await fetch("private.enc.json?t=" + Date.now(), {cache:"no-store"});
+  if (res.status === 404) return {holdings:[], contacts:[]};
+  if (!res.ok) throw new Error("Couldn't load your collection file (HTTP " + res.status + ").");
+  return decryptBlob(await res.json(), pass);
 }
 const savedPass = () => { try { return localStorage.getItem("wt-pass"); } catch { return null; } };
 async function renderCollection(){
@@ -998,27 +1023,65 @@ async function renderCollection(){
     `<div class="hold"><div class="datebox tba"><b>☎</b><span>${esc((c.brand || "").slice(0,8))}</span></div><div><div class="brandline">${esc(c.brand)}</div><h4>${esc(c.name || "Contact")}</h4>
      <div class="facts">${c.store ? `<span>${esc(c.store)}</span>` : ""}${c.phone ? `<a href="tel:${esc(c.phone.replace(/\s+/g,""))}">${esc(c.phone)}</a>` : ""}</div>${c.notes ? `<p>${esc(c.notes)}</p>` : ""}</div></div>`).join("")
     : `<p class="resultline">No contacts yet. Send your bot <i>/contact Tudor: Ahmed, Seddiqi Dubai Mall, +971 50 123 4567</i></p>`);
-  html += `<button class="btn ghost lockbtn" id="lock">Lock collection on this device</button>`;
+  html += `<button class="btn ghost lockbtn" id="lock">Lock on this device</button>`;
   box.innerHTML = html;
-  $("#lock").onclick = () => { try { localStorage.removeItem("wt-pass"); } catch {} state.pass = null; state.priv = null; renderCollection(); };
+  $("#lock").onclick = () => $("#lockAll").hidden ? (() => { try { localStorage.removeItem("wt-pass"); } catch {} state.pass = null; state.priv = null; renderCollection(); })() : $("#lockAll").click();
 }
 
-/* ---------- load ---------- */
-async function load(){
-  try {
-    const res = await fetch("releases.json?t=" + Date.now(), {cache:"no-store"});
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    const json = await res.json();
-    state.data = json.releases || []; state.meta = json;
-    if (state.f.minScore == null) state.f.minScore = json.min_score ?? 5;
-    const when = json.generated ? new Date(json.generated).toLocaleString("en-GB",{timeZone:"Asia/Dubai", weekday:"short", day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"}) : null;
-    $("#sub").textContent = when ? `${state.data.length} releases tracked. Updated ${when}, UAE time.` : "No releases yet. The first check runs within the hour.";
-  } catch (e) {
-    $("#sub").textContent = "Couldn't load releases (" + e.message + "). Pull down to refresh.";
-  }
+/* ---------- load (with passphrase gate) ---------- */
+function showApp(json){
+  state.data = json.releases || []; state.meta = json;
+  if (state.f.minScore == null) state.f.minScore = json.min_score ?? 5;
+  const when = json.generated ? new Date(json.generated).toLocaleString("en-GB",{timeZone:"Asia/Dubai", weekday:"short", day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"}) : null;
+  $("#sub").textContent = when ? `${state.data.length} releases tracked. Updated ${when}, UAE time.` : "No releases yet. The first check runs within the hour.";
+  $("#gate").hidden = true; $("#app").hidden = false;
   $("#sort").value = state.sort;
   render();
 }
+function showGate(message){
+  $("#app").hidden = true; $("#gate").hidden = false;
+  $("#gateErr").textContent = message || "";
+  setTimeout(() => $("#gatePass").focus(), 50);
+}
+async function load(){
+  try {
+    const enc = await fetch("releases.enc.json?t=" + Date.now(), {cache:"no-store"});
+    if (enc.ok){
+      state.blob = await enc.json();
+      $("#lockAll").hidden = false;
+      const pass = state.pass || savedPass();
+      if (!pass) return showGate();
+      try { const json = await decryptBlob(state.blob, pass); state.pass = pass; return showApp(json); }
+      catch { try { localStorage.removeItem("wt-pass"); } catch {} return showGate("Your saved passphrase no longer works. Please enter it again."); }
+    }
+    const res = await fetch("releases.json?t=" + Date.now(), {cache:"no-store"});
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const json = await res.json();
+    if (json.encrypted) return showGate("The data isn't ready yet. Run the tracker once, then reload.");
+    showApp(json);
+  } catch (e) {
+    $("#gate").hidden = true; $("#app").hidden = false;
+    $("#sub").textContent = "Couldn't load releases (" + e.message + "). Pull down to refresh.";
+  }
+}
+$("#gateForm").onsubmit = async e => {
+  e.preventDefault();
+  const p = $("#gatePass").value;
+  $("#gateBtn").textContent = "Unlocking…"; $("#gateBtn").disabled = true;
+  try {
+    if (!state.blob) return load();
+    const json = await decryptBlob(state.blob, p);
+    state.pass = p;
+    if ($("#gateRemember").checked) { try { localStorage.setItem("wt-pass", p); } catch {} }
+    $("#gatePass").value = "";
+    showApp(json);
+  } catch (err) { $("#gateErr").textContent = err.message; }
+  finally { $("#gateBtn").textContent = "Unlock"; $("#gateBtn").disabled = false; }
+};
+$("#lockAll").onclick = () => {
+  try { localStorage.removeItem("wt-pass"); } catch {}
+  state.pass = null; state.priv = null; state.data = []; $("#list").innerHTML = ""; showGate();
+};
 load();
 </script>
 </body>

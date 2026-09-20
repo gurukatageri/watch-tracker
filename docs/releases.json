@@ -1,10 +1,146 @@
 {
-  "generated": "2026-09-20T07:28:58.766961+00:00",
+  "generated": "2026-09-20T07:59:20.494858+00:00",
   "max_price_aed": 100000,
   "min_score": 5,
   "breakeven_pct": 16.7,
   "selling_cost_pct": 10,
   "releases": [
+    {
+      "id": "28caa7f371bc",
+      "brand": "The Citizen",
+      "model": "Limited-edition titanium with hand-made dials",
+      "reference": null,
+      "is_limited": true,
+      "pieces": null,
+      "limited_type": "limited",
+      "price": null,
+      "currency": null,
+      "price_aed": null,
+      "status": "announced",
+      "launch_date": null,
+      "launch_date_text": null,
+      "launch_time": null,
+      "launch_timezone": null,
+      "sale_method": "unknown",
+      "how_to_buy": "Check The Citizen official channels and authorized retailers for availability.",
+      "reservation_possible": null,
+      "availability_notes": null,
+      "specs": "Titanium case, hand-made dials, quartz (assumed for The Citizen eco-drive line)",
+      "score": 6,
+      "score_reason": "Limited titanium edition with artisanal hand-made dials appeals to collectors, but The Citizen brand typically does not command strong secondary market appreciation despite quality.",
+      "allocation_likely": false,
+      "image": null,
+      "sources": [
+        {
+          "name": "News: Casio / G-Shock",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNSnNuYnFoTW9pbUdMNnVFdnJPcVpsSkRjUEVvRUJ6QUJ6ZEVVV2Z5QlhGSWI2ZnB4dHd1Nmxoc2xVTGVrOFZkQlN5YlQ4TzJyTG9LZ1IxeTBMVjBOMW41X1BqLWNJMlNhLTBJbmJLOUVESUJIalR1b01GUzkxdjhxdmIyTl9jT0JfYWRxU3h4dl9STTQ0b2s3bHRvR1YwTTRXbm5VejRrMElpTGtHVkFDakhOUFo4OTFBb25DdlZla1BfNUUwRG15a3Z3?oc=5"
+        }
+      ],
+      "first_seen": "2026-09-20T07:50:17.106307+00:00",
+      "updated": "2026-09-20T07:50:17.106307+00:00",
+      "status_changed": null,
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 1,
+        "youtube_views": 163,
+        "index": 28,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 28
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:58:04.916484+00:00"
+      },
+      "research": {
+        "at": "2026-09-20T07:58:04.916496+00:00",
+        "data": {
+          "comparables": [
+            {
+              "name": "The Citizen Eco-Drive 50th Anniversary Edition (green washi dial)",
+              "reference": "AQ4091-56W",
+              "year": 2026,
+              "pieces": 650,
+              "retail_price": 3100,
+              "market_price": 2991,
+              "currency": "USD",
+              "source": "Chrono24 / Monochrome Watches"
+            },
+            {
+              "name": "The Citizen 30th Anniversary Limited Edition (indigo washi dial)",
+              "reference": "AQ4100-65M",
+              "year": 2025,
+              "pieces": 550,
+              "retail_price": null,
+              "market_price": 2515,
+              "currency": "USD",
+              "source": "Chrono24"
+            },
+            {
+              "name": "The Citizen 30th Anniversary Iconic Nature Collection (washi dial)",
+              "reference": "AQ4103-16W",
+              "year": 2025,
+              "pieces": 400,
+              "retail_price": 3300,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Notebookcheck"
+            },
+            {
+              "name": "The Citizen 30th Anniversary Iconic Nature Collection (washi dial)",
+              "reference": "AQ4100-22A",
+              "year": 2025,
+              "pieces": 400,
+              "retail_price": 3200,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Notebookcheck"
+            }
+          ],
+          "brand_retention": "weak",
+          "brand_retention_note": "Multiple resale/valuation sources agree that Citizen watches generally do not hold value well versus brands like Seiko or G-Shock, with typical used discounts of 30-40% off retail, though limited-edition 'The Citizen' washi-dial pieces tend to depreciate somewhat less due to scarcity.",
+          "uae_buy": [
+            {
+              "name": "Citizen Watches UAE (official online store)",
+              "type": "online",
+              "where": "citizen-me.com / uae.citizenshop.me",
+              "url": "https://citizen-me.com/home/UAE"
+            }
+          ],
+          "online_ships_to_uae": true,
+          "early_signal": "unknown",
+          "early_signal_note": "The AQ4100-65X (350 pieces) and AQ4106-00B (200 pieces) were only announced on September 17, 2026 and are due to ship in October 2026, so no waitlist, sell-out, or pre-delivery secondary-market data exists yet, though the very small production runs suggest high scarcity potential."
+        }
+      },
+      "resale": {
+        "breakeven_pct": 16.7,
+        "updated": "2026-09-20T07:58:41.224328+00:00",
+        "comparables": [
+          {
+            "name": "The Citizen Eco-Drive 50th Anniversary Edition (green washi dial)",
+            "reference": "AQ4091-56W",
+            "premium_pct": -3.5,
+            "source": "Chrono24 / Monochrome Watches"
+          }
+        ],
+        "low_pct": -44,
+        "high_pct": 6,
+        "mid_pct": -19,
+        "confidence": "low",
+        "basis": "1 comparable watch blended with the brand's general value retention (weak)",
+        "adjustments": [],
+        "brand_retention": "weak",
+        "brand_retention_note": "Multiple resale/valuation sources agree that Citizen watches generally do not hold value well versus brands like Seiko or G-Shock, with typical used discounts of 30-40% off retail, though limited-edition 'The Citizen' washi-dial pieces tend to depreciate somewhat less due to scarcity.",
+        "early_signal_note": "The AQ4100-65X (350 pieces) and AQ4106-00B (200 pieces) were only announced on September 17, 2026 and are due to ship in October 2026, so no waitlist, sell-out, or pre-delivery secondary-market data exists yet, though the very small production runs suggest high scarcity potential.",
+        "verdict": "Leaning loss"
+      }
+    },
     {
       "id": "bd2f21ab1dca",
       "brand": "Luminox",
@@ -128,7 +264,138 @@
       "first_seen": "2026-09-20T06:39:24.329697+00:00",
       "updated": "2026-09-20T06:39:36.820503+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 3,
+        "youtube_videos": 3,
+        "youtube_views": 3577,
+        "index": 50,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 50
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:54:17.226553+00:00"
+      },
+      "research": {
+        "at": "2026-09-20T07:54:17.226566+00:00",
+        "data": {
+          "comparables": [
+            {
+              "name": "Hublot Classic Fusion Takashi Murakami All Black",
+              "reference": "507.CX.9000.RX.TAK21",
+              "year": 2021,
+              "pieces": null,
+              "retail_price": 25000,
+              "market_price": 47000,
+              "currency": "USD",
+              "source": "Chrono24"
+            },
+            {
+              "name": "Hublot Classic Fusion Takashi Murakami Sapphire Rainbow",
+              "reference": "507.JX.0800.RT.TAK21",
+              "year": 2023,
+              "pieces": null,
+              "retail_price": null,
+              "market_price": 195000,
+              "currency": "USD",
+              "source": "Chrono24"
+            },
+            {
+              "name": "Hublot Big Bang Unico Sang Bleu Ceramic",
+              "reference": "415.HX.2027.VR.MXM19",
+              "year": 2026,
+              "pieces": null,
+              "retail_price": null,
+              "market_price": 16995,
+              "currency": "USD",
+              "source": "Chrono24"
+            },
+            {
+              "name": "Hublot Big Bang Unico Berluti Scritto",
+              "reference": null,
+              "year": null,
+              "pieces": null,
+              "retail_price": null,
+              "market_price": null,
+              "currency": "USD",
+              "source": "The Luxury Playbook (115-125% retention vs retail)"
+            },
+            {
+              "name": "Hublot Big Bang Unico SR_A by Samuel Ross",
+              "reference": null,
+              "year": 2026,
+              "pieces": 200,
+              "retail_price": null,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Something About Rocks"
+            }
+          ],
+          "brand_retention": "average",
+          "brand_retention_note": "Hublot overall shows weak-to-average retention with standard Big Bang/Classic Fusion models depreciating 40-60%, but select artist collaborations like the Takashi Murakami series and technically distinct Unico references (e.g. Berluti Scritto) have shown strong appreciation well above retail.",
+          "uae_buy": [
+            {
+              "name": "Hublot Dubai Mall Boutique",
+              "type": "boutique",
+              "where": "The Dubai Mall, Dubai",
+              "url": "https://www.hublot.com/en-int/boutiques/hublot-dubai-mall-boutique"
+            },
+            {
+              "name": "Ahmed Seddiqi & Sons - The Dubai Mall",
+              "type": "authorized_dealer",
+              "where": "The Dubai Mall, Dubai",
+              "url": "https://www.hublot.com/en-ae/boutiques/ahmed-seddiqi-dubai-mall"
+            },
+            {
+              "name": "Ahmed Seddiqi & Sons - Mall of the Emirates",
+              "type": "authorized_dealer",
+              "where": "Mall of the Emirates, Dubai",
+              "url": "https://originalpricing.com/original-hublot-price-in-uae/"
+            },
+            {
+              "name": "Hublot Official Online Store (UAE)",
+              "type": "online",
+              "where": "hublot.com/en-ae",
+              "url": "https://www.hublot.com/en-ae"
+            }
+          ],
+          "online_ships_to_uae": true,
+          "early_signal": "neutral",
+          "early_signal_note": "The watch was only unveiled on September 16, 2026 alongside the $488,000 MP-14 Origin, so no secondary-market flips, waitlist reports, or above-retail pre-delivery listings have surfaced yet, though it is generating strong press buzz."
+        }
+      },
+      "resale": {
+        "breakeven_pct": 16.7,
+        "updated": "2026-09-20T07:56:41.171691+00:00",
+        "comparables": [
+          {
+            "name": "Hublot Classic Fusion Takashi Murakami All Black",
+            "reference": "507.CX.9000.RX.TAK21",
+            "premium_pct": 88.0,
+            "source": "Chrono24"
+          }
+        ],
+        "low_pct": 16,
+        "high_pct": 66,
+        "mid_pct": 42,
+        "confidence": "low",
+        "basis": "1 comparable watch blended with the brand's general value retention (average)",
+        "adjustments": [
+          "solid hype on a very small run"
+        ],
+        "brand_retention": "average",
+        "brand_retention_note": "Hublot overall shows weak-to-average retention with standard Big Bang/Classic Fusion models depreciating 40-60%, but select artist collaborations like the Takashi Murakami series and technically distinct Unico references (e.g. Berluti Scritto) have shown strong appreciation well above retail.",
+        "early_signal_note": "The watch was only unveiled on September 16, 2026 alongside the $488,000 MP-14 Origin, so no secondary-market flips, waitlist reports, or above-retail pre-delivery listings have surfaced yet, though it is generating strong press buzz.",
+        "est_profit_aed": 20520,
+        "verdict": "Too uncertain to call"
+      }
     },
     {
       "id": "98151fff294d",
@@ -199,74 +466,6 @@
       "over_budget": false
     },
     {
-      "id": "15691f58cd59",
-      "brand": "Glashütte Original",
-      "model": "70s Tweed Amp",
-      "reference": null,
-      "is_limited": false,
-      "pieces": null,
-      "limited_type": "not_limited",
-      "price": 13200,
-      "currency": "USD",
-      "price_aed": 48477,
-      "status": "announced",
-      "launch_date": null,
-      "launch_date_text": null,
-      "sale_method": "boutique",
-      "how_to_buy": "Contact Glashütte Original boutiques or authorized retailers.",
-      "reservation_possible": null,
-      "availability_notes": null,
-      "specs": "39 mm × 39 mm square case, stainless steel with red gold hands, automatic Manufacture Calibre 36, brown textured dial, date at 3 o'clock, 9.6 mm thick",
-      "score": 5,
-      "score_reason": "Open production three-hand date watch; excellent finishing but likely wide availability limits collectibility and value retention.",
-      "allocation_likely": false,
-      "image": "https://deployant.com/wp-content/uploads/2026/09/Digital-1-36-11-03-02-66_70s_DIAL_Tweed_Amp_RS_black_LE0826-149600-1200x1550.jpg",
-      "sources": [
-        {
-          "name": "Deployant",
-          "url": "https://deployant.com/new-the-70s-by-glashutte-original/?utm_source=rss&utm_medium=rss&utm_campaign=new-the-70s-by-glashutte-original"
-        }
-      ],
-      "first_seen": "2026-09-20T06:39:14.057846+00:00",
-      "updated": "2026-09-20T06:39:14.057846+00:00",
-      "status_changed": null,
-      "over_budget": false
-    },
-    {
-      "id": "bc43815ed1d2",
-      "brand": "Glashütte Original",
-      "model": "70s Vinyl Record",
-      "reference": null,
-      "is_limited": true,
-      "pieces": 500,
-      "limited_type": "numbered",
-      "price": 16300,
-      "currency": "USD",
-      "price_aed": 59862,
-      "status": "announced",
-      "launch_date": null,
-      "launch_date_text": null,
-      "sale_method": "boutique",
-      "how_to_buy": "Contact Glashütte Original boutiques or authorized retailers.",
-      "reservation_possible": null,
-      "availability_notes": null,
-      "specs": "39 mm × 39 mm square case, stainless steel with white gold hands, automatic Manufacture Calibre 36, black silk-matt dial with hexagrid structure, date at 3 o'clock, 9.6 mm thick",
-      "score": 7,
-      "score_reason": "Limited to 500 pieces with strong Glashütte finishing credentials and white gold accents; solid collectible appeal though pricing is steep relative to complication.",
-      "allocation_likely": false,
-      "image": "https://deployant.com/wp-content/uploads/2026/09/Digital-1-36-11-03-02-66_70s_DIAL_Tweed_Amp_RS_black_LE0826-149600-1200x1550.jpg",
-      "sources": [
-        {
-          "name": "Deployant",
-          "url": "https://deployant.com/new-the-70s-by-glashutte-original/?utm_source=rss&utm_medium=rss&utm_campaign=new-the-70s-by-glashutte-original"
-        }
-      ],
-      "first_seen": "2026-09-20T06:39:14.057550+00:00",
-      "updated": "2026-09-20T06:39:14.057550+00:00",
-      "status_changed": null,
-      "over_budget": false
-    },
-    {
       "id": "b39df19c8a43",
       "brand": "Baume & Mercier",
       "model": "Clifton Ice Blue Automatic Perpetual Calendar 40mm",
@@ -298,7 +497,131 @@
       "first_seen": "2026-09-20T06:39:07.561143+00:00",
       "updated": "2026-09-20T06:39:07.561143+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 0,
+        "youtube_views": 0,
+        "index": 10,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 10
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:58:41.614210+00:00"
+      },
+      "research": {
+        "at": "2026-09-20T07:58:41.614250+00:00",
+        "data": {
+          "comparables": [
+            {
+              "name": "Clifton Baumatic Perpetual Calendar (rose gold, blue gradient dial)",
+              "reference": "10632",
+              "year": 2021,
+              "pieces": null,
+              "retail_price": 25700,
+              "market_price": 27300,
+              "currency": "USD",
+              "source": "Chrono24 / Time and Watches"
+            },
+            {
+              "name": "Clifton Perpetual Calendar (red gold)",
+              "reference": "M0A10306",
+              "year": 2018,
+              "pieces": null,
+              "retail_price": 21000,
+              "market_price": null,
+              "currency": "USD",
+              "source": "YourWatchHub"
+            },
+            {
+              "name": "Clifton Baumatic Perpetual Calendar (red gold, SIHH 2019)",
+              "reference": null,
+              "year": 2019,
+              "pieces": null,
+              "retail_price": 24500,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Gear Patrol"
+            },
+            {
+              "name": "Clifton Perpetual Calendar (red gold, SIHH 2017 debut)",
+              "reference": null,
+              "year": 2017,
+              "pieces": null,
+              "retail_price": 21000,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Time and Watches"
+            },
+            {
+              "name": "Clifton Baumatic Perpetual Calendar (rose gold, gold suit)",
+              "reference": null,
+              "year": 2019,
+              "pieces": null,
+              "retail_price": 22000,
+              "market_price": null,
+              "currency": "EUR",
+              "source": "Monochrome Watches"
+            }
+          ],
+          "brand_retention": "weak",
+          "brand_retention_note": "WatchCharts data shows the Clifton line's most popular references trading at a fraction of MSRP (e.g. an average $5,000 MSRP model with only ~$960 market value), and Baume & Mercier overall skews toward steep depreciation outside rare limited pieces.",
+          "uae_buy": [
+            {
+              "name": "Ahmed Seddiqi & Sons",
+              "type": "authorized_dealer",
+              "where": "Multiple locations, Dubai (incl. Dubai Mall) and Abu Dhabi",
+              "url": "https://www.baume-et-mercier.com/en/stores/details.001503.1915-by-ahmed-seddiqi-son.html"
+            },
+            {
+              "name": "Ahmed Seddiqi & Sons",
+              "type": "authorized_dealer",
+              "where": "Abu Dhabi (Capital Plaza Tower, Corniche Road)",
+              "url": "https://www.baume-et-mercier.com/en/stores/details.001305.ahmed-seddiqi-sons.html"
+            },
+            {
+              "name": "La Maison de Luxe",
+              "type": "authorized_dealer",
+              "where": "Dubai Mall, Ground Floor, Financial Road, Dubai",
+              "url": "https://www.baume-et-mercier.com/en/stores/details.001939.la-maison-de-luxe.html"
+            }
+          ],
+          "online_ships_to_uae": null,
+          "early_signal": "positive",
+          "early_signal_note": "The M0A10872 is a hard 20-piece limited edition, and its listing on Baume & Mercier's own online store already shows it as unavailable ('no longer available... Coming soon'), consistent with rapid sell-through shortly after the August 2026 launch."
+        }
+      },
+      "resale": {
+        "breakeven_pct": 16.7,
+        "updated": "2026-09-20T07:59:18.640610+00:00",
+        "comparables": [
+          {
+            "name": "Clifton Baumatic Perpetual Calendar (rose gold, blue gradient dial)",
+            "reference": "10632",
+            "premium_pct": 6.2,
+            "source": "Chrono24 / Time and Watches"
+          }
+        ],
+        "low_pct": -29,
+        "high_pct": 21,
+        "mid_pct": -4,
+        "confidence": "low",
+        "basis": "1 comparable watch blended with the brand's general value retention (weak)",
+        "adjustments": [
+          "early market signals positive"
+        ],
+        "brand_retention": "weak",
+        "brand_retention_note": "WatchCharts data shows the Clifton line's most popular references trading at a fraction of MSRP (e.g. an average $5,000 MSRP model with only ~$960 market value), and Baume & Mercier overall skews toward steep depreciation outside rare limited pieces.",
+        "early_signal_note": "The M0A10872 is a hard 20-piece limited edition, and its listing on Baume & Mercier's own online store already shows it as unavailable ('no longer available... Coming soon'), consistent with rapid sell-through shortly after the August 2026 launch.",
+        "verdict": "Too uncertain to call"
+      }
     },
     {
       "id": "9b5b867725d2",
@@ -332,7 +655,25 @@
       "first_seen": "2026-09-20T06:39:07.560999+00:00",
       "updated": "2026-09-20T06:39:07.560999+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 0,
+        "youtube_views": 0,
+        "index": 10,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 10
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:59:18.887267+00:00"
+      }
     },
     {
       "id": "edd068934a64",
@@ -454,13 +795,13 @@
       },
       "resale": {
         "breakeven_pct": 16.7,
-        "updated": "2026-09-20T06:43:38.656619+00:00",
+        "updated": "2026-09-20T07:59:18.887296+00:00",
         "comparables": [],
         "low_pct": -65,
         "high_pct": -15,
         "mid_pct": -40,
         "confidence": "low",
-        "basis": "brand value retention (weak) only",
+        "basis": "the brand's general value retention (weak) only",
         "adjustments": [
           "not limited"
         ],
@@ -468,7 +809,7 @@
         "brand_retention_note": "E.C. Andersson is a tiny Swedish micro-brand sold direct-to-consumer via a reservation/waitlist system with no visible presence on WatchCharts, Chrono24, or other secondary-market trackers, and past customer-service complaints (e.g. a documented dispute over a faulty Kontra-Gauss GMT) suggest weak buyer confidence and no established resale liquidity.",
         "early_signal_note": "No evidence of waitlists, sell-outs, or above-retail pre-delivery listings for the Timepod was found; the brand's standard model is a non-binding reservation list rather than a public launch drop, and no secondary-market chatter exists yet for this specific release.",
         "est_profit_aed": -4036,
-        "verdict": "Expect a loss"
+        "verdict": "Leaning loss"
       }
     },
     {
@@ -504,154 +845,6 @@
       "updated": "2026-09-20T06:38:58.119658+00:00",
       "status_changed": null,
       "over_budget": false
-    },
-    {
-      "id": "4149ab7d728c",
-      "brand": "Ressence",
-      "model": "TYPE 9 Jules Wittock Emerald Green",
-      "reference": "T9 JWE",
-      "is_limited": true,
-      "pieces": 30,
-      "limited_type": "numbered",
-      "price": 20000,
-      "currency": "CHF",
-      "price_aed": 89225,
-      "status": "available_now",
-      "launch_date": "2026-09-17",
-      "launch_date_text": "17 September 2026",
-      "sale_method": "boutique",
-      "how_to_buy": "Available through Ressence's online store and selected retailers as of 17 September 2026.",
-      "reservation_possible": false,
-      "availability_notes": null,
-      "specs": "39 mm Grade 5 titanium case, 11 mm thick; Emerald Green ALD-coated dial; patented ROCS 9 module with continuous orbiting discs; 36-hour power reserve; hand-engraved maze filled with white lacquer and Super-LumiNova",
-      "score": 8,
-      "score_reason": "Highly desirable independent maker with established collector following; artist collaboration with unique hand-crafted maze dial; extremely low 30-piece production; strong track record of Ressence art editions holding value.",
-      "allocation_likely": false,
-      "image": "https://deployant.com/wp-content/uploads/2026/09/T9-JWE_PAK_LD_VER_SOL_2026.png",
-      "sources": [
-        {
-          "name": "Deployant",
-          "url": "https://deployant.com/ressence-type-9-jules-wittock/?utm_source=rss&utm_medium=rss&utm_campaign=ressence-type-9-jules-wittock"
-        }
-      ],
-      "first_seen": "2026-09-20T06:38:40.880396+00:00",
-      "updated": "2026-09-20T06:38:40.880396+00:00",
-      "status_changed": null,
-      "over_budget": false,
-      "hype": {
-        "media_outlets": 1,
-        "index": 25,
-        "trend": "new",
-        "history": [
-          {
-            "date": "2026-09-20",
-            "index": 25
-          }
-        ],
-        "signals_used": [
-          "media"
-        ],
-        "updated": "2026-09-20T06:39:41.285312+00:00"
-      },
-      "research": {
-        "at": "2026-09-20T06:39:41.285323+00:00",
-        "data": {
-          "comparables": [
-            {
-              "name": "Ressence Type 1 REV \"Carpe Diem\" x Alain Silberstein (Grail Watch 1)",
-              "reference": null,
-              "year": 2022,
-              "pieces": 36,
-              "retail_price": 24300,
-              "market_price": 30000,
-              "currency": "USD",
-              "source": "EveryWatch/LoupeThis auction estimate"
-            },
-            {
-              "name": "Ressence Type 1 Slim DX2 (Ahmed Seddiqi & Sons collaboration)",
-              "reference": "DX2",
-              "year": 2021,
-              "pieces": 25,
-              "retail_price": 22500,
-              "market_price": null,
-              "currency": "CHF",
-              "source": "Monochrome-Watches"
-            },
-            {
-              "name": "Ressence Type 8 Daniel Engelberg DE1/DE2",
-              "reference": "DE1/DE2",
-              "year": 2025,
-              "pieces": 40,
-              "retail_price": 19000,
-              "market_price": null,
-              "currency": "CHF",
-              "source": "Monochrome-Watches / Worn & Wound"
-            },
-            {
-              "name": "Ressence Type 5 AIT (Art in Time, Monaco)",
-              "reference": "AIT",
-              "year": 2022,
-              "pieces": 12,
-              "retail_price": 35500,
-              "market_price": null,
-              "currency": "EUR",
-              "source": "Oracle of Time / Monochrome-Watches"
-            },
-            {
-              "name": "Ressence Type 9 Aqua (regular production, closest non-limited reference)",
-              "reference": "Type 9 Aqua",
-              "year": 2025,
-              "pieces": null,
-              "retail_price": 12500,
-              "market_price": 16482,
-              "currency": "USD",
-              "source": "Chrono24"
-            }
-          ],
-          "brand_retention": "average",
-          "brand_retention_note": "Ressence's baseline models like the Type 9 trade near or occasionally above retail on Chrono24, while artist-collaboration limited editions (e.g., the Alain Silberstein Grail Watch) have fetched notable auction premiums, but broader secondary listings across Type 1/2/3 models show wide price dispersion both above and below original retail.",
-          "uae_buy": [
-            {
-              "name": "Ahmed Seddiqi & Sons",
-              "type": "authorized_dealer",
-              "where": "Dubai Mall / multiple boutiques, Dubai, UAE",
-              "url": "https://www.seddiqi.com/brands"
-            }
-          ],
-          "online_ships_to_uae": null,
-          "early_signal": "unknown",
-          "early_signal_note": "The Jules Wittock edition launched only days ago (Sept 17, 2026) and remains listed as available at official Ressence retailers with no confirmed reports yet of sell-out, waitlists, or above-retail pre-delivery flipping."
-        }
-      },
-      "resale": {
-        "breakeven_pct": 16.7,
-        "updated": "2026-09-20T06:40:24.480997+00:00",
-        "comparables": [
-          {
-            "name": "Ressence Type 1 REV \"Carpe Diem\" x Alain Silberstein (Grail Watch 1)",
-            "reference": null,
-            "premium_pct": 23.5,
-            "source": "EveryWatch/LoupeThis auction estimate"
-          },
-          {
-            "name": "Ressence Type 9 Aqua (regular production, closest non-limited reference)",
-            "reference": "Type 9 Aqua",
-            "premium_pct": 31.9,
-            "source": "Chrono24"
-          }
-        ],
-        "low_pct": 13,
-        "high_pct": 43,
-        "mid_pct": 28,
-        "confidence": "medium",
-        "basis": "median of 2 comparable(s)",
-        "adjustments": [],
-        "brand_retention": "average",
-        "brand_retention_note": "Ressence's baseline models like the Type 9 trade near or occasionally above retail on Chrono24, while artist-collaboration limited editions (e.g., the Alain Silberstein Grail Watch) have fetched notable auction premiums, but broader secondary listings across Type 1/2/3 models show wide price dispersion both above and below original retail.",
-        "early_signal_note": "The Jules Wittock edition launched only days ago (Sept 17, 2026) and remains listed as available at official Ressence retailers with no confirmed reports yet of sell-out, waitlists, or above-retail pre-delivery flipping.",
-        "est_profit_aed": 8860,
-        "verdict": "Possible profit"
-      }
     },
     {
       "id": "589bae6bcf76",
@@ -791,7 +984,7 @@
       },
       "resale": {
         "breakeven_pct": 16.7,
-        "updated": "2026-09-20T06:41:05.139926+00:00",
+        "updated": "2026-09-20T07:50:17.123824+00:00",
         "comparables": [
           {
             "name": "Ressence Type 5 (standard production, closest regular reference)",
@@ -800,19 +993,19 @@
             "source": "Chrono24 / Exquisite Timepieces"
           }
         ],
-        "low_pct": -37,
-        "high_pct": 13,
-        "mid_pct": -12,
+        "low_pct": -24,
+        "high_pct": 26,
+        "mid_pct": 2,
         "confidence": "low",
-        "basis": "median of 1 comparable(s)",
+        "basis": "1 comparable watch blended with the brand's general value retention (strong)",
         "adjustments": [
           "solid hype on a very small run"
         ],
         "brand_retention": "strong",
         "brand_retention_note": "Dealers report pre-owned Ressence watches retaining over 80% of original retail value, reflecting strong demand among independent-brand collectors for the brand's low production volumes and design innovation.",
         "early_signal_note": "The watch launched only days before this research (Sept 17, 2026) and coverage so far is limited to press announcements, with no reported waitlists, sell-out status, or pre-delivery secondary listings yet visible.",
-        "est_profit_aed": -23020,
-        "verdict": "Expect a loss"
+        "est_profit_aed": -12179,
+        "verdict": "Too uncertain to call"
       }
     },
     {
@@ -1033,7 +1226,7 @@
       },
       "resale": {
         "breakeven_pct": 16.7,
-        "updated": "2026-09-20T06:44:08.120459+00:00",
+        "updated": "2026-09-20T07:59:18.887323+00:00",
         "comparables": [
           {
             "name": "G-Shock GWBX5600-1A1 (sibling model, same launch series)",
@@ -1052,7 +1245,7 @@
         "high_pct": 40,
         "mid_pct": 25,
         "confidence": "medium",
-        "basis": "median of 2 comparable(s)",
+        "basis": "median of 2 comparable watches",
         "adjustments": [
           "early market signals positive"
         ],
@@ -1060,6 +1253,12 @@
         "brand_retention_note": "Casio G-Shock is not treated as an investment brand — regular production references generally depreciate on resale, but truly limited/collab editions can trade above retail due to a large, active collector community.",
         "early_signal_note": "The GWBX5600-1 sold out on its U.S. launch day (Sept 15, 2026) and again the next day after a restock, and one colorway also sold out quickly in the UK market.",
         "verdict": "Possible profit"
+      },
+      "launch_uae": {
+        "date": "2026-09-15",
+        "time": "20:11",
+        "utc": "2026-09-15T16:11:00+00:00",
+        "local": "12:11 EDT"
       }
     },
     {
@@ -1206,7 +1405,7 @@
       },
       "resale": {
         "breakeven_pct": 16.7,
-        "updated": "2026-09-20T06:41:46.413652+00:00",
+        "updated": "2026-09-20T07:56:41.171745+00:00",
         "comparables": [
           {
             "name": "Kurono Calendrier 'Type I'",
@@ -1225,7 +1424,7 @@
         "high_pct": 124,
         "mid_pct": 109,
         "confidence": "medium",
-        "basis": "median of 2 comparable(s)",
+        "basis": "median of 2 comparable watches",
         "adjustments": [
           "early market signals positive"
         ],
@@ -1234,6 +1433,12 @@
         "early_signal_note": "Kurono's comparable prior calendar release (Grand Jubilee Calendar, salmon dial) sold out instantly in 2025 and now trades well above its $2,380 retail on Chrono24/eBay, and the Saxe Blue SBR is being sold with the same one-per-customer, single-order-window, salon-preview-only structure that has historically driven immediate sellouts and secondary premiums for the brand.",
         "est_profit_aed": 7256,
         "verdict": "Likely profitable"
+      },
+      "launch_uae": {
+        "date": "2026-09-24",
+        "time": "18:00",
+        "utc": "2026-09-24T14:00:00+00:00",
+        "local": "23:00 JST"
       }
     },
     {
@@ -1396,7 +1601,7 @@
       },
       "resale": {
         "breakeven_pct": 16.7,
-        "updated": "2026-09-20T06:44:45.850626+00:00",
+        "updated": "2026-09-20T07:59:18.887356+00:00",
         "comparables": [
           {
             "name": "F77 MK1 Lapis Lazuli",
@@ -1421,7 +1626,7 @@
         "high_pct": 57,
         "mid_pct": 42,
         "confidence": "medium",
-        "basis": "median of 3 comparable(s)",
+        "basis": "median of 3 comparable watches",
         "adjustments": [
           "early market signals positive"
         ],
@@ -1513,7 +1718,25 @@
       "first_seen": "2026-09-20T06:37:33.989829+00:00",
       "updated": "2026-09-20T06:37:33.989829+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 0,
+        "youtube_views": 0,
+        "index": 10,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 10
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:59:19.081477+00:00"
+      }
     },
     {
       "id": "cc72a41ef3d5",
@@ -1547,7 +1770,25 @@
       "first_seen": "2026-09-20T06:37:27.284539+00:00",
       "updated": "2026-09-20T06:37:27.284539+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 0,
+        "youtube_views": 0,
+        "index": 10,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 10
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:59:19.265742+00:00"
+      }
     },
     {
       "id": "2d7d398c57d1",
@@ -1679,7 +1920,7 @@
       },
       "resale": {
         "breakeven_pct": 16.7,
-        "updated": "2026-09-20T06:42:19.104157+00:00",
+        "updated": "2026-09-20T07:56:41.171781+00:00",
         "comparables": [
           {
             "name": "Studio Underd0g x Massena LAB 03SERIES Champagne & Caviar",
@@ -1698,7 +1939,7 @@
         "high_pct": 57,
         "mid_pct": 42,
         "confidence": "medium",
-        "basis": "median of 2 comparable(s)",
+        "basis": "median of 2 comparable watches",
         "adjustments": [
           "early market signals positive"
         ],
@@ -1741,7 +1982,25 @@
       "first_seen": "2026-09-20T06:37:20.947980+00:00",
       "updated": "2026-09-20T06:37:20.947980+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 1,
+        "youtube_views": 6,
+        "index": 18,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 18
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:59:19.534731+00:00"
+      }
     },
     {
       "id": "885d700b50f1",
@@ -1979,7 +2238,25 @@
       "first_seen": "2026-09-20T06:36:46.939157+00:00",
       "updated": "2026-09-20T06:36:50.774153+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 5,
+        "youtube_views": 3296,
+        "index": 41,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 41
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:59:19.875384+00:00"
+      }
     },
     {
       "id": "c4465fafac95",
@@ -2013,7 +2290,25 @@
       "first_seen": "2026-09-20T06:36:43.049087+00:00",
       "updated": "2026-09-20T06:36:43.049087+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 1,
+        "youtube_views": 117,
+        "index": 27,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 27
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:59:20.271132+00:00"
+      }
     },
     {
       "id": "3c340eb7b155",
@@ -2047,7 +2342,25 @@
       "first_seen": "2026-09-20T06:36:40.935776+00:00",
       "updated": "2026-09-20T06:36:40.935776+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 0,
+        "youtube_views": 0,
+        "index": 10,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 10
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:59:20.494502+00:00"
+      }
     },
     {
       "id": "bae3ad78958e",
@@ -2128,7 +2441,7 @@
     {
       "id": "06cd0ed7b26e",
       "brand": "Glashütte Original",
-      "model": "70s Tweed Amp (Golden Brown Dial)",
+      "model": "70s Tweed Amp",
       "reference": null,
       "is_limited": false,
       "pieces": null,
@@ -2152,6 +2465,10 @@
         {
           "name": "aBlogtoWatch",
           "url": "https://www.ablogtowatch.com/new-release-glashutte-original-reinvents-the-70s-watch-line-with-a-crisper-audio-inspired-style/"
+        },
+        {
+          "name": "Deployant",
+          "url": "https://deployant.com/new-the-70s-by-glashutte-original/?utm_source=rss&utm_medium=rss&utm_campaign=new-the-70s-by-glashutte-original"
         }
       ],
       "first_seen": "2026-09-20T06:36:36.560295+00:00",
@@ -2162,7 +2479,7 @@
     {
       "id": "c14af51c22de",
       "brand": "Glashütte Original",
-      "model": "70s Vinyl Record (Limited Edition Black Dial)",
+      "model": "70s Vinyl Record",
       "reference": null,
       "is_limited": true,
       "pieces": 500,
@@ -2186,12 +2503,151 @@
         {
           "name": "aBlogtoWatch",
           "url": "https://www.ablogtowatch.com/new-release-glashutte-original-reinvents-the-70s-watch-line-with-a-crisper-audio-inspired-style/"
+        },
+        {
+          "name": "Deployant",
+          "url": "https://deployant.com/new-the-70s-by-glashutte-original/?utm_source=rss&utm_medium=rss&utm_campaign=new-the-70s-by-glashutte-original"
         }
       ],
       "first_seen": "2026-09-20T06:36:36.560147+00:00",
       "updated": "2026-09-20T06:36:36.560147+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 2,
+        "youtube_videos": 3,
+        "youtube_views": 2284,
+        "index": 44,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 44
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:56:41.520625+00:00"
+      },
+      "research": {
+        "at": "2026-09-20T07:56:41.520638+00:00",
+        "data": {
+          "comparables": [
+            {
+              "name": "Seventies Chronograph Panorama Date \"Watermelon\" Limited Edition",
+              "reference": "1-37-02-17-02-63 / 1-37-02-17-02-70",
+              "year": 2024,
+              "pieces": 100,
+              "retail_price": 15900,
+              "market_price": 16334,
+              "currency": "EUR",
+              "source": "Monochrome-Watches / Chrono24"
+            },
+            {
+              "name": "Seventies Chronograph Panorama Date \"Swimming Pool\" Limited Edition",
+              "reference": "1-37-02-16-02-63 / 1-37-02-16-02-70",
+              "year": 2024,
+              "pieces": 100,
+              "retail_price": 15900,
+              "market_price": 15900,
+              "currency": "EUR",
+              "source": "Monochrome-Watches"
+            },
+            {
+              "name": "Seventies Original Fusion/Plasma Limited Edition",
+              "reference": null,
+              "year": 2025,
+              "pieces": 100,
+              "retail_price": 16300,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Fratello Watches"
+            },
+            {
+              "name": "Seventies Chronograph Panorama Date Gray/Green Limited Edition",
+              "reference": null,
+              "year": 2019,
+              "pieces": null,
+              "retail_price": 12700,
+              "market_price": 12900,
+              "currency": "USD",
+              "source": "aBlogtoWatch / Chrono24"
+            },
+            {
+              "name": "Seventies Chronograph Panorama Date (Turquoise dial, regular production)",
+              "reference": "1-37-02-10-02-70",
+              "year": 2018,
+              "pieces": null,
+              "retail_price": 14500,
+              "market_price": 22300,
+              "currency": "USD",
+              "source": "Chrono24"
+            }
+          ],
+          "brand_retention": "average",
+          "brand_retention_note": "Glashütte Original watches retain roughly 63% of retail value on average per WatchCharts data, with most models dropping 20-35% from retail before values stabilize.",
+          "uae_buy": [
+            {
+              "name": "Rivoli",
+              "type": "authorized_dealer",
+              "where": "Dubai Mall, Dubai",
+              "url": "https://thedubaimall.com/en/shop/rivoli"
+            },
+            {
+              "name": "Rivoli Shop",
+              "type": "online",
+              "where": "rivolishop.com (UAE storefront)",
+              "url": "https://www.rivolishop.com/en-ae/glashutte-original"
+            }
+          ],
+          "online_ships_to_uae": true,
+          "early_signal": "unknown",
+          "early_signal_note": "The 70s Vinyl Record was only announced in September 2026 with availability starting the same month, and no waitlist, sell-out, or pre-delivery premium reports have surfaced yet."
+        }
+      },
+      "resale": {
+        "breakeven_pct": 16.7,
+        "updated": "2026-09-20T07:57:19.326275+00:00",
+        "comparables": [
+          {
+            "name": "Seventies Chronograph Panorama Date \"Watermelon\" Limited Edition",
+            "reference": "1-37-02-17-02-63 / 1-37-02-17-02-70",
+            "premium_pct": 2.7,
+            "source": "Monochrome-Watches / Chrono24"
+          },
+          {
+            "name": "Seventies Chronograph Panorama Date \"Swimming Pool\" Limited Edition",
+            "reference": "1-37-02-16-02-63 / 1-37-02-16-02-70",
+            "premium_pct": 0.0,
+            "source": "Monochrome-Watches"
+          },
+          {
+            "name": "Seventies Chronograph Panorama Date Gray/Green Limited Edition",
+            "reference": null,
+            "premium_pct": 1.6,
+            "source": "aBlogtoWatch / Chrono24"
+          },
+          {
+            "name": "Seventies Chronograph Panorama Date (Turquoise dial, regular production)",
+            "reference": "1-37-02-10-02-70",
+            "premium_pct": 53.8,
+            "source": "Chrono24"
+          }
+        ],
+        "low_pct": -13,
+        "high_pct": 17,
+        "mid_pct": 2,
+        "confidence": "medium",
+        "basis": "median of 4 comparable watches",
+        "adjustments": [],
+        "brand_retention": "average",
+        "brand_retention_note": "Glashütte Original watches retain roughly 63% of retail value on average per WatchCharts data, with most models dropping 20-35% from retail before values stabilize.",
+        "early_signal_note": "The 70s Vinyl Record was only announced in September 2026 with availability starting the same month, and no waitlist, sell-out, or pre-delivery premium reports have surfaced yet.",
+        "est_profit_aed": -7821,
+        "verdict": "Unlikely profit"
+      }
     },
     {
       "id": "b34fed4adec7",
@@ -2331,7 +2787,125 @@
       "first_seen": "2026-09-20T06:36:17.700420+00:00",
       "updated": "2026-09-20T06:38:04.839297+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 2,
+        "youtube_videos": 2,
+        "youtube_views": 1600,
+        "index": 43,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 43
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:50:17.487778+00:00"
+      },
+      "research": {
+        "at": "2026-09-20T07:50:17.487821+00:00",
+        "data": {
+          "comparables": [
+            {
+              "name": "Royal Oak Chronograph \"Leo Messi\" Limited Edition",
+              "reference": "26325OL.OO.D005CR.01",
+              "year": 2012,
+              "pieces": 400,
+              "retail_price": null,
+              "market_price": 55950,
+              "currency": "USD",
+              "source": "Chrono24 listings"
+            },
+            {
+              "name": "Royal Oak Concept Black Panther Flying Tourbillon (Serena Williams' personal piece, Marvel collab)",
+              "reference": null,
+              "year": 2021,
+              "pieces": 250,
+              "retail_price": 176000,
+              "market_price": 650000,
+              "currency": "USD",
+              "source": "Christie's auction estimate (via Women's Tennis Blog)"
+            },
+            {
+              "name": "Royal Oak Offshore \"Shaquille O'Neal\" Chronograph Limited Edition",
+              "reference": null,
+              "year": null,
+              "pieces": null,
+              "retail_price": null,
+              "market_price": 36000,
+              "currency": "USD",
+              "source": "1stDibs dealer listing"
+            },
+            {
+              "name": "Royal Oak Offshore \"Rubens Barrichello\" Chronograph Limited Edition",
+              "reference": null,
+              "year": null,
+              "pieces": null,
+              "retail_price": null,
+              "market_price": null,
+              "currency": "USD",
+              "source": "GemNation (mentioned as comparable AP LE, no pricing data found)"
+            }
+          ],
+          "brand_retention": "strong",
+          "brand_retention_note": "Audemars Piguet Royal Oaks generally trade at or above retail on the secondary market (e.g., core steel refs like 15500ST/16202 trade 25-48% above retail), though value retention is highly model-dependent and niche celebrity/athlete limited editions (Offshore, novelty dials) tend to trade closer to or below retail with lower liquidity than core references.",
+          "uae_buy": [
+            {
+              "name": "Audemars Piguet Boutique Dubai Mall",
+              "type": "boutique",
+              "where": "The Dubai Mall, Dubai",
+              "url": "https://www.audemarspiguet.com/us/en/stores/dubai-mall"
+            },
+            {
+              "name": "Audemars Piguet Boutique Mall of the Emirates",
+              "type": "boutique",
+              "where": "Mall of the Emirates, Dubai",
+              "url": "https://www.audemarspiguet.com/com/en/stores/dubai-mall-emirates.html"
+            },
+            {
+              "name": "Audemars Piguet Boutique Abu Dhabi",
+              "type": "boutique",
+              "where": "Abu Dhabi",
+              "url": "https://www.audemarspiguet.com/com/en/stores/abu-dhabi.html"
+            },
+            {
+              "name": "Ahmed Seddiqi & Sons",
+              "type": "authorized_dealer",
+              "where": "Multiple boutiques across UAE (official AP retail partner)",
+              "url": "https://www.seddiqi.com/brand/audemarspiguet"
+            }
+          ],
+          "online_ships_to_uae": false,
+          "early_signal": "unknown",
+          "early_signal_note": "The watch was unveiled only days ago (Sept 15, 2026) via an invite-only Vogue-partnered event in New York, and while media coverage has been extensive, no reports of sell-outs, waitlists, or pre-delivery secondary listings above retail have surfaced yet."
+        }
+      },
+      "resale": {
+        "breakeven_pct": 16.7,
+        "updated": "2026-09-20T07:51:01.055797+00:00",
+        "comparables": [
+          {
+            "name": "Royal Oak Concept Black Panther Flying Tourbillon (Serena Williams' personal piece, Marvel collab)",
+            "reference": null,
+            "premium_pct": 269.3,
+            "source": "Christie's auction estimate (via Women's Tennis Blog)"
+          }
+        ],
+        "low_pct": 115,
+        "high_pct": 165,
+        "mid_pct": 140,
+        "confidence": "low",
+        "basis": "1 comparable watch blended with the brand's general value retention (strong)",
+        "adjustments": [],
+        "brand_retention": "strong",
+        "brand_retention_note": "Audemars Piguet Royal Oaks generally trade at or above retail on the secondary market (e.g., core steel refs like 15500ST/16202 trade 25-48% above retail), though value retention is highly model-dependent and niche celebrity/athlete limited editions (Offshore, novelty dials) tend to trade closer to or below retail with lower liquidity than core references.",
+        "early_signal_note": "The watch was unveiled only days ago (Sept 15, 2026) via an invite-only Vogue-partnered event in New York, and while media coverage has been extensive, no reports of sell-outs, waitlists, or pre-delivery secondary listings above retail have surfaced yet.",
+        "verdict": "Leaning profit"
+      }
     },
     {
       "id": "ba19733f93a7",
@@ -2414,7 +2988,118 @@
       "first_seen": "2026-09-20T06:36:10.351945+00:00",
       "updated": "2026-09-20T06:36:10.351945+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "youtube_videos": 1,
+        "youtube_views": 9684,
+        "index": 42,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 42
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:51:01.365447+00:00"
+      },
+      "research": {
+        "at": "2026-09-20T07:51:01.365462+00:00",
+        "data": {
+          "comparables": [
+            {
+              "name": "Atelier Wen Inflection Yōu (幽) – tantalum, green grand feu enamel, launch edition",
+              "reference": null,
+              "year": 2025,
+              "pieces": 30,
+              "retail_price": 29800,
+              "market_price": null,
+              "currency": "USD",
+              "source": "aBlogtoWatch / Time and Watches"
+            },
+            {
+              "name": "Atelier Wen Inflection Mò (墨) / Yuān (渊) – tantalum, permanent collection",
+              "reference": null,
+              "year": 2025,
+              "pieces": null,
+              "retail_price": 29800,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Oracle of Time / Time and Watches"
+            },
+            {
+              "name": "Atelier Wen x Revolution Perception Xi (喜) – titanium, red guilloché dial",
+              "reference": null,
+              "year": 2023,
+              "pieces": 100,
+              "retail_price": null,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Revolution Watch / Wristcheck"
+            },
+            {
+              "name": "Atelier Wen x Revolution Ancestra Yáo (垚)",
+              "reference": null,
+              "year": 2025,
+              "pieces": null,
+              "retail_price": 5850,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Time and Watches / Monochrome"
+            },
+            {
+              "name": "Atelier Wen Perception (regular production reference, e.g. Piao/Xia/Ying/Xuán)",
+              "reference": null,
+              "year": 2024,
+              "pieces": null,
+              "retail_price": 3450,
+              "market_price": null,
+              "currency": "USD",
+              "source": "King Jewelers"
+            }
+          ],
+          "brand_retention": "weak",
+          "brand_retention_note": "Atelier Wen is a young independent microbrand with no established secondary-market tracking (no WatchCharts/Chrono24 index data found), so resale value is unproven and likely depends heavily on piece-specific demand rather than brand-wide retention.",
+          "uae_buy": [
+            {
+              "name": "Ahmed Seddiqi & Sons",
+              "type": "authorized_dealer",
+              "where": "Burj Khalifa, Financial Centre St, Dubai, UAE",
+              "url": "https://www.seddiqi.com/"
+            },
+            {
+              "name": "Atelier Wen official website",
+              "type": "online",
+              "where": "atelierwen.com / us.atelierwen.com",
+              "url": "https://atelierwen.com/"
+            }
+          ],
+          "online_ships_to_uae": true,
+          "early_signal": "positive",
+          "early_signal_note": "Coverage frames the 50-piece Inflection Shuò (10 reserved for existing clients, 40 public) as unlikely to remain available long given past Atelier Wen sell-outs and strong collector interest in its tantalum Inflection platform."
+        }
+      },
+      "resale": {
+        "breakeven_pct": 16.7,
+        "updated": "2026-09-20T07:51:35.600718+00:00",
+        "comparables": [],
+        "low_pct": -50,
+        "high_pct": 0,
+        "mid_pct": -25,
+        "confidence": "low",
+        "basis": "the brand's general value retention (weak) only",
+        "adjustments": [
+          "early market signals positive"
+        ],
+        "brand_retention": "weak",
+        "brand_retention_note": "Atelier Wen is a young independent microbrand with no established secondary-market tracking (no WatchCharts/Chrono24 index data found), so resale value is unproven and likely depends heavily on piece-specific demand rather than brand-wide retention.",
+        "early_signal_note": "Coverage frames the 50-piece Inflection Shuò (10 reserved for existing clients, 40 public) as unlikely to remain available long given past Atelier Wen sell-outs and strong collector interest in its tantalum Inflection platform.",
+        "verdict": "Leaning loss"
+      }
     },
     {
       "id": "3e74a7bb20d1",
@@ -2905,7 +3590,110 @@
       "first_seen": "2026-09-20T06:35:24.194873+00:00",
       "updated": "2026-09-20T06:37:35.917991+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 2,
+        "youtube_videos": 1,
+        "youtube_views": 6,
+        "index": 24,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 24
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:57:19.610809+00:00"
+      },
+      "research": {
+        "at": "2026-09-20T07:57:19.610823+00:00",
+        "data": {
+          "comparables": [
+            {
+              "name": "Studio Underd0g x Perpétuel Gallery 02SERIES (Midnight/Pink Lem0nade/Steffany Blue/Full Mo0n)",
+              "reference": null,
+              "year": 2024,
+              "pieces": 50,
+              "retail_price": 6000,
+              "market_price": null,
+              "currency": "AED",
+              "source": "Perpétuel Official / Wristcheck"
+            },
+            {
+              "name": "Studio Underd0g x H. Moser & Cie. 03SERIES Passi0n Fruit (sold only as part of Passion Project set)",
+              "reference": "1800-1200 03PFB",
+              "year": 2024,
+              "pieces": 100,
+              "retail_price": 64900,
+              "market_price": null,
+              "currency": "USD",
+              "source": "aBlogtoWatch / H. Moser official"
+            },
+            {
+              "name": "Studio Underd0g x Perpétuel Watermel0n (01SERIES limited edition)",
+              "reference": null,
+              "year": 2023,
+              "pieces": 50,
+              "retail_price": null,
+              "market_price": 2850,
+              "currency": "CHF",
+              "source": "EveryWatch/Chrono24 dealer listing (Switzerland)"
+            },
+            {
+              "name": "Studio Underd0g 03SERIES (standard/non-limited monopusher chronograph)",
+              "reference": null,
+              "year": 2024,
+              "pieces": null,
+              "retail_price": 2000,
+              "market_price": 2292,
+              "currency": "USD",
+              "source": "Chrono24"
+            }
+          ],
+          "brand_retention": "strong",
+          "brand_retention_note": "Independent tracking shows Studio Underd0g secondary prices running roughly 13% above retail on average, with limited runs and sold-out colourways often trading at or above original retail on Chrono24 and similar marketplaces.",
+          "uae_buy": [
+            {
+              "name": "Ahmed Seddiqi & Sons",
+              "type": "authorized_dealer",
+              "where": "Multiple boutiques across UAE (e.g., The Dubai Mall), exclusive launch partner for the Chan3ad",
+              "url": "https://www.seddiqi.com/boutique-locator/"
+            }
+          ],
+          "online_ships_to_uae": false,
+          "early_signal": "positive",
+          "early_signal_note": "Coverage frames the 100-piece Chan3ad as a high-hype 'massive hype piece' collaboration that press describes as set to be hard to obtain, though no confirmed sold-out status or above-retail flips have surfaced yet since it only began retailing on September 17, 2026."
+        }
+      },
+      "resale": {
+        "breakeven_pct": 16.7,
+        "updated": "2026-09-20T07:58:04.629655+00:00",
+        "comparables": [
+          {
+            "name": "Studio Underd0g 03SERIES (standard/non-limited monopusher chronograph)",
+            "reference": null,
+            "premium_pct": 14.6,
+            "source": "Chrono24"
+          }
+        ],
+        "low_pct": -3,
+        "high_pct": 47,
+        "mid_pct": 22,
+        "confidence": "low",
+        "basis": "1 comparable watch blended with the brand's general value retention (strong)",
+        "adjustments": [
+          "early market signals positive"
+        ],
+        "brand_retention": "strong",
+        "brand_retention_note": "Independent tracking shows Studio Underd0g secondary prices running roughly 13% above retail on average, with limited runs and sold-out colourways often trading at or above original retail on Chrono24 and similar marketplaces.",
+        "early_signal_note": "Coverage frames the 100-piece Chan3ad as a high-hype 'massive hype piece' collaboration that press describes as set to be hard to obtain, though no confirmed sold-out status or above-retail flips have surfaced yet since it only began retailing on September 17, 2026.",
+        "est_profit_aed": 487,
+        "verdict": "Too uncertain to call"
+      }
     },
     {
       "id": "118bb0965927",
@@ -2981,7 +3769,135 @@
       "first_seen": "2026-09-20T06:35:24.194832+00:00",
       "updated": "2026-09-20T06:38:52.745682+00:00",
       "status_changed": null,
-      "over_budget": false
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 3,
+        "youtube_videos": 2,
+        "youtube_views": 2043,
+        "index": 48,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 48
+          }
+        ],
+        "signals_used": [
+          "media",
+          "youtube"
+        ],
+        "updated": "2026-09-20T07:51:35.926809+00:00"
+      },
+      "research": {
+        "at": "2026-09-20T07:51:35.926825+00:00",
+        "data": {
+          "comparables": [
+            {
+              "name": "Grand Seiko SBGW003 (25th Anniversary Tribute predecessor, 1st manual 9S model)",
+              "reference": "SBGW003",
+              "year": 2001,
+              "pieces": 300,
+              "retail_price": null,
+              "market_price": 6447,
+              "currency": "USD",
+              "source": "EveryWatch dealer listing"
+            },
+            {
+              "name": "Grand Seiko Elegance Hand-Wound (\"Japanese Calatrava\" era ref, regular production)",
+              "reference": "SBGW301",
+              "year": null,
+              "pieces": null,
+              "retail_price": 5000,
+              "market_price": null,
+              "currency": "USD",
+              "source": "grand-seiko.com official product page"
+            },
+            {
+              "name": "Grand Seiko Elegance Manual-Winding 9S64 (current regular production)",
+              "reference": "SBGW305",
+              "year": null,
+              "pieces": null,
+              "retail_price": null,
+              "market_price": 4300,
+              "currency": "USD",
+              "source": "Chrono24 listings (average of multiple new/used offers)"
+            },
+            {
+              "name": "Grand Seiko 130th Anniversary Limited Edition",
+              "reference": "SBGW252",
+              "year": null,
+              "pieces": null,
+              "retail_price": null,
+              "market_price": 8817,
+              "currency": "EUR",
+              "source": "eBay dealer listing (converted from CAD 14,375)"
+            },
+            {
+              "name": "Grand Seiko Elegance Genbi Green (USA exclusive limited edition)",
+              "reference": "SBGW275",
+              "year": null,
+              "pieces": 140,
+              "retail_price": null,
+              "market_price": null,
+              "currency": "USD",
+              "source": "Grand Seiko Boutique US product page"
+            }
+          ],
+          "brand_retention": "average",
+          "brand_retention_note": "WatchCharts pegs Grand Seiko's overall weighted value retention at roughly -34% (many regular-production pieces sell below retail), but limited editions, Spring Drive icons like the Snowflake, and Hi-Beat models hold value noticeably better than standard references.",
+          "uae_buy": [
+            {
+              "name": "Grand Seiko Boutique (Al-Futtaim)",
+              "type": "boutique",
+              "where": "Dubai Mall, Dubai",
+              "url": "https://www.grand-seiko.com/middleeast-en/storesinfo/list"
+            },
+            {
+              "name": "Grand Seiko Boutique (Al-Futtaim)",
+              "type": "boutique",
+              "where": "Mall of the Emirates, Dubai",
+              "url": "https://www.grand-seiko.com/middleeast-en/storesinfo/list"
+            },
+            {
+              "name": "Grand Seiko Boutique (Al-Futtaim)",
+              "type": "boutique",
+              "where": "Sahara Centre, Sharjah",
+              "url": "https://www.grand-seiko.com/middleeast-en/storesinfo/list"
+            },
+            {
+              "name": "The Watch House",
+              "type": "authorized_dealer",
+              "where": "Al Wahda Mall, Abu Dhabi",
+              "url": "https://www.grand-seiko.com/middleeast-en/storesinfo/41814"
+            },
+            {
+              "name": "The Watch House (online)",
+              "type": "online",
+              "where": "watches.ae",
+              "url": "https://watches.ae/collections/grand-seiko"
+            }
+          ],
+          "online_ships_to_uae": false,
+          "early_signal": "neutral",
+          "early_signal_note": "The SBGW325 was only announced in mid-September 2026 for an October 2026 boutique release, with pre-orders opened on Grand Seiko's site, but no independent reports yet of sell-outs or above-retail grey-market listings."
+        }
+      },
+      "resale": {
+        "breakeven_pct": 16.7,
+        "updated": "2026-09-20T07:54:16.914130+00:00",
+        "comparables": [],
+        "low_pct": -40,
+        "high_pct": 10,
+        "mid_pct": -15,
+        "confidence": "low",
+        "basis": "the brand's general value retention (average) only",
+        "adjustments": [],
+        "brand_retention": "average",
+        "brand_retention_note": "WatchCharts pegs Grand Seiko's overall weighted value retention at roughly -34% (many regular-production pieces sell below retail), but limited editions, Spring Drive icons like the Snowflake, and Hi-Beat models hold value noticeably better than standard references.",
+        "early_signal_note": "The SBGW325 was only announced in mid-September 2026 for an October 2026 boutique release, with pre-orders opened on Grand Seiko's site, but no independent reports yet of sell-outs or above-retail grey-market listings.",
+        "est_profit_aed": -5363,
+        "verdict": "Leaning loss"
+      }
     },
     {
       "id": "7d565742b941",
@@ -3161,7 +4077,7 @@
       },
       "resale": {
         "breakeven_pct": 16.7,
-        "updated": "2026-09-20T06:43:01.871643+00:00",
+        "updated": "2026-09-20T07:58:04.629703+00:00",
         "comparables": [
           {
             "name": "Blancpain Ladybird Ultraplate 0063",
@@ -3180,7 +4096,7 @@
         "high_pct": -2,
         "mid_pct": -17,
         "confidence": "medium",
-        "basis": "median of 2 comparable(s)",
+        "basis": "median of 2 comparable watches",
         "adjustments": [
           "not limited"
         ],

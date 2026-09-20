@@ -137,6 +137,7 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const todayStr = () => new Date().toLocaleDateString("en-CA", {timeZone:"Asia/Dubai"});
 const parseDay = s => s ? new Date(s + "T12:00:00") : null;
+const lday = r => r.launch_uae?.date || r.launch_date;
 
 function price(r){
   if (r.price_aed) return "AED " + r.price_aed.toLocaleString("en-US");
@@ -144,24 +145,35 @@ function price(r){
 }
 
 function icsLink(r){
-  if (!r.launch_date) return "";
-  const d = r.launch_date.replace(/-/g,"");
-  const next = new Date(parseDay(r.launch_date).getTime() + 86400000).toISOString().slice(0,10).replace(/-/g,"");
+  if (!lday(r)) return "";
+  const stamp = t => new Date(t).toISOString().replace(/[-:]/g,"").slice(0,15) + "Z";
+  let start, end, alarms;
+  if (r.launch_uae?.utc){
+    const t = Date.parse(r.launch_uae.utc);
+    start = "DTSTART:" + stamp(t); end = "DTEND:" + stamp(t + 3600000);
+    alarms = ["BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Watch launch tomorrow","END:VALARM",
+              "BEGIN:VALARM","TRIGGER:-PT1H","ACTION:DISPLAY","DESCRIPTION:Watch launch in 1 hour","END:VALARM"];
+  } else {
+    const d = lday(r).replace(/-/g,"");
+    const next = new Date(parseDay(lday(r)).getTime() + 86400000).toISOString().slice(0,10).replace(/-/g,"");
+    start = "DTSTART;VALUE=DATE:" + d; end = "DTEND;VALUE=DATE:" + next;
+    alarms = ["BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Watch launch tomorrow","END:VALARM"];
+  }
   const src = r.sources?.[0]?.url || "";
   const body = [
     "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//watch-tracker//EN","BEGIN:VEVENT",
     "UID:" + r.id + "@watch-tracker","DTSTAMP:" + new Date().toISOString().replace(/[-:]/g,"").slice(0,15) + "Z",
-    "DTSTART;VALUE=DATE:" + d, "DTEND;VALUE=DATE:" + next,
+    start, end,
     "SUMMARY:Launch: " + r.brand + " " + r.model,
     "DESCRIPTION:" + [price(r), r.launch_date_text, r.how_to_buy, src].filter(Boolean).join(" | ").replace(/[,;]/g, m => "\\" + m),
-    "BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Watch launch tomorrow","END:VALARM",
+    ...alarms,
     "END:VEVENT","END:VCALENDAR"
   ].join("\r\n");
   return `<a href="data:text/calendar;charset=utf-8,${encodeURIComponent(body)}" download="${esc(r.brand + "-" + r.model).replace(/\s+/g,"-")}.ics">Add to calendar</a>`;
 }
 
 function windowBox(r){
-  const d = parseDay(r.launch_date);
+  const d = parseDay(lday(r));
   if (!d) return `<div class="window tbd" aria-label="Launch date not announced"><b>—</b><span>date TBA</span></div>`;
   const t = todayStr(), diff = Math.round((d - parseDay(t)) / 86400000);
   const cls = diff === 0 ? "soon today" : (diff > 0 && diff <= 7 ? "soon" : "");
@@ -173,11 +185,13 @@ function row(r){
   const facts = [`<span class="price">${price(r)}</span>`];
   if (r.pieces) facts.push(`<span>${r.pieces.toLocaleString("en-US")} pieces</span>`);
   else if (r.limited_type && !["unknown","not_limited"].includes(r.limited_type)) facts.push(`<span>${esc(r.limited_type.replace(/_/g," "))}</span>`);
+  if (r.launch_uae) facts.push(`<span>${esc(r.launch_uae.time)} UAE time</span>`);
   facts.push(`<span class="status ${esc(r.status)}">${STATUS[r.status] || esc(r.status)}</span>`);
   const ticks = Array.from({length:10}, (_,i) => `<i class="${i < (r.score||0) ? "on" : ""}"></i>`).join("");
   const sources = (r.sources||[]).slice(0,3).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join("");
   const detail = [
-    r.launch_date_text && `<p><span class="k">Timing:</span> ${esc(r.launch_date_text)}</p>`,
+    r.launch_uae && `<p><span class="k">Drop time:</span> ${esc(r.launch_uae.time)} UAE time (${esc(r.launch_uae.local)})</p>`,
+    !r.launch_uae && r.launch_date_text && `<p><span class="k">Timing:</span> ${esc(r.launch_date_text)}</p>`,
     r.how_to_buy && `<p><span class="k">How to buy:</span> ${esc(r.how_to_buy)}</p>`,
     r.availability_notes && `<p><span class="k">Availability:</span> ${esc(r.availability_notes)}</p>`,
     r.specs && `<p><span class="k">Specs:</span> ${esc(r.specs)}</p>`,
@@ -217,7 +231,7 @@ function metrics(r){
   }
   if (r.resale){
     const v = r.resale.verdict || "";
-    const cls = v.startsWith("Likely") ? "good" : v.startsWith("Possible") ? "maybe" : "bad";
+    const cls = v.startsWith("Likely") ? "good" : /^(Possible|Too|Leaning profit)/.test(v) ? "maybe" : "bad";
     out.push(`<div class="metric"><span class="k">Resale</span><b>${pct(r.resale.low_pct)} to ${pct(r.resale.high_pct)}</b><span>vs retail</span><span class="verdict ${cls}">${esc(v)}</span></div>`);
   }
   return out.length ? `<div class="metrics">${out.join("")}</div>` : "";
@@ -350,13 +364,14 @@ function render(){
   let items = filtered(), html = "";
   const t = todayStr();
   if (state.tab === "upcoming"){
-    const dated = items.filter(r => r.launch_date && r.launch_date >= t && r.status !== "sold_out")
-                       .sort((a,b) => a.launch_date.localeCompare(b.launch_date));
-    const tba = items.filter(r => !r.launch_date && r.status !== "sold_out")
+    const key = r => lday(r) + " " + (r.launch_uae?.time || "99:99");
+    const dated = items.filter(r => lday(r) && lday(r) >= t && r.status !== "sold_out")
+                       .sort((a,b) => key(a).localeCompare(key(b)));
+    const tba = items.filter(r => !lday(r) && r.status !== "sold_out")
                      .sort((a,b) => (b.score||0) - (a.score||0));
     let month = "";
     for (const r of dated){
-      const m = parseDay(r.launch_date).toLocaleDateString("en-GB",{month:"long", year:"numeric"});
+      const m = parseDay(lday(r)).toLocaleDateString("en-GB",{month:"long", year:"numeric"});
       if (m !== month){ html += `<h2 class="group">${m}</h2>`; month = m; }
       html += row(r);
     }

@@ -21,7 +21,7 @@
   },
   "research_min_score": 5,
   "max_research_per_day": 15,
-  "max_hype_checks_per_day": 15,
+  "max_hype_checks_per_day": 8,
   "purchase_tax_pct": 5,
   "selling_cost_pct": 10,
   "portfolio_report_weekday": 0,

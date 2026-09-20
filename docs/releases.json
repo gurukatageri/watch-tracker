@@ -1,10 +1,59 @@
 {
-  "generated": "2026-09-20T06:44:52.032747+00:00",
+  "generated": "2026-09-20T07:28:58.766961+00:00",
   "max_price_aed": 100000,
   "min_score": 5,
   "breakeven_pct": 16.7,
   "selling_cost_pct": 10,
   "releases": [
+    {
+      "id": "bd2f21ab1dca",
+      "brand": "Luminox",
+      "model": "Pacific Diver Official Force Blue",
+      "reference": "3120",
+      "is_limited": true,
+      "pieces": null,
+      "limited_type": "unknown",
+      "price": 795,
+      "currency": "USD",
+      "price_aed": 2920,
+      "status": "available_now",
+      "launch_date": null,
+      "launch_date_text": null,
+      "sale_method": "retailers",
+      "how_to_buy": "Available through Luminox website and authorized retailers.",
+      "reservation_possible": false,
+      "availability_notes": null,
+      "specs": "44mm stainless steel case, Carbonox bezel, Ronda 515 Swiss quartz movement (5-year battery), 200m water resistance, sapphire crystal with anti-reflective coating, wave-style rubber strap with pin buckle",
+      "score": 5,
+      "score_reason": "Meaningful Force Blue collaboration with solid specs and charitable mission appeal, but Luminox sports watches typically lack strong secondary market appreciation and piece count is undisclosed.",
+      "allocation_likely": false,
+      "image": "https://www.ablogtowatch.com/wp-content/uploads/2026/09/Luminox-Pacific-Diver-Official-Force-Blue-RHE-Featured.jpg",
+      "sources": [
+        {
+          "name": "aBlogtoWatch",
+          "url": "https://www.ablogtowatch.com/hands-on-luminox-pacific-diver-official-force-blue-watch-brings-the-mission-to-the-wrist/"
+        }
+      ],
+      "first_seen": "2026-09-20T07:28:58.634772+00:00",
+      "updated": "2026-09-20T07:28:58.634772+00:00",
+      "status_changed": null,
+      "over_budget": false,
+      "hype": {
+        "media_outlets": 1,
+        "index": 25,
+        "trend": "new",
+        "history": [
+          {
+            "date": "2026-09-20",
+            "index": 25
+          }
+        ],
+        "signals_used": [
+          "media"
+        ],
+        "updated": "2026-09-20T07:28:58.766777+00:00"
+      }
+    },
     {
       "id": "1e949bcb1711",
       "brand": "Hublot",

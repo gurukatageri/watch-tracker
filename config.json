@@ -1,0 +1,102 @@
+{
+  "max_price_aed": 100000,
+  "min_score_for_digest": 5,
+  "include_price_unknown": true,
+  "digest_upcoming_days": 7,
+  "timezone": "Asia/Dubai",
+  "dashboard_url": "",
+  "model": "claude-haiku-4-5-20251001",
+  "research_model": "claude-sonnet-5",
+  "research_web_searches": 6,
+  "max_article_age_days": 4,
+  "max_articles_per_run": 150,
+  "interests": "Collector-investor based in the UAE, budget up to AED 100,000 per watch. Interested in all segments: Rolex, Omega, Tudor, Cartier and other Swiss brands; Grand Seiko, Seiko, Credor; independents and microbrands; collaborations and hyped drops (e.g. Swatch collaborations); collectible Casio / G-Shock releases. Wants limited, hard-to-get pieces likely to hold or gain value over months to years. Not interested in auctions or pre-owned.",
+  "urgent": {
+    "enabled": true,
+    "min_score": 7,
+    "min_hype": 70,
+    "within_hours": 48,
+    "quiet_start_hour": 23,
+    "quiet_end_hour": 7
+  },
+  "research_min_score": 6,
+  "max_research_per_day": 8,
+  "max_hype_checks_per_day": 15,
+  "purchase_tax_pct": 5,
+  "selling_cost_pct": 10,
+  "portfolio_report_weekday": 0,
+  "feeds": [
+    {
+      "name": "Hodinkee",
+      "url": "https://www.hodinkee.com/articles/rss.xml"
+    },
+    {
+      "name": "Monochrome",
+      "url": "https://monochrome-watches.com/feed/"
+    },
+    {
+      "name": "Fratello",
+      "url": "https://www.fratellowatches.com/feed/"
+    },
+    {
+      "name": "WatchTime",
+      "url": "https://www.watchtime.com/feed/"
+    },
+    {
+      "name": "aBlogtoWatch",
+      "url": "https://www.ablogtowatch.com/feed/"
+    },
+    {
+      "name": "Worn & Wound",
+      "url": "https://wornandwound.com/feed/"
+    },
+    {
+      "name": "Time and Tide",
+      "url": "https://timeandtidewatches.com/feed/"
+    },
+    {
+      "name": "WatchPro",
+      "url": "https://www.watchpro.com/feed/"
+    },
+    {
+      "name": "Quill & Pad",
+      "url": "https://quillandpad.com/feed/"
+    },
+    {
+      "name": "Deployant",
+      "url": "https://deployant.com/feed/"
+    },
+    {
+      "name": "Revolution",
+      "url": "https://revolutionwatch.com/feed/"
+    },
+    {
+      "name": "SJX Watches",
+      "url": "https://watchesbysjx.com/feed"
+    },
+    {
+      "name": "G-Central (Casio)",
+      "url": "https://www.g-central.com/feed/"
+    },
+    {
+      "name": "News: limited editions",
+      "url": "https://news.google.com/rss/search?q=%22limited%20edition%22%20watch%20launch%20when%3A2d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "News: pre-orders and drops",
+      "url": "https://news.google.com/rss/search?q=watch%20%28pre-order%20OR%20%22drop%22%20OR%20%22reservations%22%29%20limited%20when%3A2d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "News: Middle East editions",
+      "url": "https://news.google.com/rss/search?q=watch%20%28%22Middle%20East%20edition%22%20OR%20%22UAE%20edition%22%20OR%20%22Dubai%20edition%22%20OR%20Seddiqi%29%20limited%20when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "News: Casio / G-Shock",
+      "url": "https://news.google.com/rss/search?q=%28%22G-Shock%22%20OR%20Casio%29%20%22limited%20edition%22%20when%3A3d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "News: Swatch collaborations",
+      "url": "https://news.google.com/rss/search?q=Swatch%20collaboration%20new%20watch%20when%3A3d&hl=en-US&gl=US&ceid=US:en"
+    }
+  ]
+}

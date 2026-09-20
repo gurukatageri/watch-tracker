@@ -257,10 +257,21 @@ Find:
    regular-production reference if no limited ones exist). For each, give the reference number, original retail
    price and current secondary-market price (prefer WatchCharts, Chrono24 price data, reputable dealer listings).
 2. How well this BRAND generally holds value on the secondary market.
-3. Where to buy THIS release in the UAE: official brand boutiques (with mall/location), authorized retailers
-   (e.g. Ahmed Seddiqi & Sons, Rivoli, Tanagra, Al Manara, depending on the brand), and whether the brand's online
-   store sells/ships to the UAE. Only list retailers you found evidence are authorized for this brand.
+3. How to BUY or RESERVE this release:
+   a) ONLINE: the direct URL of the product or pre-order page for THIS watch on the brand's official site or an
+      authorized e-shop, and a URL to reserve / register interest / join the waitlist or raffle / book a boutique
+      appointment. Only give URLs that appeared in your search results; never guess a URL. Say whether the online
+      store sells or ships to the UAE.
+   b) IN STORE in the UAE: the brand's own boutiques and authorized retailers that carry the brand (e.g. Ahmed
+      Seddiqi & Sons, Rivoli, Tanagra, Al Manara, depending on the brand), with mall, city and phone number. Use the
+      brand's store locator where possible. Only list stores you found evidence for.
 4. Early market signals for THIS release: waitlists, sold out quickly, pre-delivery listings above retail, etc.
+5. VARIANTS: if the launch comes in several dials, colours, materials, sizes or models, list every variant and rank
+   them by collector desirability and resale potential (1 = most desirable). Consider: limited vs permanent, piece
+   count, unusual materials, media and collector reaction. Mark which variant THIS entry refers to. For each variant
+   give its official product page URL if it appeared in your search results, and pick its photo ONLY from the
+   CANDIDATE IMAGES list (match by caption/alt text); use null if none clearly matches. Also give the URL of a page
+   showing the whole collection (brand collection page or the best hands-on article).
 
 Reply with ONLY this JSON after researching:
 {"comparables": [{"name": str, "reference": str|null, "year": int|null, "pieces": int|null,
@@ -268,19 +279,107 @@ Reply with ONLY this JSON after researching:
                   "source": "site name"}],
  "brand_retention": "strong"|"average"|"weak",
  "brand_retention_note": "one sentence",
- "uae_buy": [{"name": str, "type": "boutique"|"authorized_dealer"|"online", "where": "mall/city or site", "url": str|null}],
- "online_ships_to_uae": true|false|null,
+ "online": {"buy_url": str|null, "book_url": str|null, "ships_to_uae": true|false|null, "note": "one short sentence, e.g. 'online drop, one per customer' or null"},
+ "uae_stores": [{"name": str, "type": "boutique"|"authorized_dealer", "mall": str|null, "city": "Dubai"|"Abu Dhabi"|...,
+                 "phone": str|null, "url": "store page URL or null"}],
+ "variants": [{"name": "e.g. Ice Agate", "dial": "short description", "reference": str|null, "pieces": int|null,
+               "limited": true|false, "price": number|null, "currency": str|null, "rank": int, "why": "one sentence",
+               "is_this_entry": true|false, "page_url": str|null, "image_url": "from CANDIDATE IMAGES or null"}],
+ "collection_url": str|null,
  "early_signal": "positive"|"neutral"|"negative"|"unknown",
  "early_signal_note": "one sentence or null"}"""
+
+
+RESEARCH_VERSION = 3
+
+
+def og_image(page_url):
+    """The main (og:image) photo of a product page."""
+    try:
+        resp = HTTP.get(page_url, timeout=15)
+        if resp.status_code >= 400:
+            return None
+        from bs4 import BeautifulSoup
+        meta = BeautifulSoup(resp.text, "html.parser").find("meta", property="og:image")
+        url = meta.get("content") if meta else None
+        return ("https:" + url) if url and url.startswith("//") else url
+    except Exception:
+        return None
+
+
+def image_ok(url):
+    if not url or not str(url).startswith("http"):
+        return False
+    try:
+        resp = HTTP.get(url, timeout=12, stream=True)
+    except Exception:
+        return False
+    ctype = resp.headers.get("content-type", "") if hasattr(resp, "headers") else "image/"
+    try:
+        resp.close()
+    except Exception:
+        pass
+    return resp.status_code < 400 and ctype.startswith("image/")
+
+
+def link_alive(url):
+    """Drop links that clearly don't exist; keep ones that merely block robots."""
+    if not url or not str(url).startswith("http"):
+        return False
+    try:
+        resp = HTTP.get(url, timeout=12, allow_redirects=True, stream=True)
+    except Exception:
+        return False
+    try:
+        resp.close()
+    except Exception:
+        pass
+    return resp.status_code not in (404, 410)
 
 
 def research_release(cfg, rel):
     user = (f"Release: {rel['brand']} {rel['model']}\nReference: {rel.get('reference')}\n"
             f"Pieces: {rel.get('pieces')}\nRetail: {rel.get('price')} {rel.get('currency')}\n"
             f"Status: {rel.get('status')}, launch: {rel.get('launch_date') or rel.get('launch_date_text')}\n"
-            f"Sources: {', '.join(s['url'] for s in rel['sources'][:3])}")
-    return ask_claude(cfg, RESEARCH_SYSTEM, user, max_tokens=3000,
+            f"Sources: {', '.join(s['url'] for s in rel['sources'][:3])}\n\n"
+            "CANDIDATE IMAGES (caption: url):\n" +
+            ("\n".join(f"- {i.get('alt') or '(no caption)'}: {i['url']}" for i in rel.get("article_images", [])[:20]) or "(none)"))
+    data = ask_claude(cfg, RESEARCH_SYSTEM, user, max_tokens=3500,
                       model=cfg.get("research_model"), web_searches=cfg.get("research_web_searches", 6))
+    online = data.get("online") or {}
+    for key in ("buy_url", "book_url"):
+        if online.get(key) and not link_alive(online[key]):
+            print(f"Dropped dead link: {online[key]}")
+            online[key] = None
+    data["online"] = online
+    for store in data.get("uae_stores") or []:
+        if store.get("url") and not link_alive(store["url"]):
+            store["url"] = None
+    data["variants"] = clean_variants(rel, data.get("variants") or [])
+    if data.get("collection_url") and not link_alive(data["collection_url"]):
+        data["collection_url"] = None
+    return data
+
+
+def clean_variants(rel, variants):
+    """Verify links and attach a real photo to each variant."""
+    candidates = {i["url"] for i in rel.get("article_images", [])}
+    out, budget = [], 8  # cap page fetches per release
+    for v in sorted(variants, key=lambda x: x.get("rank") or 99)[:12]:
+        if not v.get("name"):
+            continue
+        if v.get("page_url") and not link_alive(v["page_url"]):
+            v["page_url"] = None
+        img = v.get("image_url") if v.get("image_url") in candidates else None
+        if not img and v.get("page_url") and budget > 0:
+            budget -= 1
+            img = og_image(v["page_url"])
+        if img and not image_ok(img):
+            img = None
+        v["image_url"] = img
+        v["price_aed"] = to_aed(v.get("price"), v.get("currency")) if v.get("price") else None
+        out.append(v)
+    return out
 
 
 # ---------------------------------------------------------- resale outlook
@@ -372,7 +471,14 @@ def compute_resale(cfg, rel, research, wc):
 
     price = rel.get("price_aed")
     if price:
-        out["est_profit_aed"] = int(round(price * (1 + mid / 100) * (1 - sell) - price * (1 + tax)))
+        outlay = price * (1 + tax)
+        net = lambda pct: price * (1 + pct / 100) * (1 - sell) - outlay
+        out["outlay_aed"] = int(round(outlay))
+        out["est_profit_aed"] = int(round(net(mid)))
+        out["worst_net_aed"] = int(round(net(low)))
+        out["best_net_aed"] = int(round(net(high)))
+        out["roi_pct"] = round(net(mid) / outlay * 100, 1)
+    out["wc_backed"] = "live_premium_pct" in out or any(c.get("source") == "WatchCharts" for c in comps)
     if confidence == "low":
         out["verdict"] = ("Leaning profit" if low > breakeven else
                           "Leaning loss" if high < breakeven else "Too uncertain to call")
@@ -418,10 +524,11 @@ def enrich(cfg, releases, only_ids=None, wc=None):
         last = parse_iso((rel.get("research") or {}).get("at"))
         launch = parse_day(rel.get("launch_date"))
         near_launch = launch and 0 <= (launch - today).days <= 3
-        stale = last is None or (near_launch and last < now_utc() - timedelta(days=3))
+        outdated = (rel.get("research") or {}).get("v") != RESEARCH_VERSION
+        stale = last is None or outdated or (near_launch and last < now_utc() - timedelta(days=3))
         if stale and research_budget > 0:
             try:
-                rel["research"] = {"at": now_utc().isoformat(), "data": research_release(cfg, rel)}
+                rel["research"] = {"at": now_utc().isoformat(), "v": RESEARCH_VERSION, "data": research_release(cfg, rel)}
                 research_budget -= 1
             except Exception as exc:
                 print(f"Research failed for {rel['brand']} {rel['model']}: {exc}")

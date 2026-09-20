@@ -145,8 +145,11 @@ def ask_claude(cfg, system, user, max_tokens=2000, model=None, web_searches=0):
     raise RuntimeError(f"Claude API unavailable: {last_error}")
 
 
-def telegram_send(parts):
-    """Send one or more text parts (HTML) to the configured Telegram chat."""
+def telegram_send(parts, buttons=None):
+    """Send one or more text parts (HTML) to the configured Telegram chat.
+
+    buttons: optional inline keyboard rows [[{"text", "url"}]] attached to the last message.
+    """
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
     if not token or not chat_id:
@@ -163,13 +166,39 @@ def telegram_send(parts):
             current = f"{current}\n\n{part}" if current else part
     if current:
         messages.append(current)
-    for text in messages:
-        resp = HTTP.post(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            json={"chat_id": chat_id, "text": text, "parse_mode": "HTML",
-                  "disable_web_page_preview": True},
-            timeout=30,
-        )
+    for i, text in enumerate(messages):
+        body = {"chat_id": chat_id, "text": text, "parse_mode": "HTML", "disable_web_page_preview": True}
+        if buttons and i == len(messages) - 1:
+            body["reply_markup"] = {"inline_keyboard": buttons}
+        resp = HTTP.post(f"https://api.telegram.org/bot{token}/sendMessage", json=body, timeout=30)
+        if resp.status_code != 200 and "reply_markup" in body:
+            body.pop("reply_markup")  # a rejected button URL shouldn't block the message
+            resp = HTTP.post(f"https://api.telegram.org/bot{token}/sendMessage", json=body, timeout=30)
         if resp.status_code != 200:
             raise RuntimeError(f"Telegram error {resp.status_code}: {resp.text[:300]}")
         time.sleep(1)
+
+
+def telegram_photos(items):
+    """Send photos as one album (2-10) or a single photo. items: [(image_url, caption_html)]."""
+    token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+    items = [(u, c[:1000]) for u, c in items if u][:10]
+    if not token or not chat_id or not items:
+        return False
+    try:
+        if len(items) == 1:
+            resp = HTTP.post(f"https://api.telegram.org/bot{token}/sendPhoto", timeout=60, json={
+                "chat_id": chat_id, "photo": items[0][0], "caption": items[0][1], "parse_mode": "HTML"})
+        else:
+            resp = HTTP.post(f"https://api.telegram.org/bot{token}/sendMediaGroup", timeout=90, json={
+                "chat_id": chat_id,
+                "media": [{"type": "photo", "media": u, "caption": c, "parse_mode": "HTML"} for u, c in items]})
+        if resp.status_code != 200:
+            print(f"Photo send failed ({resp.status_code}): {resp.text[:200]}")
+            return False
+        time.sleep(1)
+        return True
+    except Exception as exc:
+        print(f"Photo send failed: {exc}")
+        return False

@@ -21,6 +21,7 @@ import os
 import re
 import sys
 from datetime import date, datetime, timedelta, timezone
+from urllib.parse import quote_plus
 from zoneinfo import ZoneInfo
 
 import feedparser
@@ -28,7 +29,7 @@ from bs4 import BeautifulSoup
 
 from common import (
     CONFIG_PATH, HTTP, RELEASES_PATH, SEEN_PATH, STATE_PATH, ask_claude, load_json, norm,
-    now_utc, parse_day, parse_iso, save_json, telegram_send, to_aed,
+    now_utc, parse_day, parse_iso, save_json, telegram_photos, telegram_send, to_aed,
 )
 import private
 import signals
@@ -85,9 +86,13 @@ Return ONLY JSON in this shape (max 5 releases; an empty list if the article has
   "launch_timezone": "IANA time zone of launch_time, e.g. Asia/Tokyo, Europe/Zurich, America/New_York, or null",
   "sale_method": "online_drop" | "boutique" | "preorder" | "raffle" | "allocation" | "retailers" | "unknown",
   "how_to_buy": "one short practical sentence on where/how to buy or reserve",
+  "buy_url": "the URL from ARTICLE LINKS where this watch can be bought or pre-ordered online (brand or retailer shop page), else null",
+  "book_url": "the URL from ARTICLE LINKS to reserve, register interest, join a waitlist/raffle or book an appointment, else null",
   "reservation_possible": true/false/null,
   "availability_notes": "regions/markets, especially mentions of UAE, Dubai or Middle East, else null",
   "specs": "short: case size, material, movement, dial",
+  "dial": "the dial / colour / material of THIS specific watch, e.g. 'Ice Agate stone dial', or null",
+  "variant_count": "how many dial/colour/model versions the launch includes in total (integer), or null",
   "score": integer 1-10,
   "score_reason": "one sentence explaining the score",
   "allocation_likely": true/false
@@ -153,8 +158,9 @@ def triage(cfg, articles):
 
 
 def fetch_article(url):
+    """Return (text, image, outbound_links, images) for an article."""
     if "news.google.com" in url:
-        return "", None
+        return "", None, [], []
     try:
         resp = HTTP.get(url, timeout=25)
         resp.raise_for_status()
@@ -165,18 +171,44 @@ def fetch_article(url):
             tag.decompose()
         node = soup.find("article") or soup.find("main") or soup.body
         text = node.get_text(" ", strip=True) if node else ""
-        return re.sub(r"\s+", " ", text)[:7000], image
+        host = re.sub(r"^www\.", "", re.sub(r"^https?://", "", url).split("/")[0])
+        links, seen = [], set()
+        for a in (node.find_all("a", href=True) if node else []):
+            href = a["href"].split("#")[0]
+            if not href.startswith("http") or host in href or href in seen:
+                continue
+            if re.search(r"facebook|twitter|x\.com|instagram|pinterest|linkedin|youtube|whatsapp|mailto|/tag/|/author/", href):
+                continue
+            seen.add(href)
+            links.append({"text": a.get_text(" ", strip=True)[:60], "url": href})
+        images, seen_img = [], set()
+        for img in (node.find_all("img") if node else []):
+            src = img.get("data-src") or img.get("data-lazy-src") or img.get("src") or ""
+            if img.get("srcset") and not src.startswith("http"):
+                src = img["srcset"].split(",")[-1].strip().split(" ")[0]
+            if not src.startswith("http") or src in seen_img or re.search(r"\.svg|logo|icon|avatar|gravatar|sprite|pixel", src, re.I):
+                continue
+            try:
+                if img.get("width") and int(str(img["width"]).rstrip("px")) < 300:
+                    continue
+            except ValueError:
+                pass
+            seen_img.add(src)
+            caption = img.find_parent("figure").get_text(" ", strip=True)[:120] if img.find_parent("figure") else ""
+            images.append({"url": src, "alt": (img.get("alt") or caption or "")[:120]})
+        return re.sub(r"\s+", " ", text)[:7000], image, links[:25], images[:15]
     except Exception:
-        return "", None
+        return "", None, [], []
 
 
 def extract(cfg, article):
-    body, image = fetch_article(article["link"])
+    body, image, links, images = fetch_article(article["link"])
     system = EXTRACT_SYSTEM.format(interests=cfg["interests"], today=date.today().isoformat())
     user = (
         f"Source: {article['source']}\nTitle: {article['title']}\n"
         f"Published: {article['published']}\nSummary: {article['summary']}\n\n"
-        f"Article text:\n{body or '(not available, use title and summary)'}"
+        f"Article text:\n{body or '(not available, use title and summary)'}\n\n"
+        f"ARTICLE LINKS (outbound):\n" + ("\n".join(f"- {l['text']}: {l['url']}" for l in links) or "(none)")
     )
     reply = ask_claude(cfg, system, user, max_tokens=2500)
     releases = []
@@ -184,6 +216,11 @@ def extract(cfg, article):
         if not rel.get("brand") or not rel.get("model"):
             continue
         rel["image"] = image
+        rel["article_images"] = images
+        allowed = {l["url"] for l in links}
+        for key in ("buy_url", "book_url"):
+            if rel.get(key) not in allowed:  # only keep links that really appear in the article
+                rel[key] = None
         releases.append(rel)
     return releases
 
@@ -298,6 +335,44 @@ def normalise_time(cfg, rel):
                          "local": f"{local.strftime('%H:%M')} {abbr}"}
 
 
+def maps_link(*parts):
+    q = " ".join(p for p in parts if p)
+    return "https://www.google.com/maps/search/?api=1&query=" + quote_plus(q) if q else None
+
+
+def build_where_to_buy(rel):
+    """Merge article links and web research into one where-to-buy block."""
+    data = (rel.get("research") or {}).get("data") or {}
+    online = data.get("online") or {}
+    stores = []
+    for s in (data.get("uae_stores") or data.get("uae_buy") or [])[:8]:
+        if not s.get("name") or s.get("type") == "online":
+            continue
+        mall, city = s.get("mall") or s.get("where"), s.get("city")
+        stores.append({"name": s["name"], "type": s.get("type") or "boutique", "mall": mall, "city": city,
+                       "phone": s.get("phone"), "url": s.get("url"),
+                       "maps": maps_link(s["name"], mall, city or "UAE")})
+    rel["where_to_buy"] = {
+        "buy_url": rel.get("buy_url") or online.get("buy_url"),
+        "book_url": rel.get("book_url") or online.get("book_url"),
+        "ships_to_uae": online.get("ships_to_uae", data.get("online_ships_to_uae")),
+        "online_note": online.get("note"),
+        "stores": stores,
+    }
+
+
+def build_variants(rel):
+    data = (rel.get("research") or {}).get("data") or {}
+    variants = data.get("variants") or []
+    rel["variants"] = variants if len(variants) > 1 else []
+    rel["collection_url"] = data.get("collection_url")
+    top = variants[0] if variants else None
+    this = next((v for v in variants if v.get("is_this_entry")), None)
+    # The photo that best shows THIS entry: its own variant photo, else the top pick, else the article photo.
+    rel["photo"] = (this or {}).get("image_url") or (top or {}).get("image_url") or rel.get("image")
+    rel["photo_caption"] = ((this or top or {}).get("name") if rel["photo"] != rel.get("image") else None)
+
+
 def launch_day(rel):
     """The launch date as seen in the UAE (falls back to the announced date)."""
     return parse_day((rel.get("launch_uae") or {}).get("date")) or parse_day(rel.get("launch_date"))
@@ -325,8 +400,12 @@ def upsert(cfg, releases, rel, article):
     if existing:
         if all(s["url"] != source["url"] for s in existing["sources"]):
             existing["sources"].append(source)
+        known = {i["url"] for i in existing.get("article_images", [])}
+        existing["article_images"] = (existing.get("article_images", []) +
+                                      [i for i in rel.get("article_images", []) if i["url"] not in known])[:30]
         for field in ("reference", "pieces", "price", "currency", "launch_date",
                       "launch_date_text", "launch_time", "launch_timezone", "how_to_buy", "availability_notes",
+                      "buy_url", "book_url", "dial", "variant_count",
                       "specs", "image", "reservation_possible"):
             if rel.get(field) not in (None, "", "null"):
                 if field in ("launch_date", "launch_date_text", "launch_time", "launch_timezone", "how_to_buy") \
@@ -358,6 +437,11 @@ def upsert(cfg, releases, rel, article):
             "launch_date_text": rel.get("launch_date_text"),
             "launch_time": rel.get("launch_time"),
             "launch_timezone": rel.get("launch_timezone"),
+            "buy_url": rel.get("buy_url"),
+            "book_url": rel.get("book_url"),
+            "dial": rel.get("dial"),
+            "variant_count": rel.get("variant_count"),
+            "article_images": rel.get("article_images") or [],
             "sale_method": rel.get("sale_method") or "unknown",
             "how_to_buy": rel.get("how_to_buy"),
             "reservation_possible": rel.get("reservation_possible"),
@@ -420,6 +504,8 @@ def collect(cfg, state):
     releases = consolidate(releases)
     for r in releases:
         normalise_time(cfg, r)
+        build_where_to_buy(r)
+        build_variants(r)
     releases.sort(key=lambda r: r["first_seen"], reverse=True)
 
     changed = {r["id"] for r in releases
@@ -439,6 +525,7 @@ def save_releases(cfg, releases):
         "breakeven_pct": round(((1 + cfg.get("purchase_tax_pct", 5) / 100)
                                 / (1 - cfg.get("selling_cost_pct", 10) / 100) - 1) * 100, 1),
         "selling_cost_pct": cfg.get("selling_cost_pct", 10),
+        "purchase_tax_pct": cfg.get("purchase_tax_pct", 5),
         "releases": releases,
     })
 
@@ -489,27 +576,106 @@ def resale_line(rel):
             f"{r['verdict']}; break-even {r['breakeven_pct']:+.0f}%")
     if r.get("est_profit_aed") is not None:
         text += f", est. net AED {r['est_profit_aed']:+,}"
+    if r.get("roi_pct") is not None:
+        text += f" (ROI {r['roi_pct']:+.0f}% after costs; range AED {r['worst_net_aed']:+,} to {r['best_net_aed']:+,})"
     text += f". Based on {r['basis']}"
     if r.get("adjustments"):
         text += "; " + ", ".join(r["adjustments"])
     return text + "."
 
 
-def buy_lines(rel, store):
-    lines = []
-    data = (rel.get("research") or {}).get("data") or {}
-    shops = data.get("uae_buy") or []
-    if shops:
-        names = []
-        for s in shops[:4]:
-            label = esc(s.get("name")) + (f" ({esc(s['where'])})" if s.get("where") else "")
-            names.append(f'<a href="{html.escape(s["url"])}">{label}</a>' if s.get("url") else label)
-        lines.append("🇦🇪 Buy in UAE: " + "; ".join(names))
-    if data.get("online_ships_to_uae") is True:
-        lines.append("🌐 Brand online store ships to the UAE")
-    for c in private.contacts_for(store, rel["brand"]):
+def link(url, label):
+    return f'<a href="{html.escape(url)}">{esc(label)}</a>'
+
+
+def buy_row(rel):
+    """One compact line with direct online links, e.g. 🛒 Buy online | 📝 Reserve."""
+    w = rel.get("where_to_buy") or {}
+    bits = []
+    if w.get("buy_url"):
+        bits.append("🛒 " + link(w["buy_url"], "Buy online" if rel.get("status") != "preorder_open" else "Pre-order online"))
+    if w.get("book_url") and w.get("book_url") != w.get("buy_url"):
+        bits.append("📝 " + link(w["book_url"], "Reserve / book"))
+    if not bits and rel.get("how_to_buy"):
+        return "🛒 " + esc(rel["how_to_buy"])
+    if w.get("ships_to_uae") is True:
+        bits.append("ships to UAE")
+    elif w.get("ships_to_uae") is False and w.get("buy_url"):
+        bits.append("⚠️ may not ship to UAE")
+    return " | ".join(bits)
+
+
+def stores_quote(rel, store):
+    """Collapsed list of UAE stores plus your own contacts (expands on tap in Telegram)."""
+    w = rel.get("where_to_buy") or {}
+    contacts = private.contacts_for(store, rel["brand"])
+    stores = w.get("stores") or []
+    if not stores and not contacts:
+        return None
+    lines = [f"🇦🇪 <b>Where to buy in the UAE ({len(stores)})</b>"]
+    for c in contacts:
         lines.append("👤 Your contact: " + esc(", ".join(x for x in (c.get("name"), c.get("store"), c.get("phone")) if x)))
-    return lines
+    for st in stores:
+        where = ", ".join(x for x in (st.get("mall"), st.get("city")) if x)
+        kind = "boutique" if st.get("type") == "boutique" else "dealer"
+        extra = [link(st["maps"], "Map")] if st.get("maps") else []
+        if st.get("url"):
+            extra.append(link(st["url"], "Store page"))
+        line = f"• <b>{esc(st['name'])}</b> ({kind})" + (f", {esc(where)}" if where else "")
+        if st.get("phone"):
+            line += f"\n   ☎️ {esc(st['phone'])}"
+        if extra:
+            line += "\n   " + " | ".join(extra)
+        lines.append(line)
+    return "<blockquote expandable>" + "\n".join(lines) + "</blockquote>"
+
+
+def variant_line(rel):
+    vs = rel.get("variants") or []
+    if not vs:
+        return None
+    top = vs[0]
+    bits = [f"💎 Most desirable: <b>{esc(top['name'])}</b>"]
+    if top.get("pieces"):
+        bits.append(f"{top['pieces']:,} pcs" if isinstance(top["pieces"], int) else f"{esc(top['pieces'])} pcs")
+    bits.append("this one ✅" if top.get("is_this_entry") else f"of {len(vs)} versions")
+    if rel.get("collection_url"):
+        bits.append(link(rel["collection_url"], f"See all {len(vs)}"))
+    return " | ".join(bits)
+
+
+def variants_quote(rel):
+    vs = rel.get("variants") or []
+    if len(vs) < 2:
+        return None
+    lines = [f"🎨 <b>All {len(vs)} versions, ranked</b>"]
+    for v in vs:
+        name = link(v["page_url"], v["name"]) if v.get("page_url") else esc(v["name"])
+        tags = []
+        if v.get("is_this_entry"):
+            tags.append("this entry")
+        if v.get("limited") and v.get("pieces"):
+            tags.append(f"limited {v['pieces']}")
+        elif v.get("limited"):
+            tags.append("limited")
+        if v.get("price_aed"):
+            tags.append(f"AED {v['price_aed']:,}")
+        line = f"{v.get('rank', '•')}. {name}" + (f" ({esc(', '.join(tags))})" if tags else "")
+        if v.get("why"):
+            line += f"\n   {esc(v['why'])}"
+        lines.append(line)
+    return "<blockquote expandable>" + "\n".join(lines) + "</blockquote>"
+
+
+def analysis_quote(rel):
+    lines = ["📊 <b>Analysis</b>"]
+    for extra in (hype_line(rel), resale_line(rel)):
+        if extra:
+            lines.append(esc(extra))
+    if rel.get("score_reason"):
+        lines.append(f"💡 {esc(rel['score_reason'])}")
+    lines.append("🔗 " + " / ".join(link(s["url"], s["name"]) for s in rel["sources"][:3]))
+    return "<blockquote expandable>" + "\n".join(lines) + "</blockquote>"
 
 
 def release_block(rel, today, store, index=None):
@@ -517,7 +683,7 @@ def release_block(rel, today, store, index=None):
     lines = [f"<b>{head}{esc(rel['brand'])} {esc(rel['model'])}</b>   ⭐ {rel.get('score', '?')}/10"]
     facts = [fmt_price(rel)]
     if rel.get("pieces"):
-        facts.append(f"{rel['pieces']:,} pcs")
+        facts.append(f"{rel['pieces']:,} pcs" if isinstance(rel["pieces"], int) else f"{rel['pieces']} pcs")
     elif rel.get("limited_type") not in (None, "unknown", "not_limited"):
         facts.append(rel["limited_type"].replace("_", " "))
     when = fmt_launch(rel, today)
@@ -526,20 +692,41 @@ def release_block(rel, today, store, index=None):
             when = "since " + when
         facts.append(f"📅 {when}")
     lines.append("💰 " + esc(" | ".join(facts)))
-    status = STATUS_LABEL.get(rel.get("status"), "")
-    if rel.get("how_to_buy"):
-        lines.append(f"🛒 {esc(status)}: {esc(rel['how_to_buy'])}")
-    lines.extend(buy_lines(rel, store))
+    x = rel.get("resale")
+    quick = [STATUS_LABEL.get(rel.get("status"), "")]
+    if x and x.get("roi_pct") is not None:
+        quick.append(f"ROI {x['roi_pct']:+.0f}% (AED {x['est_profit_aed']:+,}), {x['verdict'].lower()}")
+    if rel.get("hype"):
+        quick.append(f"🔥 {rel['hype']['index']}")
+    lines.append("📈 " + esc(" | ".join(q for q in quick if q)))
+    if rel.get("dial") and norm(rel["dial"]) not in norm(rel["model"]):
+        lines.append(f"🎨 Dial: {esc(rel['dial'])}")
+    vline = variant_line(rel)
+    if vline:
+        lines.append(vline)
+    row = buy_row(rel)
+    if row:
+        lines.append(row)
     if rel.get("allocation_likely"):
         lines.append("🤝 Likely allocated: contact your boutique early")
-    for extra in (hype_line(rel), resale_line(rel)):
-        if extra:
-            lines.append(esc(extra))
-    if rel.get("score_reason"):
-        lines.append(f"💡 {esc(rel['score_reason'])}")
-    links = " / ".join(f'<a href="{html.escape(s["url"])}">{esc(s["name"])}</a>' for s in rel["sources"][:3])
-    lines.append(f"🔗 {links}")
+    for quote in (variants_quote(rel), stores_quote(rel, store), analysis_quote(rel)):
+        if quote:
+            lines.append(quote)
     return "\n".join(lines)
+
+
+def release_buttons(rel):
+    """Tap buttons for single-release messages (urgent alerts)."""
+    w = rel.get("where_to_buy") or {}
+    row = []
+    if w.get("buy_url"):
+        row.append({"text": "🛒 Buy online", "url": w["buy_url"]})
+    if w.get("book_url") and w.get("book_url") != w.get("buy_url"):
+        row.append({"text": "📝 Reserve", "url": w["book_url"]})
+    stores = w.get("stores") or []
+    if stores and stores[0].get("maps"):
+        row.append({"text": "📍 Nearest store", "url": stores[0]["maps"]})
+    return [row] if row else None
 
 
 def dashboard_url(cfg):
@@ -588,6 +775,9 @@ def urgent_alerts(cfg, releases, changed_ids, state, store, wc):
         return
 
     signals.enrich(cfg, releases, only_ids={r["id"] for r, _ in candidates}, wc=wc)
+    for r, _ in candidates:
+        build_where_to_buy(r)
+        build_variants(r)
 
     quiet_start, quiet_end = u.get("quiet_start_hour", 23), u.get("quiet_end_hour", 7)
     quiet = local.hour >= quiet_start or local.hour < quiet_end
@@ -597,13 +787,35 @@ def urgent_alerts(cfg, releases, changed_ids, state, store, wc):
             continue
         if quiet and launch_day(r) != today:
             continue  # hold until morning unless the drop is today
-        telegram_send([f"🚨 <b>Urgent: {esc(why)}</b>", release_block(r, today, store)])
+        photo = r.get("photo")
+        if photo and signals.image_ok(photo):
+            cap = f"🚨 <b>{esc(r['brand'])} {esc(r['model'])}</b>" + (f"\nPictured: {esc(r['photo_caption'])}" if r.get("photo_caption") else "")
+            telegram_photos([(photo, cap)])
+        telegram_send([f"🚨 <b>Urgent: {esc(why)}</b>", release_block(r, today, store)], buttons=release_buttons(r))
         sent.add(f"{r['id']}:{r.get('status')}:{r.get('launch_date')}")
         print(f"Urgent alert sent: {r['brand']} {r['model']}")
     state["urgent_sent"] = sorted(sent)[-500:]
 
 
 # ------------------------------------------------------------------ digest
+
+def send_digest_photos(cfg, releases, state):
+    """A photo album of today's new releases (top variant where known), shown above the digest."""
+    since = parse_iso(state.get("last_digest")) or (now_utc() - timedelta(days=1))
+    new = [r for r in releases if eligible(cfg, r) and (parse_iso(r["first_seen"]) or since) > since and r.get("photo")]
+    new.sort(key=lambda r: r.get("score", 0), reverse=True)
+    items = []
+    for i, r in enumerate(new[:10], 1):
+        if not signals.image_ok(r["photo"]):
+            continue
+        cap = f"{i}. <b>{esc(r['brand'])} {esc(r['model'])}</b>"
+        if r.get("photo_caption"):
+            top = (r.get("variants") or [{}])[0]
+            cap += f"\nPictured: {esc(r['photo_caption'])}" + (" (most desirable)" if top.get("name") == r["photo_caption"] else "")
+        items.append((r["photo"], cap))
+    if items:
+        telegram_photos(items)
+
 
 def build_digest(cfg, releases, state, store):
     tz = ZoneInfo(cfg["timezone"])
@@ -676,11 +888,15 @@ def run_collect(cfg, digest=False):
 
     if digest:
         signals.enrich(cfg, releases, wc=wc)
+        for r in releases:
+            build_where_to_buy(r)
+            build_variants(r)
         if store is not None and store.get("holdings") and \
                 datetime.now(ZoneInfo(cfg["timezone"])).weekday() == cfg.get("portfolio_report_weekday", 0):
             private.value_holdings(cfg, store, wc)
             private.save_private(store)
         save_releases(cfg, releases)
+        send_digest_photos(cfg, releases, state)
         telegram_send(build_digest(cfg, releases, state, store))
         state["last_digest"] = now_utc().isoformat()
         state["ai_errors"] = 0

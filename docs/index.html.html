@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Launches">
+<meta name="theme-color" content="#F3F4F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1729" media="(prefers-color-scheme: dark)">
+<title>Watch launches</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌚</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2314213A'/><text x='50' y='70' font-size='60' text-anchor='middle'>⌚</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#14213A; --muted:#5F6B7A;
+  --rule:#D6DAE0; --gold:#9A7228; --gold-soft:#EFE5D2; --lume:#2F6B55;
+  --alert:#9B3B2E;
+  --display:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --text:"Figtree", -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#0E1729; --surface:#15213A; --ink:#E6E9EE; --muted:#9AA5B4;
+    --rule:#26344F; --gold:#D4AA5C; --gold-soft:#2A2A2A; --lume:#7CC7A6; --alert:#E38B7C;
+  }
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--text);
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.wrap{max-width:720px;margin:0 auto;padding:28px 18px 64px}
+h1{font:700 2.6rem/1.05 var(--display);margin:0;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:.9rem;margin:8px 0 22px}
+.tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:4px;margin-bottom:14px}
+.tabs button{flex:1;border:0;background:none;color:var(--muted);font:600 .92rem var(--text);padding:9px 6px;border-radius:9px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.filters{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;margin-bottom:8px}
+.filters input[type=search]{grid-column:1/-1;width:100%;font:16px var(--text);padding:11px 13px;border-radius:10px;border:1px solid var(--rule);background:var(--surface);color:var(--ink)}
+.toggles{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem;color:var(--muted)}
+.toggles label{display:flex;gap:6px;align-items:center}
+select{font:15px var(--text);padding:6px 8px;border-radius:8px;border:1px solid var(--rule);background:var(--surface);color:var(--ink)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.group{font:500 1.35rem var(--display);margin:30px 0 6px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.row{display:grid;grid-template-columns:62px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--rule)}
+/* The date window: framed like a watch's date aperture */
+.window{width:62px;height:66px;border:2px solid var(--ink);border-radius:5px;background:var(--surface);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 0 var(--rule)}
+.window b{font:700 1.7rem/1 var(--display)}
+.window span{font-size:.72rem;color:var(--muted);margin-top:3px}
+.window.tbd b{font-size:1.1rem;color:var(--muted)}
+.window.soon{border-color:var(--gold)}
+.window.soon b{color:var(--gold)}
+.brand{font-size:.85rem;color:var(--muted);font-weight:600}
+.model{font:600 1.22rem/1.25 var(--display);margin:1px 0 6px}
+.facts{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.9rem}
+.facts .price{font-weight:600}
+.status{font-size:.8rem;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--gold-soft);color:var(--gold)}
+.status.preorder_open,.status.available_now{background:transparent;color:var(--lume);border:1px solid var(--lume)}
+.status.sold_out{background:transparent;color:var(--muted);border:1px solid var(--rule)}
+.track{display:flex;align-items:center;gap:8px;margin-top:9px;font-size:.82rem;color:var(--muted)}
+.ticks{display:flex;gap:3px}
+.ticks i{width:3px;height:12px;background:var(--rule);border-radius:1px}
+.ticks i.on{background:var(--gold)}
+.ticks i:nth-child(5n){height:16px}
+details{margin-top:8px}
+summary{cursor:pointer;font-size:.88rem;color:var(--muted);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";font-weight:600}
+details[open] summary::before{content:"− "}
+.more{font-size:.92rem;margin-top:8px;display:grid;gap:6px}
+.more p{margin:0}
+.more .k{color:var(--muted)}
+.note{color:var(--alert);font-size:.88rem;margin-top:6px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.actions a{font:600 .85rem var(--text);color:var(--ink);text-decoration:none;border:1px solid var(--rule);background:var(--surface);padding:7px 11px;border-radius:8px}
+.thumb{width:100%;max-height:220px;object-fit:cover;border-radius:8px;margin-top:8px;background:var(--rule)}
+.empty{padding:40px 0;color:var(--muted)}
+.metrics{display:grid;gap:4px;margin-top:10px;font-size:.88rem}
+.metric{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.metric b{font-weight:600}
+.metric .k{color:var(--muted);min-width:4.2em}
+.verdict{font-size:.78rem;font-weight:600;padding:1px 7px;border-radius:20px;border:1px solid currentColor}
+.verdict.good{color:var(--lume)} .verdict.maybe{color:var(--gold)} .verdict.bad{color:var(--alert)}
+.buy{margin:0;padding-left:1.1em}
+.buy li{margin:2px 0}
+.buy a{color:var(--ink)}
+.unlock{display:grid;gap:10px;max-width:420px;margin-top:22px}
+.unlock input[type=password]{font:16px var(--text);padding:11px 13px;border-radius:10px;border:1px solid var(--rule);background:var(--surface);color:var(--ink)}
+.btn{font:600 .95rem var(--text);padding:11px 14px;border-radius:10px;border:0;background:var(--ink);color:var(--paper);cursor:pointer}
+.btn.quiet{background:none;color:var(--muted);border:1px solid var(--rule);padding:7px 11px;font-size:.85rem}
+.totals{display:flex;flex-wrap:wrap;gap:6px 26px;margin:22px 0 4px}
+.totals div{display:grid}
+.totals b{font:600 1.5rem var(--display)}
+.totals span{font-size:.82rem;color:var(--muted)}
+.gain{color:var(--lume)} .loss{color:var(--alert)}
+.facts a{color:var(--ink)}
+.hint{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){ .window.today{animation:pulse 2s ease-in-out 3} }
+@keyframes pulse{50%{box-shadow:0 0 0 5px var(--gold-soft)}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Launch calendar</h1>
+  <p class="sub" id="sub">Loading releases…</p>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="upcoming">Upcoming</button>
+    <button role="tab" aria-selected="false" data-tab="recent">New</button>
+    <button role="tab" aria-selected="false" data-tab="all">All</button>
+    <button role="tab" aria-selected="false" data-tab="collection">Collection</button>
+  </div>
+
+  <div class="filters" id="filters">
+    <input type="search" id="q" placeholder="Search brand, model or reference" autocomplete="off">
+    <div class="toggles">
+      <label><input type="checkbox" id="limited"> Limited only</label>
+      <label><input type="checkbox" id="over"> Show over budget</label>
+    </div>
+    <label class="toggles">Min score
+      <select id="minscore"></select>
+    </label>
+  </div>
+
+  <div id="list"></div>
+</main>
+
+<script>
+const STATUS = {rumor:"Rumored", announced:"Announced", preorder_open:"Pre-order open", available_now:"Available now", sold_out:"Sold out"};
+const state = {tab:"upcoming", data:[], minDefault:5};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const todayStr = () => new Date().toLocaleDateString("en-CA", {timeZone:"Asia/Dubai"});
+const parseDay = s => s ? new Date(s + "T12:00:00") : null;
+const lday = r => r.launch_uae?.date || r.launch_date;
+
+function price(r){
+  if (r.price_aed) return "AED " + r.price_aed.toLocaleString("en-US");
+  return "Price TBA";
+}
+
+function icsLink(r){
+  if (!lday(r)) return "";
+  const stamp = t => new Date(t).toISOString().replace(/[-:]/g,"").slice(0,15) + "Z";
+  let start, end, alarms;
+  if (r.launch_uae?.utc){
+    const t = Date.parse(r.launch_uae.utc);
+    start = "DTSTART:" + stamp(t); end = "DTEND:" + stamp(t + 3600000);
+    alarms = ["BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Watch launch tomorrow","END:VALARM",
+              "BEGIN:VALARM","TRIGGER:-PT1H","ACTION:DISPLAY","DESCRIPTION:Watch launch in 1 hour","END:VALARM"];
+  } else {
+    const d = lday(r).replace(/-/g,"");
+    const next = new Date(parseDay(lday(r)).getTime() + 86400000).toISOString().slice(0,10).replace(/-/g,"");
+    start = "DTSTART;VALUE=DATE:" + d; end = "DTEND;VALUE=DATE:" + next;
+    alarms = ["BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Watch launch tomorrow","END:VALARM"];
+  }
+  const src = r.sources?.[0]?.url || "";
+  const body = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//watch-tracker//EN","BEGIN:VEVENT",
+    "UID:" + r.id + "@watch-tracker","DTSTAMP:" + new Date().toISOString().replace(/[-:]/g,"").slice(0,15) + "Z",
+    start, end,
+    "SUMMARY:Launch: " + r.brand + " " + r.model,
+    "DESCRIPTION:" + [price(r), r.launch_date_text, r.how_to_buy, src].filter(Boolean).join(" | ").replace(/[,;]/g, m => "\\" + m),
+    ...alarms,
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n");
+  return `<a href="data:text/calendar;charset=utf-8,${encodeURIComponent(body)}" download="${esc(r.brand + "-" + r.model).replace(/\s+/g,"-")}.ics">Add to calendar</a>`;
+}
+
+function windowBox(r){
+  const d = parseDay(lday(r));
+  if (!d) return `<div class="window tbd" aria-label="Launch date not announced"><b>—</b><span>date TBA</span></div>`;
+  const t = todayStr(), diff = Math.round((d - parseDay(t)) / 86400000);
+  const cls = diff === 0 ? "soon today" : (diff > 0 && diff <= 7 ? "soon" : "");
+  const label = diff === 0 ? "today" : diff === 1 ? "tomorrow" : d.toLocaleDateString("en-GB",{weekday:"short", month: state.tab==="upcoming" ? undefined : "short"});
+  return `<div class="window ${cls}" aria-label="Launch ${d.toDateString()}"><b>${d.getDate()}</b><span>${label}</span></div>`;
+}
+
+function row(r){
+  const facts = [`<span class="price">${price(r)}</span>`];
+  if (r.pieces) facts.push(`<span>${r.pieces.toLocaleString("en-US")} pieces</span>`);
+  else if (r.limited_type && !["unknown","not_limited"].includes(r.limited_type)) facts.push(`<span>${esc(r.limited_type.replace(/_/g," "))}</span>`);
+  if (r.launch_uae) facts.push(`<span>${esc(r.launch_uae.time)} UAE time</span>`);
+  facts.push(`<span class="status ${esc(r.status)}">${STATUS[r.status] || esc(r.status)}</span>`);
+  const ticks = Array.from({length:10}, (_,i) => `<i class="${i < (r.score||0) ? "on" : ""}"></i>`).join("");
+  const sources = (r.sources||[]).slice(0,3).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join("");
+  const detail = [
+    r.launch_uae && `<p><span class="k">Drop time:</span> ${esc(r.launch_uae.time)} UAE time (${esc(r.launch_uae.local)})</p>`,
+    !r.launch_uae && r.launch_date_text && `<p><span class="k">Timing:</span> ${esc(r.launch_date_text)}</p>`,
+    r.how_to_buy && `<p><span class="k">How to buy:</span> ${esc(r.how_to_buy)}</p>`,
+    r.availability_notes && `<p><span class="k">Availability:</span> ${esc(r.availability_notes)}</p>`,
+    r.specs && `<p><span class="k">Specs:</span> ${esc(r.specs)}</p>`,
+    r.reference && `<p><span class="k">Reference:</span> ${esc(r.reference)}</p>`,
+    r.price && r.currency && r.currency !== "AED" && `<p><span class="k">Retail:</span> ${esc(r.currency)} ${Number(r.price).toLocaleString("en-US")}</p>`,
+    r.score_reason && `<p><span class="k">Why ${r.score}/10:</span> ${esc(r.score_reason)}</p>`,
+    buyList(r),
+    resaleDetail(r),
+    hypeDetail(r),
+    r.image && `<img class="thumb" src="${esc(r.image)}" alt="" loading="lazy" onerror="this.remove()">`,
+  ].filter(Boolean).join("");
+  return `<article class="row">
+    ${windowBox(r)}
+    <div>
+      <div class="brand">${esc(r.brand)}</div>
+      <div class="model">${esc(r.model)}</div>
+      <div class="facts">${facts.join("")}</div>
+      <div class="track"><span class="ticks" aria-hidden="true">${ticks}</span>Collectability ${r.score}/10</div>
+      ${metrics(r)}
+      ${r.allocation_likely ? `<p class="note">Likely allocated to existing clients: contact your boutique early.</p>` : ""}
+      ${r.over_budget ? `<p class="note">Over your budget.</p>` : ""}
+      <details><summary>Details</summary><div class="more">${detail}</div></details>
+      <div class="actions">${icsLink(r)}${sources}</div>
+    </div>
+  </article>`;
+}
+
+
+const pct = n => (n > 0 ? "+" : "") + Math.round(n) + "%";
+const aed = n => "AED " + Math.round(n).toLocaleString("en-US");
+
+function metrics(r){
+  const out = [];
+  if (r.hype){
+    const trend = r.hype.trend && r.hype.trend !== "new" ? `, ${r.hype.trend}` : "";
+    out.push(`<div class="metric"><span class="k">Hype</span><b>${r.hype.index}/100</b><span>${trend.slice(2)}</span></div>`);
+  }
+  if (r.resale){
+    const v = r.resale.verdict || "";
+    const cls = v.startsWith("Likely") ? "good" : /^(Possible|Too|Leaning profit)/.test(v) ? "maybe" : "bad";
+    out.push(`<div class="metric"><span class="k">Resale</span><b>${pct(r.resale.low_pct)} to ${pct(r.resale.high_pct)}</b><span>vs retail</span><span class="verdict ${cls}">${esc(v)}</span></div>`);
+  }
+  return out.length ? `<div class="metrics">${out.join("")}</div>` : "";
+}
+
+function hypeDetail(r){
+  const h = r.hype; if (!h) return "";
+  const bits = [`${h.media_outlets} news outlet${h.media_outlets === 1 ? "" : "s"}`];
+  if (h.youtube_views != null) bits.push(`${h.youtube_videos} YouTube videos with ${h.youtube_views.toLocaleString("en-US")} views`);
+  if (h.search_vs_brand_pct != null) bits.push(`Google searches at ${h.search_vs_brand_pct}% of the brand's own (${h.search_momentum})`);
+  if (h.reddit_engagement != null) bits.push(`${h.reddit_engagement.toLocaleString("en-US")} Reddit upvotes and comments`);
+  return `<p><span class="k">Hype signals:</span> ${esc(bits.join("; "))}.</p>`;
+}
+
+function resaleDetail(r){
+  const x = r.resale; if (!x) return "";
+  let t = `<p><span class="k">Resale estimate:</span> ${pct(x.low_pct)} to ${pct(x.high_pct)} vs retail, ${esc(x.confidence)} confidence, based on ${esc(x.basis)}`;
+  if (x.adjustments?.length) t += `; ${esc(x.adjustments.join(", "))}`;
+  t += `. You need about ${pct(x.breakeven_pct)} to break even after VAT and selling costs`;
+  if (x.est_profit_aed != null) t += `; the midpoint implies ${x.est_profit_aed >= 0 ? "a net gain" : "a net loss"} of ${aed(Math.abs(x.est_profit_aed))}`;
+  t += ".</p>";
+  if (x.comparables?.length) t += `<p><span class="k">Comparables:</span> ${x.comparables.map(c => `${esc(c.name || c.reference)} ${pct(c.premium_pct)} (${esc(c.source || "web")})`).join("; ")}</p>`;
+  if (x.early_signal_note) t += `<p><span class="k">Early signals:</span> ${esc(x.early_signal_note)}</p>`;
+  return t;
+}
+
+function buyList(r){
+  const d = r.research?.data; if (!d?.uae_buy?.length) return "";
+  const items = d.uae_buy.map(s => {
+    const label = esc(s.name) + (s.where ? `, ${esc(s.where)}` : "");
+    return `<li>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${label}</a>` : label}</li>`;
+  }).join("");
+  const online = d.online_ships_to_uae === true ? "<p>The brand's online store ships to the UAE.</p>" : "";
+  return `<div><span class="k">Where to buy in the UAE:</span><ul class="buy">${items}</ul>${online}</div>`;
+}
+
+/* ---------- Collection: decrypted in the browser with your passphrase ---------- */
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function decryptPrivate(pass){
+  const res = await fetch("private.enc.json?t=" + Date.now(), {cache:"no-store"});
+  if (res.status === 404) return {holdings:[], contacts:[]};
+  if (!res.ok) throw new Error("Couldn't load your collection file (HTTP " + res.status + ").");
+  const blob = await res.json();
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({name:"PBKDF2", hash:"SHA-256", salt:b64(blob.salt), iterations:blob.iterations},
+    base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  try {
+    const plain = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(blob.iv)}, key, b64(blob.data));
+    return JSON.parse(new TextDecoder().decode(plain));
+  } catch { throw new Error("That passphrase doesn't match. Use the PORTFOLIO_PASSPHRASE you saved on GitHub."); }
+}
+
+function getSavedPass(){ try { return localStorage.getItem("wt-pass"); } catch { return null; } }
+
+async function renderCollection(){
+  const box = $("#list");
+  const pass = state.pass || getSavedPass();
+  if (!pass){
+    box.innerHTML = `<form class="unlock" id="unlock">
+      <p class="hint">Your collection and contacts are encrypted. Enter your passphrase to view them on this device.</p>
+      <input type="password" id="pass" placeholder="Passphrase" autocomplete="current-password" required>
+      <label class="toggles"><input type="checkbox" id="remember" checked> Remember on this device</label>
+      <button class="btn" type="submit">Unlock collection</button>
+      <p class="note" id="err" role="alert"></p></form>`;
+    $("#unlock").addEventListener("submit", async e => {
+      e.preventDefault();
+      const p = $("#pass").value;
+      try { state.priv = await decryptPrivate(p); state.pass = p;
+        if ($("#remember").checked) { try { localStorage.setItem("wt-pass", p); } catch {} }
+        renderCollection();
+      } catch (err) { $("#err").textContent = err.message; }
+    });
+    return;
+  }
+  if (!state.priv){
+    box.innerHTML = `<p class="empty">Unlocking…</p>`;
+    try { state.priv = await decryptPrivate(pass); state.pass = pass; }
+    catch (err) { try { localStorage.removeItem("wt-pass"); } catch {} state.pass = null; box.innerHTML = `<p class="note">${esc(err.message)}</p>`; setTimeout(renderCollection, 1500); return; }
+  }
+  const sell = (state.sellPct ?? 10) / 100;
+  const held = state.priv.holdings.filter(h => !h.sold_price_aed);
+  const sold = state.priv.holdings.filter(h => h.sold_price_aed);
+  const paid = held.reduce((a,h) => a + (h.price_aed || 0), 0);
+  const value = held.reduce((a,h) => a + (h.value_aed || h.price_aed || 0), 0);
+  let html = "";
+  if (!state.priv.holdings.length){
+    html += `<p class="empty">Your collection is empty. In Telegram, send your bot a message like <b>/bought Tudor BB58 79030N for 17,900 AED</b>.</p>`;
+  } else {
+    html += `<div class="totals"><div><b>${aed(paid)}</b><span>Paid</span></div><div><b>${aed(value)}</b><span>Estimated value</span></div>
+      <div><b class="${value >= paid ? "gain" : "loss"}">${paid ? pct((value / paid - 1) * 100) : "0%"}</b><span>Change</span></div></div>`;
+    html += `<h2 class="group">Holding</h2>` + held.map(h => {
+      const v = h.value_aed, change = v && h.price_aed ? (v / h.price_aed - 1) * 100 : null;
+      const net = v ? v * (1 - sell) - (h.price_aed || 0) : null;
+      return `<article class="row"><div class="window tbd"><b>${h.purchase_date ? new Date(h.purchase_date + "T12:00:00").getDate() : "—"}</b><span>${h.purchase_date ? new Date(h.purchase_date + "T12:00:00").toLocaleDateString("en-GB",{month:"short", year:"2-digit"}) : ""}</span></div><div>
+        <div class="brand">${esc(h.brand)}</div><div class="model">${esc(h.model)}</div>
+        <div class="facts"><span class="price">Paid ${aed(h.price_aed || 0)}</span>${v ? `<span>Worth ~${aed(v)}</span><span class="${change >= 0 ? "gain" : "loss"}">${pct(change)}</span>` : "<span>Value not yet available</span>"}</div>
+        ${net != null ? `<p class="hint">If sold now, net after selling costs: <span class="${net >= 0 ? "gain" : "loss"}">${net >= 0 ? "+" : "−"}${aed(Math.abs(net))}</span>. Source: ${esc(h.value_source || "")}</p>` : ""}
+        ${h.reference ? `<p class="hint">Reference ${esc(h.reference)}</p>` : ""}</div></article>`;
+    }).join("");
+    if (sold.length) html += `<h2 class="group">Sold</h2>` + sold.map(h =>
+      `<article class="row"><div class="window tbd"><b>✓</b><span>sold</span></div><div><div class="brand">${esc(h.brand)}</div><div class="model">${esc(h.model)}</div>
+      <div class="facts"><span>Paid ${aed(h.price_aed || 0)}</span><span>Sold ${aed(h.sold_price_aed)}</span>
+      <span class="${h.sold_price_aed >= (h.price_aed||0) ? "gain" : "loss"}">${pct((h.sold_price_aed / (h.price_aed || h.sold_price_aed) - 1) * 100)}</span></div></div></article>`).join("");
+  }
+  const contacts = state.priv.contacts || [];
+  html += `<h2 class="group">Boutique contacts</h2>` + (contacts.length ? contacts.map(c =>
+    `<article class="row"><div class="window tbd"><b>☎</b><span>${esc((c.brand||"").slice(0,9))}</span></div><div><div class="brand">${esc(c.brand)}</div>
+     <div class="model">${esc(c.name || "Contact")}</div><div class="facts">${c.store ? `<span>${esc(c.store)}</span>` : ""}
+     ${c.phone ? `<a href="tel:${esc(c.phone.replace(/\s+/g,""))}">${esc(c.phone)}</a>` : ""}</div>${c.notes ? `<p class="hint">${esc(c.notes)}</p>` : ""}</div></article>`).join("")
+    : `<p class="hint">No contacts yet. Send your bot <b>/contact Tudor: Ahmed, Seddiqi Dubai Mall, +971 50 123 4567</b>.</p>`);
+  html += `<p style="margin-top:24px"><button class="btn quiet" id="lock">Lock collection on this device</button></p>`;
+  box.innerHTML = html;
+  $("#lock").addEventListener("click", () => { try { localStorage.removeItem("wt-pass"); } catch {} state.pass = null; state.priv = null; renderCollection(); });
+}
+
+function filtered(){
+  const q = $("#q").value.trim().toLowerCase();
+  const min = Number($("#minscore").value);
+  return state.data.filter(r =>
+    (r.score||0) >= min &&
+    ($("#over").checked || !r.over_budget) &&
+    (!$("#limited").checked || r.is_limited) &&
+    (!q || [r.brand, r.model, r.reference, r.specs].join(" ").toLowerCase().includes(q))
+  );
+}
+
+function render(){
+  $("#filters").hidden = state.tab === "collection";
+  if (state.tab === "collection") return renderCollection();
+  let items = filtered(), html = "";
+  const t = todayStr();
+  if (state.tab === "upcoming"){
+    const key = r => lday(r) + " " + (r.launch_uae?.time || "99:99");
+    const dated = items.filter(r => lday(r) && lday(r) >= t && r.status !== "sold_out")
+                       .sort((a,b) => key(a).localeCompare(key(b)));
+    const tba = items.filter(r => !lday(r) && r.status !== "sold_out")
+                     .sort((a,b) => (b.score||0) - (a.score||0));
+    let month = "";
+    for (const r of dated){
+      const m = parseDay(lday(r)).toLocaleDateString("en-GB",{month:"long", year:"numeric"});
+      if (m !== month){ html += `<h2 class="group">${m}</h2>`; month = m; }
+      html += row(r);
+    }
+    if (tba.length){ html += `<h2 class="group">Date not announced yet</h2>` + tba.map(row).join(""); }
+  } else if (state.tab === "recent"){
+    const cutoff = Date.now() - 14 * 86400000;
+    html = items.filter(r => Date.parse(r.first_seen) > cutoff)
+                .sort((a,b) => b.first_seen.localeCompare(a.first_seen)).map(row).join("");
+  } else {
+    html = items.sort((a,b) => (b.score||0) - (a.score||0) || b.first_seen.localeCompare(a.first_seen)).map(row).join("");
+  }
+  $("#list").innerHTML = html || `<p class="empty">No releases match these filters. Lower the minimum score or turn on "Show over budget" to see more.</p>`;
+}
+
+async function load(){
+  try {
+    const res = await fetch("releases.json?t=" + Date.now(), {cache:"no-store"});
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const json = await res.json();
+    state.data = json.releases || [];
+    state.minDefault = json.min_score ?? 5;
+    state.sellPct = json.selling_cost_pct;
+    const when = json.generated ? new Date(json.generated).toLocaleString("en-GB",{timeZone:"Asia/Dubai", day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"}) : null;
+    $("#sub").textContent = when
+      ? `${state.data.length} releases tracked. Last checked ${when} UAE time.`
+      : "No releases collected yet. The first check runs within six hours of setup.";
+  } catch (e) {
+    $("#sub").textContent = "Couldn't load releases.json (" + e.message + "). Pull to refresh, or check the GitHub Actions log.";
+  }
+  const sel = $("#minscore");
+  sel.innerHTML = Array.from({length:10}, (_,i) => `<option value="${i+1}">${i+1}+</option>`).join("");
+  sel.value = String(state.minDefault);
+  render();
+}
+
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
+  state.tab = b.dataset.tab; render();
+}));
+["#q","#limited","#over","#minscore"].forEach(s => $(s).addEventListener("input", render));
+load();
+</script>
+</body>
+</html>

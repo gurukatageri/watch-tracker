@@ -16,8 +16,8 @@ import statistics
 from datetime import timedelta
 
 from common import (
-    CACHE_PATH, HTTP, ask_claude, load_json, norm, now_utc, parse_day, parse_iso,
-    save_json, to_aed,
+    CACHE_ENC_PATH, CACHE_PATH, HTTP, ask_claude, load_json, load_secure, norm, now_utc, parse_day,
+    parse_iso, save_json, save_secure, to_aed,
 )
 
 STOPWORDS = {"the", "and", "edition", "limited", "watch", "new", "with", "for", "of",
@@ -33,7 +33,7 @@ class WatchCharts:
 
     def __init__(self):
         self.key = os.environ.get("WATCHCHARTS_API_KEY")
-        self.cache = load_json(CACHE_PATH, {})
+        self.cache = load_secure(CACHE_PATH, CACHE_ENC_PATH, {})
         self.calls = 0
 
     @property
@@ -112,7 +112,7 @@ class WatchCharts:
         return data
 
     def save(self):
-        save_json(CACHE_PATH, self.cache)
+        save_secure(CACHE_PATH, CACHE_ENC_PATH, self.cache)
 
 
 # ------------------------------------------------------------ hype signals

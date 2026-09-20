@@ -28,7 +28,8 @@ import feedparser
 from bs4 import BeautifulSoup
 
 from common import (
-    CONFIG_PATH, HTTP, RELEASES_PATH, SEEN_PATH, STATE_PATH, ask_claude, load_json, norm,
+    CONFIG_PATH, HTTP, RELEASES_ENC_PATH, RELEASES_PATH, SEEN_PATH, STATE_PATH, ask_claude,
+    load_json, load_secure, norm, save_secure,
     now_utc, parse_day, parse_iso, save_json, telegram_photos, telegram_send, to_aed,
 )
 import private
@@ -468,7 +469,7 @@ def upsert(cfg, releases, rel, article):
 def collect(cfg, state):
     """Check sources and update the release list. Returns (releases, new_or_changed_ids)."""
     seen = load_json(SEEN_PATH, {})
-    store = load_json(RELEASES_PATH, {"releases": []})
+    store = load_secure(RELEASES_PATH, RELEASES_ENC_PATH, {"releases": []})
     releases = store.get("releases", [])
     before = {r["id"]: (r.get("status"), r.get("launch_date")) for r in releases}
 
@@ -518,7 +519,7 @@ def collect(cfg, state):
 
 
 def save_releases(cfg, releases):
-    save_json(RELEASES_PATH, {
+    save_secure(RELEASES_PATH, RELEASES_ENC_PATH, {
         "generated": now_utc().isoformat(),
         "max_price_aed": cfg["max_price_aed"],
         "min_score": cfg["min_score_for_digest"],
@@ -527,7 +528,7 @@ def save_releases(cfg, releases):
         "selling_cost_pct": cfg.get("selling_cost_pct", 10),
         "purchase_tax_pct": cfg.get("purchase_tax_pct", 5),
         "releases": releases,
-    })
+    }, stub={"encrypted": True, "note": "Release data is encrypted. Open the dashboard and unlock it with your passphrase."})
 
 
 # --------------------------------------------------------------- messages

@@ -1,7 +1,10 @@
 """Shared helpers used by all tracker modules."""
 
+import base64
+import hashlib
 import json
 import os
+import secrets
 import re
 import time
 from datetime import date, datetime, timezone
@@ -14,7 +17,9 @@ CONFIG_PATH = ROOT / "config.json"
 SEEN_PATH = ROOT / "data" / "seen.json"
 STATE_PATH = ROOT / "data" / "state.json"
 CACHE_PATH = ROOT / "data" / "market_cache.json"
+CACHE_ENC_PATH = ROOT / "data" / "market_cache.enc.json"
 RELEASES_PATH = ROOT / "docs" / "releases.json"
+RELEASES_ENC_PATH = ROOT / "docs" / "releases.enc.json"
 PRIVATE_PATH = ROOT / "docs" / "private.enc.json"
 
 HTTP = requests.Session()
@@ -44,6 +49,57 @@ def save_json(path, data):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+# ------------------------------------------------------------ encryption
+# AES-256-GCM with a key derived from PORTFOLIO_PASSPHRASE (PBKDF2-SHA256).
+# The dashboard decrypts the same format in the browser with WebCrypto.
+
+KDF_ITERATIONS = 250_000
+
+
+def passphrase():
+    return os.environ.get("PORTFOLIO_PASSPHRASE") or None
+
+
+def encrypt_obj(obj, pw):
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    salt, iv = secrets.token_bytes(16), secrets.token_bytes(12)
+    key = hashlib.pbkdf2_hmac("sha256", pw.encode(), salt, KDF_ITERATIONS, dklen=32)
+    data = AESGCM(key).encrypt(iv, json.dumps(obj, ensure_ascii=False).encode(), None)
+    return {"v": 1, "kdf": "PBKDF2-SHA256", "iterations": KDF_ITERATIONS,
+            "salt": base64.b64encode(salt).decode(), "iv": base64.b64encode(iv).decode(),
+            "data": base64.b64encode(data).decode()}
+
+
+def decrypt_obj(blob, pw):
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    salt, iv, data = (base64.b64decode(blob[k]) for k in ("salt", "iv", "data"))
+    key = hashlib.pbkdf2_hmac("sha256", pw.encode(), salt, blob.get("iterations", KDF_ITERATIONS), dklen=32)
+    return json.loads(AESGCM(key).decrypt(iv, data, None))
+
+
+def load_secure(plain_path, enc_path, default):
+    """Read the encrypted file when a passphrase is set, else (or if absent) the plain one."""
+    pw = passphrase()
+    blob = load_json(enc_path, None) if pw else None
+    if blob:
+        return decrypt_obj(blob, pw)  # a wrong passphrase raises: better to stop than overwrite data
+    data = load_json(plain_path, None)
+    return default if not data or data.get("encrypted") else data
+
+
+def save_secure(plain_path, enc_path, obj, stub=None):
+    """Write encrypted when a passphrase is set and replace the plain file with a harmless stub."""
+    pw = passphrase()
+    if pw:
+        save_json(enc_path, encrypt_obj(obj, pw))
+        if stub is not None:
+            save_json(plain_path, stub)
+        elif Path(plain_path).exists():
+            Path(plain_path).unlink()
+    else:
+        save_json(plain_path, obj)
 
 
 def now_utc():

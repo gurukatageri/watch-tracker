@@ -1,13 +1,15 @@
 {
   "tg_offset": 52018512,
-  "last_collect": "2026-09-28T14:36:32.919809+00:00",
+  "last_collect": "2026-09-28T15:35:19.256840+00:00",
   "feed_errors": [
     "WatchTime (404 Client Error: Not Found for url: https://www.watchtime.com/feed)",
+    "Time and Tide (feed returned no articles)",
     "WatchPro (403 Client Error: HTTP Forbidden for url: https://www.watchpro.com/feed/)",
-    "Deployant (HTTPSConnectionPool(host='deployant.com', port=443): Read timed out.)",
+    "Deployant (feed returned no articles)",
+    "Revolution (feed returned no articles)",
     "News: Middle East editions (feed returned no articles)"
   ],
-  "ai_errors": 179,
+  "ai_errors": 180,
   "urgent_sent": [
     "2d7d398c57d1:available_now:2026-09-17",
     "4149ab7d728c:available_now:2026-09-17",

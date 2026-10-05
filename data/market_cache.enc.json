@@ -2,7 +2,7 @@
   "v": 1,
   "kdf": "PBKDF2-SHA256",
   "iterations": 250000,
-  "salt": "QxLJRlOoA0Ab0yjaBJJKwQ==",
-  "iv": "oDlGHLdea0B6+BaM",
-  "data": "4JRoMTdHz3r6mO1MgV80v5Uk"
+  "salt": "/JxRztYzs+bPn1k/xOyuig==",
+  "iv": "GJu3Vl+E6Ha6uhlU",
+  "data": "0xKNZyG7JpnrSHlO56t9uN+G"
 }
